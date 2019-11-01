@@ -68,5 +68,17 @@ namespace DrawingTest
 
             pnlDrawingSurface.Invalidate();
         }
+
+        private void PnlDrawingSurface_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Update the X,Y coordinates shown by the label. This is purely cosmetic.
+            var mousePos = pnlDrawingSurface.PointToClient(Cursor.Position);
+            lblCursorPos.Text = $"X: { mousePos.X }, Y: { mousePos.Y }";
+        }
+
+        private void PnlDrawingSurface_MouseLeave(object sender, EventArgs e)
+        {
+            lblCursorPos.ResetText();
+        }
     }
 }

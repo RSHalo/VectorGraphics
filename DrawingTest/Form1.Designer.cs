@@ -33,6 +33,7 @@
             this.btnDrawLine = new System.Windows.Forms.Button();
             this.btnDrawThickLine = new System.Windows.Forms.Button();
             this.btnDrawRectangle = new System.Windows.Forms.Button();
+            this.lblCursorPos = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pnlDrawingSurface
@@ -43,6 +44,8 @@
             this.pnlDrawingSurface.Size = new System.Drawing.Size(372, 253);
             this.pnlDrawingSurface.TabIndex = 0;
             this.pnlDrawingSurface.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlDrawingSurface_Paint);
+            this.pnlDrawingSurface.MouseLeave += new System.EventHandler(this.PnlDrawingSurface_MouseLeave);
+            this.pnlDrawingSurface.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlDrawingSurface_MouseMove);
             // 
             // lblDrawing
             // 
@@ -84,11 +87,20 @@
             this.btnDrawRectangle.UseVisualStyleBackColor = true;
             this.btnDrawRectangle.Click += new System.EventHandler(this.BtnDrawRectangle_Click);
             // 
+            // lblCursorPos
+            // 
+            this.lblCursorPos.AutoSize = true;
+            this.lblCursorPos.Location = new System.Drawing.Point(587, 337);
+            this.lblCursorPos.Name = "lblCursorPos";
+            this.lblCursorPos.Size = new System.Drawing.Size(0, 13);
+            this.lblCursorPos.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 362);
+            this.Controls.Add(this.lblCursorPos);
             this.Controls.Add(this.btnDrawRectangle);
             this.Controls.Add(this.btnDrawThickLine);
             this.Controls.Add(this.lblDrawing);
@@ -108,6 +120,7 @@
         private System.Windows.Forms.Button btnDrawLine;
         private System.Windows.Forms.Button btnDrawThickLine;
         private System.Windows.Forms.Button btnDrawRectangle;
+        private System.Windows.Forms.Label lblCursorPos;
     }
 }
 
