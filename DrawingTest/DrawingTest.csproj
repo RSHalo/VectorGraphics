@@ -50,6 +50,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DrawableRectangle.cs" />
+    <Compile Include="DrawingTool.cs" />
+    <Compile Include="FixedLineTool.cs" />
+    <Compile Include="FixedRectangleTool.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

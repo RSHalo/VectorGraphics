@@ -13,12 +13,14 @@ namespace DrawingTest
     public partial class Form1 : Form
     {
         // TODO: Research 2d scene graph.
+        // TODO: Watch Practical Polymorphism.
+        // TODO: Remove sticky rectangle and replace with normal rectangle.
+
+        DrawingTool Tool;
 
         Rectangle stickyRectangle = new Rectangle();
-        bool isStickyRectangle = false;
-        bool isFixedRectangle = false;
-        bool isFixedLine = false;
-
+        
+        // Collection of drawable shapes. This collection is iterated over when the canvas is drawn.
         readonly List<IDrawable> drawables = new List<IDrawable>
         {
             new DrawableLine(Pens.Red, new Point(10, 10), new Point(50, 50)),
@@ -57,20 +59,19 @@ namespace DrawingTest
 
         private void RdStickyRectangle_CheckedChanged(object sender, EventArgs e)
         {
-            isStickyRectangle = true;
-            isFixedLine = isFixedRectangle = false;
+            //Tool = new 
         }
 
         private void ChkFixedRectangle_CheckedChanged(object sender, EventArgs e)
         {
-            isFixedRectangle = true;
-            isFixedLine = isStickyRectangle = false;
+            Tool = new FixedRectangleTool();
+            Tool.DrawingCreated += OnToolDrawingCreated;
         }
 
         private void ChkFixedLine_CheckedChanged(object sender, EventArgs e)
         {
-            isFixedLine = true;
-            isStickyRectangle = isFixedRectangle = false;
+            Tool = new FixedLineTool();
+            Tool.DrawingCreated += OnToolDrawingCreated;
         }
         #endregion
 
@@ -94,42 +95,38 @@ namespace DrawingTest
             var mousePos = cnvsMain.PointToClient(Cursor.Position);
 
             lblCursorPos.Text = $"X: { mousePos.X }, Y: { mousePos.Y }";
-
+            /*
             if (isStickyRectangle)
             {
                 stickyRectangle.Width = mousePos.X;
                 stickyRectangle.Height = mousePos.Y;
 
                 cnvsMain.Invalidate();
-            }
+            }*/
         }
 
         private void CnvsMain_MouseClick(object sender, MouseEventArgs e)
         {
+            /*
             if (isStickyRectangle)
             {
                 drawables.Add(new DrawableRectangle(Pens.Red, stickyRectangle));
                 cnvsMain.Invalidate();
-            }
-            else if (isFixedRectangle)
-            {
-                var rectangle = new DrawableRectangle(Pens.Black, new Rectangle(new Point(e.X-25,e.Y-15), new Size(50, 30)));
-                drawables.Add(rectangle);
+            }*/
 
-                cnvsMain.Invalidate();
-            }
-            else if (isFixedLine)
-            {
-                var line = new DrawableLine(Pens.Green, new Point(e.X - 20, e.Y - 20), new Point(e.X + 20, e.Y + 20));
-                drawables.Add(line);
-
-                cnvsMain.Invalidate();
-            }
+            Tool.Clicked(e);
         }
 
         private void CnvsMain_MouseLeave(object sender, EventArgs e)
         {
             lblCursorPos.ResetText();
+        }
+
+        // This function is an event handler for when the tool raises it's OnDrawingCreated event.
+        private void OnToolDrawingCreated(object sender, EventArgs e)
+        {
+            drawables.Add(Tool.DrawResult);
+            cnvsMain.Invalidate();
         }
     }
 }
