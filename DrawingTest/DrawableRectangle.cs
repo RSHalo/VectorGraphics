@@ -24,6 +24,12 @@ namespace DrawingTest
             _rectangle = new Rectangle(x, y, width, height);
         }
 
+        public DrawableRectangle(Pen pen, Rectangle rectangle)
+        {
+            Pen = pen;
+            _rectangle = rectangle;
+        }
+
         public void Draw(Graphics graphics)
         {
             graphics.DrawRectangle(Pen, _rectangle);
