@@ -14,6 +14,10 @@ namespace DrawingTest
     {
         // TODO: Research 2d scene graph.
 
+        Rectangle stickyRectangle = new Rectangle();
+        bool isStickyRectangle = false;
+        bool isFixedRectangle = false;
+        bool isFixedLine = false;
 
         readonly List<IDrawable> drawables = new List<IDrawable>
         {
@@ -26,16 +30,12 @@ namespace DrawingTest
             InitializeComponent();
         }
 
-        Rectangle hoverRectangle = new Rectangle();
-
         #region Button Clicks
         private void BtnDrawLine_Click(object sender, EventArgs e)
         {
             DrawableLine line = new DrawableLine(new Pen(Color.Blue), new Point(75, 50), new Point(30, 80));
             drawables.Add(line);
 
-            // Invalidate causes the control to be redrawn.
-            // As we said before, we want the panel to be redrawn so that all of our drawings will be redrawn.
             cnvsMain.Invalidate();
         }
 
@@ -54,23 +54,29 @@ namespace DrawingTest
 
             cnvsMain.Invalidate();
         }
+
+        private void RdStickyRectangle_CheckedChanged(object sender, EventArgs e)
+        {
+            isStickyRectangle = true;
+            isFixedLine = isFixedRectangle = false;
+        }
+
+        private void ChkFixedRectangle_CheckedChanged(object sender, EventArgs e)
+        {
+            isFixedRectangle = true;
+            isFixedLine = isStickyRectangle = false;
+        }
+
+        private void ChkFixedLine_CheckedChanged(object sender, EventArgs e)
+        {
+            isFixedLine = true;
+            isStickyRectangle = isFixedRectangle = false;
+        }
         #endregion
-
-        private void PnlDrawingSurface_MouseMove(object sender, MouseEventArgs e)
-        {
-            // Update the X,Y coordinates shown by the label. This is purely cosmetic.
-            var mousePos = cnvsMain.PointToClient(Cursor.Position);
-            lblCursorPos.Text = $"X: { mousePos.X }, Y: { mousePos.Y }";
-        }
-
-        private void PnlDrawingSurface_MouseLeave(object sender, EventArgs e)
-        {
-            lblCursorPos.ResetText();
-        }
 
         private void CnvsMain_Paint(object sender, PaintEventArgs e)
         {
-            // All drawing happens when this Panel is painted on the screen.
+            // All drawing happens when this Canvas is painted on the screen.
             // You don't just draw a line and expect it to persist. The drawing will dissapear when you minimise then maximise the form.
             // So, if we do all drawing when the containing Panel is drawn, then any time we can see our Panel, all our lines/rectangles will have been drawn too.
             // This is a very important concept. When you want to research, do a Google search like: "Drawing Paint event", "Drawing OnPaint override".
@@ -80,23 +86,43 @@ namespace DrawingTest
                 drawable.Draw(e.Graphics);
             }
             
-            e.Graphics.DrawRectangle(Pens.Red, hoverRectangle);
+            e.Graphics.DrawRectangle(Pens.Red, stickyRectangle);
         }
 
         private void CnvsMain_MouseMove(object sender, MouseEventArgs e)
         {
             var mousePos = cnvsMain.PointToClient(Cursor.Position);
-            hoverRectangle.Width = mousePos.X;
-            hoverRectangle.Height = mousePos.Y;
 
-            cnvsMain.Invalidate();
+            lblCursorPos.Text = $"X: { mousePos.X }, Y: { mousePos.Y }";
+
+            if (isStickyRectangle)
+            {
+                stickyRectangle.Width = mousePos.X;
+                stickyRectangle.Height = mousePos.Y;
+
+                cnvsMain.Invalidate();
+            }
         }
 
         private void CnvsMain_MouseClick(object sender, MouseEventArgs e)
         {
-            drawables.Add(new DrawableRectangle(Pens.Red, hoverRectangle));
+            if (isStickyRectangle)
+            {
+                drawables.Add(new DrawableRectangle(Pens.Red, stickyRectangle));
+                cnvsMain.Invalidate();
+            }
+            else if (isFixedRectangle)
+            {
+                var rectangle = new DrawableRectangle(Pens.Black, new Rectangle(new Point(e.X-25,e.Y-15), new Size(50, 30)));
+                drawables.Add(rectangle);
 
-            cnvsMain.Invalidate();
+                cnvsMain.Invalidate();
+            }
+        }
+
+        private void CnvsMain_MouseLeave(object sender, EventArgs e)
+        {
+            lblCursorPos.ResetText();
         }
     }
 }
