@@ -25,6 +25,8 @@ namespace DrawingTest
             InitializeComponent();
         }
 
+        Panel hoverRectangle = new Panel();
+
         private void PnlDrawingSurface_Paint(object sender, PaintEventArgs e)
         {
             // All drawing happens when this Panel is painted on the screen.
@@ -74,11 +76,27 @@ namespace DrawingTest
             // Update the X,Y coordinates shown by the label. This is purely cosmetic.
             var mousePos = pnlDrawingSurface.PointToClient(Cursor.Position);
             lblCursorPos.Text = $"X: { mousePos.X }, Y: { mousePos.Y }";
+
+            // Draw rectange connecting origin with mouse.
+            Graphics graphics = pnlDrawingSurface.CreateGraphics();
+            graphics.DrawRectangle(Pens.Red, new Rectangle(0, 0, mousePos.X, mousePos.Y));
         }
 
         private void PnlDrawingSurface_MouseLeave(object sender, EventArgs e)
         {
             lblCursorPos.ResetText();
+        }
+
+        private void PnlDrawingSurface_MouseEnter(object sender, EventArgs e)
+        {
+            DynamicRectangle myControl = new DynamicRectangle
+            {
+                Width = 100,
+                Height = 100,
+                Location = new Point(0,0)
+            };
+
+            pnlDrawingSurface.Controls.Add(myControl);
         }
     }
 }

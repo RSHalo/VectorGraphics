@@ -39,11 +39,13 @@
             // pnlDrawingSurface
             // 
             this.pnlDrawingSurface.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlDrawingSurface.Location = new System.Drawing.Point(12, 97);
+            this.pnlDrawingSurface.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnlDrawingSurface.Location = new System.Drawing.Point(15, 97);
             this.pnlDrawingSurface.Name = "pnlDrawingSurface";
-            this.pnlDrawingSurface.Size = new System.Drawing.Size(372, 253);
+            this.pnlDrawingSurface.Size = new System.Drawing.Size(769, 401);
             this.pnlDrawingSurface.TabIndex = 0;
             this.pnlDrawingSurface.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlDrawingSurface_Paint);
+            this.pnlDrawingSurface.MouseEnter += new System.EventHandler(this.PnlDrawingSurface_MouseEnter);
             this.pnlDrawingSurface.MouseLeave += new System.EventHandler(this.PnlDrawingSurface_MouseLeave);
             this.pnlDrawingSurface.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlDrawingSurface_MouseMove);
             // 
@@ -90,7 +92,7 @@
             // lblCursorPos
             // 
             this.lblCursorPos.AutoSize = true;
-            this.lblCursorPos.Location = new System.Drawing.Point(587, 337);
+            this.lblCursorPos.Location = new System.Drawing.Point(620, 506);
             this.lblCursorPos.Name = "lblCursorPos";
             this.lblCursorPos.Size = new System.Drawing.Size(0, 13);
             this.lblCursorPos.TabIndex = 5;
@@ -99,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 362);
+            this.ClientSize = new System.Drawing.Size(793, 528);
             this.Controls.Add(this.lblCursorPos);
             this.Controls.Add(this.btnDrawRectangle);
             this.Controls.Add(this.btnDrawThickLine);
