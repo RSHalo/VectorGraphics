@@ -12,20 +12,18 @@ namespace DrawingTest
 {
     public partial class Form1 : Form
     {
-        List<Line> drawnLines = new List<Line>
+        List<IDrawable> drawables = new List<IDrawable>
         {
-            new Line(new Pen(Color.Red), new Point(10, 10), new Point(50, 50)),
-            new Line(new Pen(Color.Red), new Point(100, 150), new Point(200, 200))
+            new DrawableLine(Pens.Red, new Point(10, 10), new Point(50, 50)),
+            new DrawableLine(Pens.Red, new Point(100, 150), new Point(200, 200))
         };
-
-        List<Rectangle> drawnRectangles = new List<Rectangle>();
 
         public Form1()
         {
             InitializeComponent();
-        }
 
-        Panel hoverRectangle = new Panel();
+            //pnlDrawingSurface.Controls.Add(hoverRectangle);
+        }
 
         private void PnlDrawingSurface_Paint(object sender, PaintEventArgs e)
         {
@@ -34,21 +32,16 @@ namespace DrawingTest
             // So, if we do all drawing when the containing Panel is drawn, then any time we can see our Panel, all our lines/rectangles will have been drawn too.
             // This is a very important concept. When you want to research, do a Google search like: "Drawing Paint event", "Drawing OnPaint override".
 
-            foreach (Line line in drawnLines)
+            foreach (IDrawable drawable in drawables)
             {
-                e.Graphics.DrawLine(line.Pen, line.StartPoint, line.EndPoint);
-            }
-
-            foreach (var rectangle in drawnRectangles)
-            {
-                e.Graphics.DrawRectangles(new Pen(Color.Coral), drawnRectangles.ToArray());
+                drawable.Draw(e.Graphics);
             }
         }
 
         private void BtnDrawLine_Click(object sender, EventArgs e)
         {
-            Line line = new Line(new Pen(Color.Blue), new Point(75, 50), new Point(30, 80));
-            drawnLines.Add(line);
+            DrawableLine line = new DrawableLine(new Pen(Color.Blue), new Point(75, 50), new Point(30, 80));
+            drawables.Add(line);
 
             // Invalidate causes the control to be redrawn.
             // As we said before, we want the panel to be redrawn so that all of our drawings will be redrawn.
@@ -57,16 +50,16 @@ namespace DrawingTest
 
         private void BtnDrawThickLine_Click(object sender, EventArgs e)
         {
-            Line line = new Line(new Pen(Color.Blue, 2), new Point(175, 150), new Point(130, 180));
-            drawnLines.Add(line);
+            DrawableLine line = new DrawableLine(new Pen(Color.Blue, 2), new Point(175, 150), new Point(130, 180));
+            drawables.Add(line);
 
             pnlDrawingSurface.Invalidate();
         }
 
         private void BtnDrawRectangle_Click(object sender, EventArgs e)
         {
-            Rectangle rectangle = new Rectangle(105, 30, 75, 20);
-            drawnRectangles.Add(rectangle);
+            DrawableRectangle rectangle = new DrawableRectangle(Pens.Coral, 105, 30, 75, 20);
+            drawables.Add(rectangle);
 
             pnlDrawingSurface.Invalidate();
         }
@@ -78,25 +71,14 @@ namespace DrawingTest
             lblCursorPos.Text = $"X: { mousePos.X }, Y: { mousePos.Y }";
 
             // Draw rectange connecting origin with mouse.
-            Graphics graphics = pnlDrawingSurface.CreateGraphics();
-            graphics.DrawRectangle(Pens.Red, new Rectangle(0, 0, mousePos.X, mousePos.Y));
+            //hoverRectangle.Width = mousePos.X;
+            //hoverRectangle.Height = mousePos.Y;
+            //hoverRectangle.Invalidate();
         }
 
         private void PnlDrawingSurface_MouseLeave(object sender, EventArgs e)
         {
             lblCursorPos.ResetText();
-        }
-
-        private void PnlDrawingSurface_MouseEnter(object sender, EventArgs e)
-        {
-            DynamicRectangle myControl = new DynamicRectangle
-            {
-                Width = 100,
-                Height = 100,
-                Location = new Point(0,0)
-            };
-
-            pnlDrawingSurface.Controls.Add(myControl);
         }
     }
 }

@@ -7,17 +7,22 @@ using System.Threading.Tasks;
 
 namespace DrawingTest
 {
-    class Line
+    class DrawableLine : IDrawable
     {
         public Pen Pen { get; set; }
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
 
-        public Line(Pen pen, Point startPoint, Point endPoint)
+        public DrawableLine(Pen pen, Point startPoint, Point endPoint)
         {
             Pen = pen;
             StartPoint = startPoint;
             EndPoint = endPoint;
+        }
+
+        public void Draw(Graphics graphics)
+        {
+            graphics.DrawLine(Pen, StartPoint, EndPoint);
         }
     }
 }

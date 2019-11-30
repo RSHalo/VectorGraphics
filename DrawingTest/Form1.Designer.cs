@@ -45,7 +45,6 @@
             this.pnlDrawingSurface.Size = new System.Drawing.Size(769, 401);
             this.pnlDrawingSurface.TabIndex = 0;
             this.pnlDrawingSurface.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlDrawingSurface_Paint);
-            this.pnlDrawingSurface.MouseEnter += new System.EventHandler(this.PnlDrawingSurface_MouseEnter);
             this.pnlDrawingSurface.MouseLeave += new System.EventHandler(this.PnlDrawingSurface_MouseLeave);
             this.pnlDrawingSurface.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlDrawingSurface_MouseMove);
             // 
