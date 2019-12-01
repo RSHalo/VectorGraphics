@@ -33,8 +33,9 @@
             this.btnDrawRandomRectangle = new System.Windows.Forms.Button();
             this.lblCursorPos = new System.Windows.Forms.Label();
             this.rbFixedRectangle = new System.Windows.Forms.RadioButton();
-            this.cnvsMain = new Canvas();
             this.rbFixedLine = new System.Windows.Forms.RadioButton();
+            this.cnvsMain = new Canvas();
+            this.rbFreeRectangle = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // lblDrawing
@@ -87,18 +88,6 @@
             this.rbFixedRectangle.UseVisualStyleBackColor = true;
             this.rbFixedRectangle.CheckedChanged += new System.EventHandler(this.RbFixedRectangle_CheckedChanged);
             // 
-            // cnvsMain
-            // 
-            this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cnvsMain.Location = new System.Drawing.Point(15, 97);
-            this.cnvsMain.Name = "cnvsMain";
-            this.cnvsMain.Size = new System.Drawing.Size(972, 396);
-            this.cnvsMain.TabIndex = 8;
-            this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
-            this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
-            this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
-            this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
-            // 
             // rbFixedLine
             // 
             this.rbFixedLine.AutoSize = true;
@@ -111,11 +100,38 @@
             this.rbFixedLine.UseVisualStyleBackColor = true;
             this.rbFixedLine.CheckedChanged += new System.EventHandler(this.RbFixedLine_CheckedChanged);
             // 
+            // cnvsMain
+            // 
+            this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cnvsMain.Location = new System.Drawing.Point(15, 97);
+            this.cnvsMain.Name = "cnvsMain";
+            this.cnvsMain.Size = new System.Drawing.Size(972, 396);
+            this.cnvsMain.TabIndex = 8;
+            this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
+            this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
+            this.cnvsMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseDown);
+            this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
+            this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
+            this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
+            // 
+            // rbFreeRectangle
+            // 
+            this.rbFreeRectangle.AutoSize = true;
+            this.rbFreeRectangle.Location = new System.Drawing.Point(633, 17);
+            this.rbFreeRectangle.Name = "rbFreeRectangle";
+            this.rbFreeRectangle.Size = new System.Drawing.Size(98, 17);
+            this.rbFreeRectangle.TabIndex = 12;
+            this.rbFreeRectangle.TabStop = true;
+            this.rbFreeRectangle.Text = "Free Rectangle";
+            this.rbFreeRectangle.UseVisualStyleBackColor = true;
+            this.rbFreeRectangle.CheckedChanged += new System.EventHandler(this.RbFreeRectangle_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(999, 537);
+            this.Controls.Add(this.rbFreeRectangle);
             this.Controls.Add(this.rbFixedLine);
             this.Controls.Add(this.rbFixedRectangle);
             this.Controls.Add(this.cnvsMain);
@@ -139,6 +155,7 @@
         private Canvas cnvsMain;
         private System.Windows.Forms.RadioButton rbFixedRectangle;
         private System.Windows.Forms.RadioButton rbFixedLine;
+        private System.Windows.Forms.RadioButton rbFreeRectangle;
     }
 }
 

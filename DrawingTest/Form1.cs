@@ -15,10 +15,8 @@ namespace DrawingTest
     {
         // TODO: Research 2d scene graph.
 
-        DrawingTool Tool;
-
-        // Collection of drawable shapes. This collection is iterated over when the canvas is drawn.
-        readonly List<IDrawable> drawables = new List<IDrawable>();
+        // The tool selected by the user.
+        Tool Tool = new Tool();
 
         public Form1()
         {
@@ -26,13 +24,14 @@ namespace DrawingTest
         }
 
         #region Button Clicks
+        #region Random Dimension Drawings - remove later
         private void BtnDrawRandomLine_Click(object sender, EventArgs e)
         {
             Point startPoint = Dimensions.GetRandomPoint(cnvsMain.Width, cnvsMain.Height);
             Point endPoint = Dimensions.GetRandomPoint(cnvsMain.Width, cnvsMain.Height);
 
             DrawableLine line = new DrawableLine(Pens.Blue, startPoint, endPoint);
-            drawables.Add(line);
+            cnvsMain.Drawables.Add(line);
 
             cnvsMain.Invalidate();
         }
@@ -41,21 +40,34 @@ namespace DrawingTest
         {
             var rectangle = Dimensions.GetRandomRectangle(cnvsMain.Width, cnvsMain.Height);
             var drawableRectangle = new DrawableRectangle(Pens.Red, rectangle);
-            drawables.Add(drawableRectangle);
+            cnvsMain.Drawables.Add(drawableRectangle);
 
             cnvsMain.Invalidate();
         }
+        #endregion
 
         private void RbFixedLine_CheckedChanged(object sender, EventArgs e)
         {
-            Tool = new FixedLineTool();
-            Tool.DrawingCreated += OnToolDrawingCreated;
+            Tool = new FixedLineTool
+            {
+                Canvas = cnvsMain
+            };
         }
 
         private void RbFixedRectangle_CheckedChanged(object sender, EventArgs e)
         {
-            Tool = new FixedRectangleTool();
-            Tool.DrawingCreated += OnToolDrawingCreated;
+            Tool = new FixedRectangleTool
+            {
+                Canvas = cnvsMain
+            };
+        }
+
+        private void RbFreeRectangle_CheckedChanged(object sender, EventArgs e)
+        {
+            Tool = new RectangleTool
+            {
+                Canvas = cnvsMain
+            };
         }
         #endregion
 
@@ -66,17 +78,30 @@ namespace DrawingTest
             // So, if we do all drawing when the containing Panel is drawn, then any time we can see our Panel, all our lines/rectangles will have been drawn too.
             // This is a very important concept. When you want to research, do a Google search like: "Drawing Paint event", "Drawing OnPaint override".
 
-            foreach (IDrawable drawable in drawables)
+            foreach (IDrawable drawable in cnvsMain.Drawables)
             {
                 drawable.Draw(e.Graphics);
             }
+
+            if (Tool.IsDrawing)
+            {
+                foreach (IDrawable drawable in Tool.CreationDrawables)
+                {
+                    drawable.Draw(e.Graphics);
+                }
+            }
+        }
+
+        private void CnvsMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            Tool.MouseDown(e);
         }
 
         private void CnvsMain_MouseMove(object sender, MouseEventArgs e)
         {
-            var mousePos = cnvsMain.PointToClient(Cursor.Position);
+            lblCursorPos.Text = $"X: { e.X }, Y: { e.Y }";
 
-            lblCursorPos.Text = $"X: { mousePos.X }, Y: { mousePos.Y }";
+            Tool.MouseMoved(e);
         }
 
         private void CnvsMain_MouseClick(object sender, MouseEventArgs e)
@@ -84,16 +109,14 @@ namespace DrawingTest
             Tool.Clicked(e);
         }
 
+        private void CnvsMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            Tool.MouseUp(e);
+        }
+
         private void CnvsMain_MouseLeave(object sender, EventArgs e)
         {
             lblCursorPos.ResetText();
-        }
-
-        // This function is an event handler for when the tool raises it's OnDrawingCreated event.
-        private void OnToolDrawingCreated(object sender, EventArgs e)
-        {
-            drawables.Add(Tool.DrawResult);
-            cnvsMain.Invalidate();
         }
     }
 }

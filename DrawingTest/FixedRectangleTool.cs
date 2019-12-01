@@ -8,12 +8,13 @@ using System.Windows.Forms;
 
 namespace DrawingTest
 {
-    class FixedRectangleTool : DrawingTool
+    class FixedRectangleTool : Tool
     {
         public override void Clicked(MouseEventArgs e)
         {
-            DrawResult = new DrawableRectangle(Pens.Black, new Rectangle(new Point(e.X - 25, e.Y - 15), new Size(50, 30)));
-            OnDrawingCreated();
+            var rectangle = new DrawableRectangle(Pens.Black, new Rectangle(new Point(e.X - 25, e.Y - 15), new Size(50, 30)));
+            Canvas.Drawables.Add(rectangle);
+            Canvas.Invalidate();
         }
     }
 }

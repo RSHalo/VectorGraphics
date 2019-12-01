@@ -8,12 +8,13 @@ using System.Windows.Forms;
 
 namespace DrawingTest
 {
-    class FixedLineTool : DrawingTool
+    class FixedLineTool : Tool
     {
         public override void Clicked(MouseEventArgs e)
         {
-            DrawResult = new DrawableLine(Pens.Green, new Point(e.X - 40, e.Y - 40), new Point(e.X + 40, e.Y + 40));
-            OnDrawingCreated();
+            var line = new DrawableLine(Pens.Green, new Point(e.X - 40, e.Y - 40), new Point(e.X + 40, e.Y + 40));
+            Canvas.Drawables.Add(line);
+            Canvas.Invalidate();
         }
     }
 }
