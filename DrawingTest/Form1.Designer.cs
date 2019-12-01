@@ -51,6 +51,7 @@
             // 
             // lblCursorPos
             // 
+            this.lblCursorPos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCursorPos.AutoSize = true;
             this.lblCursorPos.Location = new System.Drawing.Point(12, 506);
             this.lblCursorPos.Name = "lblCursorPos";
@@ -95,6 +96,9 @@
             // 
             // cnvsMain
             // 
+            this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cnvsMain.Location = new System.Drawing.Point(15, 97);
             this.cnvsMain.Name = "cnvsMain";
@@ -109,6 +113,8 @@
             // 
             // pnlToolsContainer
             // 
+            this.pnlToolsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlToolsContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlToolsContainer.Controls.Add(this.lblTools);
             this.pnlToolsContainer.Controls.Add(this.rbFreeRectangle);

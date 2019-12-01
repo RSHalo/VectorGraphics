@@ -13,6 +13,7 @@ namespace DrawingTest
     public partial class Form1 : Form
     {
         // TODO: Research 2d scene graph.
+        // TODO: Tidy up and make some more comments and ask reddit about how to design tool behaviour.
 
         // The tool selected by the user.
         Tool Tool = new Tool();
