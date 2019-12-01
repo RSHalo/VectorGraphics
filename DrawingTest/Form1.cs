@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DrawingTest.Utility;
 
 namespace DrawingTest
 {
@@ -24,28 +23,6 @@ namespace DrawingTest
         }
 
         #region Button Clicks
-        #region Random Dimension Drawings - remove later
-        private void BtnDrawRandomLine_Click(object sender, EventArgs e)
-        {
-            Point startPoint = Dimensions.GetRandomPoint(cnvsMain.Width, cnvsMain.Height);
-            Point endPoint = Dimensions.GetRandomPoint(cnvsMain.Width, cnvsMain.Height);
-
-            DrawableLine line = new DrawableLine(Pens.Blue, startPoint, endPoint);
-            cnvsMain.Drawables.Add(line);
-
-            cnvsMain.Invalidate();
-        }
-
-        private void BtnDrawRandomRectangle_Click(object sender, EventArgs e)
-        {
-            var rectangle = Dimensions.GetRandomRectangle(cnvsMain.Width, cnvsMain.Height);
-            var drawableRectangle = new DrawableRectangle(Pens.Red, rectangle);
-            cnvsMain.Drawables.Add(drawableRectangle);
-
-            cnvsMain.Invalidate();
-        }
-        #endregion
-
         private void RbFixedLine_CheckedChanged(object sender, EventArgs e)
         {
             Tool = new FixedLineTool
@@ -84,12 +61,7 @@ namespace DrawingTest
             }
 
             if (Tool.IsDrawing)
-            {
-                foreach (IDrawable drawable in Tool.CreationDrawables)
-                {
-                    drawable.Draw(e.Graphics);
-                }
-            }
+                Tool.CreationDrawable?.Draw(e.Graphics);
         }
 
         private void CnvsMain_MouseDown(object sender, MouseEventArgs e)

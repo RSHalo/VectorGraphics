@@ -12,9 +12,9 @@ namespace DrawingTest
         public Canvas Canvas { get; set; }
         public bool IsDrawing { get; protected set; }
 
-        // Objects to be drawn when the tool is creating a final drawable result.
+        // The shape to be drawn when the tool is creating a final result.
         // E.g. The rectangle that moves along with the mouse when you are drawing a rectangle.
-        public List<IDrawable> CreationDrawables { get; } = new List<IDrawable>();
+        public IDrawable CreationDrawable { get; protected set; }
 
         public virtual void MouseDown(MouseEventArgs e)
         {

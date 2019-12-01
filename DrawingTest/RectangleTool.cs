@@ -10,10 +10,7 @@ namespace DrawingTest
 {
     class RectangleTool : Tool
     {
-        // Mouse-down position
         Point _startPoint;
-
-         // Current positiom
         Point _currentPoint;
 
         public override void MouseDown(MouseEventArgs e)
@@ -24,14 +21,11 @@ namespace DrawingTest
 
         public override void MouseMoved(MouseEventArgs e)
         {
-            // Started moving the rectangle again so clear the creation drawables because we need to an updates creation variable instead
-            CreationDrawables.Clear();
-
             _currentPoint = e.Location;
 
             if (IsDrawing)
             {
-                CreationDrawables.Add(GetRectangle());
+                CreationDrawable = GetRectangle();
                 Canvas.Invalidate();
             }
         }
@@ -41,7 +35,12 @@ namespace DrawingTest
             if (IsDrawing)
             {
                 IsDrawing = false;
-                var rectangle = GetRectangle();
+
+                // Mouse up means that we want to draw our final result, so we longer need creation shapes.
+                CreationDrawable = null;
+
+                // The final drawn result.
+                var rectangle = GetRectangle(true);
 
                 if (rectangle.Width > 0 && rectangle.Height > 0)
                     Canvas.Drawables.Add(rectangle);
@@ -50,7 +49,8 @@ namespace DrawingTest
             }
         }
 
-        private DrawableRectangle GetRectangle()
+        // Gets the DrawableRectangle that is defined by the start position and the current position of the mouse.
+        private DrawableRectangle GetRectangle(bool finalResult = false)
         {
             var rectangle = new Rectangle(
                 Math.Min(_startPoint.X, _currentPoint.X),
@@ -58,7 +58,10 @@ namespace DrawingTest
                 Math.Abs(_startPoint.X - _currentPoint.X),
                 Math.Abs(_startPoint.Y - _currentPoint.Y));
 
-            return new DrawableRectangle(Pens.DarkCyan, rectangle);
+            // Make the creation shapes and the final shape different colors.
+            Pen pen = finalResult ? Pens.Red : Pens.DarkCyan;
+
+            return new DrawableRectangle(pen, rectangle);
         }
     }
 }
