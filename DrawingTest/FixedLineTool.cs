@@ -12,7 +12,7 @@ namespace DrawingTest
     {
         public override void Clicked(MouseEventArgs e)
         {
-            DrawResult = new DrawableLine(Pens.Green, new Point(e.X - 20, e.Y - 20), new Point(e.X + 20, e.Y + 20));
+            DrawResult = new DrawableLine(Pens.Green, new Point(e.X - 40, e.Y - 40), new Point(e.X + 40, e.Y + 40));
             OnDrawingCreated();
         }
     }

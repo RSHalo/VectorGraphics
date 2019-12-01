@@ -29,14 +29,12 @@
         private void InitializeComponent()
         {
             this.lblDrawing = new System.Windows.Forms.Label();
-            this.btnDrawLine = new System.Windows.Forms.Button();
-            this.btnDrawThickLine = new System.Windows.Forms.Button();
-            this.btnDrawRectangle = new System.Windows.Forms.Button();
+            this.btnDrawRandomLine = new System.Windows.Forms.Button();
+            this.btnDrawRandomRectangle = new System.Windows.Forms.Button();
             this.lblCursorPos = new System.Windows.Forms.Label();
-            this.rdStickyRectangle = new System.Windows.Forms.RadioButton();
-            this.chkFixedRectangle = new System.Windows.Forms.RadioButton();
+            this.rbFixedRectangle = new System.Windows.Forms.RadioButton();
             this.cnvsMain = new Canvas();
-            this.chkFixedLine = new System.Windows.Forms.RadioButton();
+            this.rbFixedLine = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // lblDrawing
@@ -49,35 +47,25 @@
             this.lblDrawing.TabIndex = 2;
             this.lblDrawing.Text = "Drawing Surface";
             // 
-            // btnDrawLine
+            // btnDrawRandomLine
             // 
-            this.btnDrawLine.Location = new System.Drawing.Point(12, 12);
-            this.btnDrawLine.Name = "btnDrawLine";
-            this.btnDrawLine.Size = new System.Drawing.Size(75, 23);
-            this.btnDrawLine.TabIndex = 1;
-            this.btnDrawLine.Text = "Draw Line";
-            this.btnDrawLine.UseVisualStyleBackColor = true;
-            this.btnDrawLine.Click += new System.EventHandler(this.BtnDrawLine_Click);
+            this.btnDrawRandomLine.Location = new System.Drawing.Point(12, 12);
+            this.btnDrawRandomLine.Name = "btnDrawRandomLine";
+            this.btnDrawRandomLine.Size = new System.Drawing.Size(117, 23);
+            this.btnDrawRandomLine.TabIndex = 1;
+            this.btnDrawRandomLine.Text = "Draw Random Line";
+            this.btnDrawRandomLine.UseVisualStyleBackColor = true;
+            this.btnDrawRandomLine.Click += new System.EventHandler(this.BtnDrawRandomLine_Click);
             // 
-            // btnDrawThickLine
+            // btnDrawRandomRectangle
             // 
-            this.btnDrawThickLine.Location = new System.Drawing.Point(93, 12);
-            this.btnDrawThickLine.Name = "btnDrawThickLine";
-            this.btnDrawThickLine.Size = new System.Drawing.Size(112, 23);
-            this.btnDrawThickLine.TabIndex = 3;
-            this.btnDrawThickLine.Text = "Draw Thicker Line";
-            this.btnDrawThickLine.UseVisualStyleBackColor = true;
-            this.btnDrawThickLine.Click += new System.EventHandler(this.BtnDrawThickLine_Click);
-            // 
-            // btnDrawRectangle
-            // 
-            this.btnDrawRectangle.Location = new System.Drawing.Point(211, 12);
-            this.btnDrawRectangle.Name = "btnDrawRectangle";
-            this.btnDrawRectangle.Size = new System.Drawing.Size(112, 23);
-            this.btnDrawRectangle.TabIndex = 4;
-            this.btnDrawRectangle.Text = "Draw Rectangle";
-            this.btnDrawRectangle.UseVisualStyleBackColor = true;
-            this.btnDrawRectangle.Click += new System.EventHandler(this.BtnDrawRectangle_Click);
+            this.btnDrawRandomRectangle.Location = new System.Drawing.Point(135, 12);
+            this.btnDrawRandomRectangle.Name = "btnDrawRandomRectangle";
+            this.btnDrawRandomRectangle.Size = new System.Drawing.Size(148, 23);
+            this.btnDrawRandomRectangle.TabIndex = 4;
+            this.btnDrawRandomRectangle.Text = "Draw Random Rectangle";
+            this.btnDrawRandomRectangle.UseVisualStyleBackColor = true;
+            this.btnDrawRandomRectangle.Click += new System.EventHandler(this.BtnDrawRandomRectangle_Click);
             // 
             // lblCursorPos
             // 
@@ -87,29 +75,17 @@
             this.lblCursorPos.Size = new System.Drawing.Size(0, 13);
             this.lblCursorPos.TabIndex = 5;
             // 
-            // rdStickyRectangle
+            // rbFixedRectangle
             // 
-            this.rdStickyRectangle.AutoSize = true;
-            this.rdStickyRectangle.Location = new System.Drawing.Point(410, 17);
-            this.rdStickyRectangle.Name = "rdStickyRectangle";
-            this.rdStickyRectangle.Size = new System.Drawing.Size(106, 17);
-            this.rdStickyRectangle.TabIndex = 9;
-            this.rdStickyRectangle.TabStop = true;
-            this.rdStickyRectangle.Text = "Sticky Rectangle";
-            this.rdStickyRectangle.UseVisualStyleBackColor = true;
-            this.rdStickyRectangle.CheckedChanged += new System.EventHandler(this.RdStickyRectangle_CheckedChanged);
-            // 
-            // chkFixedRectangle
-            // 
-            this.chkFixedRectangle.AutoSize = true;
-            this.chkFixedRectangle.Location = new System.Drawing.Point(522, 18);
-            this.chkFixedRectangle.Name = "chkFixedRectangle";
-            this.chkFixedRectangle.Size = new System.Drawing.Size(102, 17);
-            this.chkFixedRectangle.TabIndex = 10;
-            this.chkFixedRectangle.TabStop = true;
-            this.chkFixedRectangle.Text = "Fixed Rectangle";
-            this.chkFixedRectangle.UseVisualStyleBackColor = true;
-            this.chkFixedRectangle.CheckedChanged += new System.EventHandler(this.ChkFixedRectangle_CheckedChanged);
+            this.rbFixedRectangle.AutoSize = true;
+            this.rbFixedRectangle.Location = new System.Drawing.Point(445, 18);
+            this.rbFixedRectangle.Name = "rbFixedRectangle";
+            this.rbFixedRectangle.Size = new System.Drawing.Size(102, 17);
+            this.rbFixedRectangle.TabIndex = 10;
+            this.rbFixedRectangle.TabStop = true;
+            this.rbFixedRectangle.Text = "Fixed Rectangle";
+            this.rbFixedRectangle.UseVisualStyleBackColor = true;
+            this.rbFixedRectangle.CheckedChanged += new System.EventHandler(this.RbFixedRectangle_CheckedChanged);
             // 
             // cnvsMain
             // 
@@ -123,32 +99,30 @@
             this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
             this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
             // 
-            // chkFixedLine
+            // rbFixedLine
             // 
-            this.chkFixedLine.AutoSize = true;
-            this.chkFixedLine.Location = new System.Drawing.Point(630, 18);
-            this.chkFixedLine.Name = "chkFixedLine";
-            this.chkFixedLine.Size = new System.Drawing.Size(73, 17);
-            this.chkFixedLine.TabIndex = 11;
-            this.chkFixedLine.TabStop = true;
-            this.chkFixedLine.Text = "Fixed Line";
-            this.chkFixedLine.UseVisualStyleBackColor = true;
-            this.chkFixedLine.CheckedChanged += new System.EventHandler(this.ChkFixedLine_CheckedChanged);
+            this.rbFixedLine.AutoSize = true;
+            this.rbFixedLine.Location = new System.Drawing.Point(553, 18);
+            this.rbFixedLine.Name = "rbFixedLine";
+            this.rbFixedLine.Size = new System.Drawing.Size(73, 17);
+            this.rbFixedLine.TabIndex = 11;
+            this.rbFixedLine.TabStop = true;
+            this.rbFixedLine.Text = "Fixed Line";
+            this.rbFixedLine.UseVisualStyleBackColor = true;
+            this.rbFixedLine.CheckedChanged += new System.EventHandler(this.RbFixedLine_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(999, 537);
-            this.Controls.Add(this.chkFixedLine);
-            this.Controls.Add(this.chkFixedRectangle);
-            this.Controls.Add(this.rdStickyRectangle);
+            this.Controls.Add(this.rbFixedLine);
+            this.Controls.Add(this.rbFixedRectangle);
             this.Controls.Add(this.cnvsMain);
             this.Controls.Add(this.lblCursorPos);
-            this.Controls.Add(this.btnDrawRectangle);
-            this.Controls.Add(this.btnDrawThickLine);
+            this.Controls.Add(this.btnDrawRandomRectangle);
             this.Controls.Add(this.lblDrawing);
-            this.Controls.Add(this.btnDrawLine);
+            this.Controls.Add(this.btnDrawRandomLine);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -159,14 +133,12 @@
 
         #endregion
         private System.Windows.Forms.Label lblDrawing;
-        private System.Windows.Forms.Button btnDrawLine;
-        private System.Windows.Forms.Button btnDrawThickLine;
-        private System.Windows.Forms.Button btnDrawRectangle;
+        private System.Windows.Forms.Button btnDrawRandomLine;
+        private System.Windows.Forms.Button btnDrawRandomRectangle;
         private System.Windows.Forms.Label lblCursorPos;
         private Canvas cnvsMain;
-        private System.Windows.Forms.RadioButton rdStickyRectangle;
-        private System.Windows.Forms.RadioButton chkFixedRectangle;
-        private System.Windows.Forms.RadioButton chkFixedLine;
+        private System.Windows.Forms.RadioButton rbFixedRectangle;
+        private System.Windows.Forms.RadioButton rbFixedLine;
     }
 }
 

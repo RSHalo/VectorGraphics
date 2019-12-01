@@ -7,25 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DrawingTest.Utility;
 
 namespace DrawingTest
 {
     public partial class Form1 : Form
     {
         // TODO: Research 2d scene graph.
-        // TODO: Watch Practical Polymorphism.
-        // TODO: Remove sticky rectangle and replace with normal rectangle.
 
         DrawingTool Tool;
 
-        Rectangle stickyRectangle = new Rectangle();
-        
         // Collection of drawable shapes. This collection is iterated over when the canvas is drawn.
-        readonly List<IDrawable> drawables = new List<IDrawable>
-        {
-            new DrawableLine(Pens.Red, new Point(10, 10), new Point(50, 50)),
-            new DrawableLine(Pens.Red, new Point(100, 150), new Point(200, 200))
-        };
+        readonly List<IDrawable> drawables = new List<IDrawable>();
 
         public Form1()
         {
@@ -33,44 +26,35 @@ namespace DrawingTest
         }
 
         #region Button Clicks
-        private void BtnDrawLine_Click(object sender, EventArgs e)
+        private void BtnDrawRandomLine_Click(object sender, EventArgs e)
         {
-            DrawableLine line = new DrawableLine(new Pen(Color.Blue), new Point(75, 50), new Point(30, 80));
+            Point startPoint = Dimensions.GetRandomPoint(cnvsMain.Width, cnvsMain.Height);
+            Point endPoint = Dimensions.GetRandomPoint(cnvsMain.Width, cnvsMain.Height);
+
+            DrawableLine line = new DrawableLine(Pens.Blue, startPoint, endPoint);
             drawables.Add(line);
 
             cnvsMain.Invalidate();
         }
 
-        private void BtnDrawThickLine_Click(object sender, EventArgs e)
+        private void BtnDrawRandomRectangle_Click(object sender, EventArgs e)
         {
-            DrawableLine line = new DrawableLine(new Pen(Color.Blue, 2), new Point(175, 150), new Point(130, 180));
-            drawables.Add(line);
+            var rectangle = Dimensions.GetRandomRectangle(cnvsMain.Width, cnvsMain.Height);
+            var drawableRectangle = new DrawableRectangle(Pens.Red, rectangle);
+            drawables.Add(drawableRectangle);
 
             cnvsMain.Invalidate();
         }
 
-        private void BtnDrawRectangle_Click(object sender, EventArgs e)
+        private void RbFixedLine_CheckedChanged(object sender, EventArgs e)
         {
-            DrawableRectangle rectangle = new DrawableRectangle(Pens.Coral, 105, 30, 75, 20);
-            drawables.Add(rectangle);
-
-            cnvsMain.Invalidate();
-        }
-
-        private void RdStickyRectangle_CheckedChanged(object sender, EventArgs e)
-        {
-            //Tool = new 
-        }
-
-        private void ChkFixedRectangle_CheckedChanged(object sender, EventArgs e)
-        {
-            Tool = new FixedRectangleTool();
+            Tool = new FixedLineTool();
             Tool.DrawingCreated += OnToolDrawingCreated;
         }
 
-        private void ChkFixedLine_CheckedChanged(object sender, EventArgs e)
+        private void RbFixedRectangle_CheckedChanged(object sender, EventArgs e)
         {
-            Tool = new FixedLineTool();
+            Tool = new FixedRectangleTool();
             Tool.DrawingCreated += OnToolDrawingCreated;
         }
         #endregion
@@ -86,8 +70,6 @@ namespace DrawingTest
             {
                 drawable.Draw(e.Graphics);
             }
-            
-            e.Graphics.DrawRectangle(Pens.Red, stickyRectangle);
         }
 
         private void CnvsMain_MouseMove(object sender, MouseEventArgs e)
@@ -95,25 +77,10 @@ namespace DrawingTest
             var mousePos = cnvsMain.PointToClient(Cursor.Position);
 
             lblCursorPos.Text = $"X: { mousePos.X }, Y: { mousePos.Y }";
-            /*
-            if (isStickyRectangle)
-            {
-                stickyRectangle.Width = mousePos.X;
-                stickyRectangle.Height = mousePos.Y;
-
-                cnvsMain.Invalidate();
-            }*/
         }
 
         private void CnvsMain_MouseClick(object sender, MouseEventArgs e)
         {
-            /*
-            if (isStickyRectangle)
-            {
-                drawables.Add(new DrawableRectangle(Pens.Red, stickyRectangle));
-                cnvsMain.Invalidate();
-            }*/
-
             Tool.Clicked(e);
         }
 
