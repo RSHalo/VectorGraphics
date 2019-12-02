@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DrawingTest
+namespace DrawingProject
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         // TODO: Research 2d scene graph.
         // TODO: Tidy up and make some more comments and ask reddit about how to design tool behaviour.
@@ -18,12 +18,12 @@ namespace DrawingTest
         // The tool selected by the user.
         Tool Tool = new Tool();
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        #region Button Clicks
+        #region Radio Button events that change the tool.
         private void RbFixedLine_CheckedChanged(object sender, EventArgs e)
         {
             Tool = new FixedLineTool
@@ -61,6 +61,8 @@ namespace DrawingTest
                 drawable.Draw(e.Graphics);
             }
 
+            // When you draw a shape, you may drag your mouse to construct the shape. While this happens, IsDrawing will be set to true.
+            // We want to show the shape being created by the mouse moving, so we draw the Tool's "CreationDrawable" shape.
             if (Tool.IsDrawing)
                 Tool.CreationDrawable?.Draw(e.Graphics);
         }

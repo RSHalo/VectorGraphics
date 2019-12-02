@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DrawingTest
+namespace DrawingProject
 {
     class RectangleTool : Tool
     {
@@ -41,7 +41,8 @@ namespace DrawingTest
 
                 // The final drawn result.
                 var rectangle = GetRectangle(true);
-
+                
+                // Add final result to the Canvas.
                 if (rectangle.Width > 0 && rectangle.Height > 0)
                     Canvas.Drawables.Add(rectangle);
 
