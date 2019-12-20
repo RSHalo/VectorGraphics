@@ -15,13 +15,13 @@ namespace DrawingProject
 
         public override void MouseDown(MouseEventArgs e)
         {
-            _currentPoint = _startPoint = e.Location;
+            _currentPoint = _startPoint = WorldPoint;
             IsDrawing = true;
         }
 
         public override void MouseMoved(MouseEventArgs e)
         {
-            _currentPoint = e.Location;
+            _currentPoint = WorldPoint;
 
             if (IsDrawing)
             {

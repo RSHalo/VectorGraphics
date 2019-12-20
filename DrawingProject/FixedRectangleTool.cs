@@ -12,7 +12,7 @@ namespace DrawingProject
     {
         public override void Clicked(MouseEventArgs e)
         {
-            var rectangle = new DrawableRectangle(Pens.Black, new Rectangle(new Point(e.X - 25, e.Y - 15), new Size(50, 30)));
+            var rectangle = new DrawableRectangle(Pens.Black, new Rectangle(new Point(WorldX - 25, WorldY - 15), new Size(50, 30)));
             Canvas.Drawables.Add(rectangle);
             Canvas.Invalidate();
         }

@@ -33,9 +33,11 @@
             this.rbFixedRectangle = new System.Windows.Forms.RadioButton();
             this.rbFixedLine = new System.Windows.Forms.RadioButton();
             this.rbFreeRectangle = new System.Windows.Forms.RadioButton();
-            this.cnvsMain = new Canvas();
             this.pnlToolsContainer = new System.Windows.Forms.Panel();
             this.lblTools = new System.Windows.Forms.Label();
+            this.cnvsMain = new Canvas();
+            this.btnTranslateUp = new System.Windows.Forms.Button();
+            this.btnTranslateDown = new System.Windows.Forms.Button();
             this.pnlToolsContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,28 +96,13 @@
             this.rbFreeRectangle.UseVisualStyleBackColor = true;
             this.rbFreeRectangle.CheckedChanged += new System.EventHandler(this.RbFreeRectangle_CheckedChanged);
             // 
-            // cnvsMain
-            // 
-            this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cnvsMain.Location = new System.Drawing.Point(15, 97);
-            this.cnvsMain.Name = "cnvsMain";
-            this.cnvsMain.Size = new System.Drawing.Size(972, 396);
-            this.cnvsMain.TabIndex = 8;
-            this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
-            this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
-            this.cnvsMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseDown);
-            this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
-            this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
-            this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
-            // 
             // pnlToolsContainer
             // 
             this.pnlToolsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlToolsContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlToolsContainer.Controls.Add(this.btnTranslateDown);
+            this.pnlToolsContainer.Controls.Add(this.btnTranslateUp);
             this.pnlToolsContainer.Controls.Add(this.lblTools);
             this.pnlToolsContainer.Controls.Add(this.rbFreeRectangle);
             this.pnlToolsContainer.Controls.Add(this.rbFixedLine);
@@ -135,7 +122,44 @@
             this.lblTools.TabIndex = 0;
             this.lblTools.Text = "Tools";
             // 
-            // Form1
+            // cnvsMain
+            // 
+            this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cnvsMain.Location = new System.Drawing.Point(15, 97);
+            this.cnvsMain.Name = "cnvsMain";
+            this.cnvsMain.Size = new System.Drawing.Size(972, 396);
+            this.cnvsMain.TabIndex = 8;
+            this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
+            this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
+            this.cnvsMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseDown);
+            this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
+            this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
+            this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
+            // 
+            // btnTranslateUp
+            // 
+            this.btnTranslateUp.Location = new System.Drawing.Point(447, 7);
+            this.btnTranslateUp.Name = "btnTranslateUp";
+            this.btnTranslateUp.Size = new System.Drawing.Size(45, 23);
+            this.btnTranslateUp.TabIndex = 13;
+            this.btnTranslateUp.Text = "Up";
+            this.btnTranslateUp.UseVisualStyleBackColor = true;
+            this.btnTranslateUp.Click += new System.EventHandler(this.BtnTranslateUp_Click);
+            // 
+            // btnTranslateDown
+            // 
+            this.btnTranslateDown.Location = new System.Drawing.Point(447, 34);
+            this.btnTranslateDown.Name = "btnTranslateDown";
+            this.btnTranslateDown.Size = new System.Drawing.Size(45, 23);
+            this.btnTranslateDown.TabIndex = 14;
+            this.btnTranslateDown.Text = "Down";
+            this.btnTranslateDown.UseVisualStyleBackColor = true;
+            this.btnTranslateDown.Click += new System.EventHandler(this.BtnTranslateDown_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -145,7 +169,7 @@
             this.Controls.Add(this.lblCursorPos);
             this.Controls.Add(this.lblDrawing);
             this.DoubleBuffered = true;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.pnlToolsContainer.ResumeLayout(false);
             this.pnlToolsContainer.PerformLayout();
@@ -163,6 +187,8 @@
         private System.Windows.Forms.RadioButton rbFreeRectangle;
         private System.Windows.Forms.Panel pnlToolsContainer;
         private System.Windows.Forms.Label lblTools;
+        private System.Windows.Forms.Button btnTranslateDown;
+        private System.Windows.Forms.Button btnTranslateUp;
     }
 }
 

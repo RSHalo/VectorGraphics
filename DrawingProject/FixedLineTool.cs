@@ -12,7 +12,7 @@ namespace DrawingProject
     {
         public override void Clicked(MouseEventArgs e)
         {
-            var line = new DrawableLine(Pens.Green, new Point(e.X - 40, e.Y - 40), new Point(e.X + 40, e.Y + 40));
+            var line = new DrawableLine(Pens.Green, new Point(WorldX - 40, WorldY - 40), new Point(WorldX + 40, WorldY + 40));
             Canvas.Drawables.Add(line);
             Canvas.Invalidate();
         }

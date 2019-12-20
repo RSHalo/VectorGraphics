@@ -36,6 +36,7 @@ namespace DrawingProject
         private void RbFreeRectangle_CheckedChanged(object sender, EventArgs e)
         {
             SetupTool<RectangleTool>();
+            // If I need to assign extra things specific to Rectangle, I can capture the returned object from SetupTool here and act on it.
         }
         #endregion
 
@@ -52,8 +53,13 @@ namespace DrawingProject
             return tool;
         }
 
+        /// <summary>Updates the Tool's world coordinates.</summary>
+        private void UpdateWorldCoords(MouseEventArgs e) => Tool.SetWorldCoords(e);
+
         private void CnvsMain_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY);
+
             // All drawing happens when this Canvas is painted on the screen.
             // You don't just draw a line and expect it to persist. The drawing will dissapear when you minimise then maximise the form.
             // So, if we do all drawing when the containing Panel is drawn, then any time we can see our Panel, all our lines/rectangles will have been drawn too.
@@ -78,23 +84,41 @@ namespace DrawingProject
         private void CnvsMain_MouseMove(object sender, MouseEventArgs e)
         {
             lblCursorPos.Text = $"X: { e.X }, Y: { e.Y }";
-
+            UpdateWorldCoords(e);
             Tool.MouseMoved(e);
         }
 
         private void CnvsMain_MouseClick(object sender, MouseEventArgs e)
         {
+            UpdateWorldCoords(e);
             Tool.Clicked(e);
         }
 
         private void CnvsMain_MouseUp(object sender, MouseEventArgs e)
         {
+            UpdateWorldCoords(e);
             Tool.MouseUp(e);
         }
 
         private void CnvsMain_MouseLeave(object sender, EventArgs e)
         {
             lblCursorPos.ResetText();
+        }
+
+        private void BtnTranslateUp_Click(object sender, EventArgs e)
+        {
+            cnvsMain.OffsetX -= 10;
+            cnvsMain.OffsetY -= 10;
+
+            cnvsMain.Invalidate();
+        }
+
+        private void BtnTranslateDown_Click(object sender, EventArgs e)
+        {
+            cnvsMain.OffsetX += 10;
+            cnvsMain.OffsetY += 10;
+
+            cnvsMain.Invalidate();
         }
     }
 }
