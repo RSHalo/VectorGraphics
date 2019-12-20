@@ -59,8 +59,13 @@ namespace DrawingProject
                 Math.Abs(_startPoint.X - _currentPoint.X),
                 Math.Abs(_startPoint.Y - _currentPoint.Y));
 
-            // Make the creation shapes and the final shape different colors.
-            Pen pen = finalResult ? Pens.Red : Pens.DarkCyan;
+            // Make the creation shapes and the final shape different colors. Give creation shape a dashed line.
+            Pen pen = finalResult ?
+                                   Pens.Red :
+                                   new Pen(Color.DarkCyan)
+                                   {
+                                       DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
+                                   };
 
             return new DrawableRectangle(pen, rectangle);
         }
