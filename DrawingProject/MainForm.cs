@@ -54,6 +54,7 @@ namespace DrawingProject
             };
 
             Tool = tool;
+            cnvsMain.Cursor = tool.Cursor;
 
             return tool;
         }

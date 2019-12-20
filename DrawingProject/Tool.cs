@@ -24,6 +24,8 @@ namespace DrawingProject
         // E.g. The rectangle that moves along with the mouse when you are drawing a rectangle.
         public IDrawable CreationDrawable { get; protected set; }
 
+        public Cursor Cursor { get; protected set; } = Cursors.Default;
+
         /// <summary>Transforms page co-ordinates to world co-ordinates and assigns them to the tool.</summary>
         public void UpdateWorldCoords(MouseEventArgs e)
         {

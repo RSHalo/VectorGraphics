@@ -138,6 +138,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cnvsMain.Cursor = System.Windows.Forms.Cursors.Default;
             this.cnvsMain.Location = new System.Drawing.Point(15, 97);
             this.cnvsMain.Name = "cnvsMain";
             this.cnvsMain.OffsetX = 0F;

@@ -15,6 +15,11 @@ namespace DrawingProject
         private Point lastPoint;
         private Point currentPoint;
 
+        public Panner() : base()
+        {
+            Cursor = Cursors.SizeAll;
+        }
+
         public override void MouseDown(MouseEventArgs e)
         {
             isPanning = true;
