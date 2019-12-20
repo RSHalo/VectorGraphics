@@ -34,10 +34,9 @@
             this.rbFixedLine = new System.Windows.Forms.RadioButton();
             this.rbFreeRectangle = new System.Windows.Forms.RadioButton();
             this.pnlToolsContainer = new System.Windows.Forms.Panel();
+            this.rbPanner = new System.Windows.Forms.RadioButton();
             this.lblTools = new System.Windows.Forms.Label();
             this.cnvsMain = new Canvas();
-            this.btnTranslateUp = new System.Windows.Forms.Button();
-            this.btnTranslateDown = new System.Windows.Forms.Button();
             this.pnlToolsContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,8 +100,7 @@
             this.pnlToolsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlToolsContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlToolsContainer.Controls.Add(this.btnTranslateDown);
-            this.pnlToolsContainer.Controls.Add(this.btnTranslateUp);
+            this.pnlToolsContainer.Controls.Add(this.rbPanner);
             this.pnlToolsContainer.Controls.Add(this.lblTools);
             this.pnlToolsContainer.Controls.Add(this.rbFreeRectangle);
             this.pnlToolsContainer.Controls.Add(this.rbFixedLine);
@@ -111,6 +109,18 @@
             this.pnlToolsContainer.Name = "pnlToolsContainer";
             this.pnlToolsContainer.Size = new System.Drawing.Size(972, 62);
             this.pnlToolsContainer.TabIndex = 13;
+            // 
+            // rbPanner
+            // 
+            this.rbPanner.AutoSize = true;
+            this.rbPanner.Location = new System.Drawing.Point(299, 28);
+            this.rbPanner.Name = "rbPanner";
+            this.rbPanner.Size = new System.Drawing.Size(44, 17);
+            this.rbPanner.TabIndex = 15;
+            this.rbPanner.TabStop = true;
+            this.rbPanner.Text = "Pan";
+            this.rbPanner.UseVisualStyleBackColor = true;
+            this.rbPanner.CheckedChanged += new System.EventHandler(this.RbPanner_CheckedChanged);
             // 
             // lblTools
             // 
@@ -130,6 +140,8 @@
             this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cnvsMain.Location = new System.Drawing.Point(15, 97);
             this.cnvsMain.Name = "cnvsMain";
+            this.cnvsMain.OffsetX = 0F;
+            this.cnvsMain.OffsetY = 0F;
             this.cnvsMain.Size = new System.Drawing.Size(972, 396);
             this.cnvsMain.TabIndex = 8;
             this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
@@ -138,26 +150,6 @@
             this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
             this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
             this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
-            // 
-            // btnTranslateUp
-            // 
-            this.btnTranslateUp.Location = new System.Drawing.Point(447, 7);
-            this.btnTranslateUp.Name = "btnTranslateUp";
-            this.btnTranslateUp.Size = new System.Drawing.Size(45, 23);
-            this.btnTranslateUp.TabIndex = 13;
-            this.btnTranslateUp.Text = "Up";
-            this.btnTranslateUp.UseVisualStyleBackColor = true;
-            this.btnTranslateUp.Click += new System.EventHandler(this.BtnTranslateUp_Click);
-            // 
-            // btnTranslateDown
-            // 
-            this.btnTranslateDown.Location = new System.Drawing.Point(447, 34);
-            this.btnTranslateDown.Name = "btnTranslateDown";
-            this.btnTranslateDown.Size = new System.Drawing.Size(45, 23);
-            this.btnTranslateDown.TabIndex = 14;
-            this.btnTranslateDown.Text = "Down";
-            this.btnTranslateDown.UseVisualStyleBackColor = true;
-            this.btnTranslateDown.Click += new System.EventHandler(this.BtnTranslateDown_Click);
             // 
             // MainForm
             // 
@@ -187,8 +179,7 @@
         private System.Windows.Forms.RadioButton rbFreeRectangle;
         private System.Windows.Forms.Panel pnlToolsContainer;
         private System.Windows.Forms.Label lblTools;
-        private System.Windows.Forms.Button btnTranslateDown;
-        private System.Windows.Forms.Button btnTranslateUp;
+        private System.Windows.Forms.RadioButton rbPanner;
     }
 }
 

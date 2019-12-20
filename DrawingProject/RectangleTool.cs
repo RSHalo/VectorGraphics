@@ -10,18 +10,18 @@ namespace DrawingProject
 {
     class RectangleTool : Tool
     {
-        Point _startPoint;
-        Point _currentPoint;
+        Point startPoint;
+        Point currentPoint;
 
         public override void MouseDown(MouseEventArgs e)
         {
-            _currentPoint = _startPoint = WorldPoint;
+            currentPoint = startPoint = WorldPoint;
             IsDrawing = true;
         }
 
         public override void MouseMoved(MouseEventArgs e)
         {
-            _currentPoint = WorldPoint;
+            currentPoint = WorldPoint;
 
             if (IsDrawing)
             {
@@ -54,10 +54,10 @@ namespace DrawingProject
         private DrawableRectangle GetRectangle(bool finalResult = false)
         {
             var rectangle = new Rectangle(
-                Math.Min(_startPoint.X, _currentPoint.X),
-                Math.Min(_startPoint.Y, _currentPoint.Y),
-                Math.Abs(_startPoint.X - _currentPoint.X),
-                Math.Abs(_startPoint.Y - _currentPoint.Y));
+                Math.Min(startPoint.X, currentPoint.X),
+                Math.Min(startPoint.Y, currentPoint.Y),
+                Math.Abs(startPoint.X - currentPoint.X),
+                Math.Abs(startPoint.Y - currentPoint.Y));
 
             // Make the creation shapes and the final shape different colors. Give creation shape a dashed line.
             Pen pen = finalResult ?

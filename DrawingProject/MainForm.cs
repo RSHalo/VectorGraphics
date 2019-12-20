@@ -38,6 +38,11 @@ namespace DrawingProject
             SetupTool<RectangleTool>();
             // If I need to assign extra things specific to Rectangle, I can capture the returned object from SetupTool here and act on it.
         }
+
+        private void RbPanner_CheckedChanged(object sender, EventArgs e)
+        {
+            SetupTool<Panner>();
+        }
         #endregion
 
         private T SetupTool<T>() where T : Tool, new()
@@ -53,11 +58,12 @@ namespace DrawingProject
             return tool;
         }
 
-        /// <summary>Updates the Tool's world coordinates.</summary>
-        private void UpdateWorldCoords(MouseEventArgs e) => Tool.SetWorldCoords(e);
+        /// <summary>Transforms page co-ordinates to world co-ordinates and assigns them to the tool.</summary>
+        private void UpdateWorldCoords(MouseEventArgs e) => Tool.UpdateWorldCoords(e);
 
         private void CnvsMain_Paint(object sender, PaintEventArgs e)
         {
+            // Apply the translation defined by the offset values.
             e.Graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY);
 
             // All drawing happens when this Canvas is painted on the screen.
@@ -78,6 +84,7 @@ namespace DrawingProject
 
         private void CnvsMain_MouseDown(object sender, MouseEventArgs e)
         {
+            UpdateWorldCoords(e);
             Tool.MouseDown(e);
         }
 
@@ -103,22 +110,6 @@ namespace DrawingProject
         private void CnvsMain_MouseLeave(object sender, EventArgs e)
         {
             lblCursorPos.ResetText();
-        }
-
-        private void BtnTranslateUp_Click(object sender, EventArgs e)
-        {
-            cnvsMain.OffsetX -= 10;
-            cnvsMain.OffsetY -= 10;
-
-            cnvsMain.Invalidate();
-        }
-
-        private void BtnTranslateDown_Click(object sender, EventArgs e)
-        {
-            cnvsMain.OffsetX += 10;
-            cnvsMain.OffsetY += 10;
-
-            cnvsMain.Invalidate();
         }
     }
 }
