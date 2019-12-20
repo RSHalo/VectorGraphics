@@ -13,7 +13,6 @@ namespace DrawingProject
     public partial class MainForm : Form
     {
         // TODO: Research 2d scene graph.
-        // TODO: Tidy up and make some more comments and ask reddit about how to design tool behaviour.
 
         // The tool selected by the user.
         Tool Tool = new Tool();
@@ -26,28 +25,32 @@ namespace DrawingProject
         #region Radio Button events that change the tool.
         private void RbFixedLine_CheckedChanged(object sender, EventArgs e)
         {
-            Tool = new FixedLineTool
-            {
-                Canvas = cnvsMain
-            };
+            SetupTool<FixedLineTool>();
         }
 
         private void RbFixedRectangle_CheckedChanged(object sender, EventArgs e)
         {
-            Tool = new FixedRectangleTool
-            {
-                Canvas = cnvsMain
-            };
+            SetupTool<FixedRectangleTool>();
         }
 
         private void RbFreeRectangle_CheckedChanged(object sender, EventArgs e)
         {
-            Tool = new RectangleTool
+            SetupTool<RectangleTool>();
+        }
+        #endregion
+
+        private T SetupTool<T>() where T : Tool, new()
+        {
+            // Create new instance of the specified tool and assign it's canvas.
+            T tool = new T
             {
                 Canvas = cnvsMain
             };
+
+            Tool = tool;
+
+            return tool;
         }
-        #endregion
 
         private void CnvsMain_Paint(object sender, PaintEventArgs e)
         {

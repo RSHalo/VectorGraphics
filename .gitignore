@@ -6,6 +6,10 @@
 *.user
 *.sln.docstates
 
+reddit_answer.png
+reddit_answer2.png
+reddit_question.txt
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
