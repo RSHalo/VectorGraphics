@@ -85,7 +85,6 @@ namespace DrawingProject
 
         private void CnvsMain_MouseDown(object sender, MouseEventArgs e)
         {
-            UpdateWorldCoords(e);
             Tool.MouseDown(e);
         }
 
@@ -98,13 +97,11 @@ namespace DrawingProject
 
         private void CnvsMain_MouseClick(object sender, MouseEventArgs e)
         {
-            UpdateWorldCoords(e);
             Tool.Clicked(e);
         }
 
         private void CnvsMain_MouseUp(object sender, MouseEventArgs e)
         {
-            UpdateWorldCoords(e);
             Tool.MouseUp(e);
         }
 
