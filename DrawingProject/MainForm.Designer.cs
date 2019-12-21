@@ -40,7 +40,7 @@
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.chkAntiAlias = new System.Windows.Forms.CheckBox();
             this.cnvsMain = new Canvas();
-            this.lblKey = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.pnlToolsContainer.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.SuspendLayout();
@@ -184,21 +184,23 @@
             this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
             this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
             // 
-            // lblKey
+            // btnClear
             // 
-            this.lblKey.AutoSize = true;
-            this.lblKey.Location = new System.Drawing.Point(990, 40);
-            this.lblKey.Name = "lblKey";
-            this.lblKey.Size = new System.Drawing.Size(35, 13);
-            this.lblKey.TabIndex = 15;
-            this.lblKey.Text = "label1";
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Location = new System.Drawing.Point(1126, 54);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 15;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1213, 640);
-            this.Controls.Add(this.lblKey);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.pnlSettings);
             this.Controls.Add(this.lblSettings);
             this.Controls.Add(this.lblTools);
@@ -234,7 +236,7 @@
         private System.Windows.Forms.Panel pnlSettings;
         private System.Windows.Forms.CheckBox chkAntiAlias;
         private System.Windows.Forms.RadioButton rbEllipse;
-        private System.Windows.Forms.Label lblKey;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

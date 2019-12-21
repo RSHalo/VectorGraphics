@@ -33,7 +33,7 @@ namespace DrawingProject
             InitializeComponent();
         }
 
-        #region Radio Button events that change the tool.
+        #region Event handlers for radio buttons that change the tool.
         private void RbLine_CheckedChanged(object sender, EventArgs e)
         {
             SetupTool<LineTool>();
@@ -66,6 +66,21 @@ namespace DrawingProject
         {
             if (e.KeyCode == Keys.ControlKey)
                 Tool.IsControlHeld = false;
+        }
+        #endregion
+
+        #region Event handlers for other controls on the form
+        private void ChkAntiAlias_CheckedChanged(object sender, EventArgs e)
+        {
+            cnvsMain.Invalidate();
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            cnvsMain.Drawables.Clear();
+            cnvsMain.OffsetX = 0;
+            cnvsMain.OffsetY = 0;
+            cnvsMain.Invalidate();
         }
         #endregion
 
@@ -136,11 +151,6 @@ namespace DrawingProject
         private void CnvsMain_MouseLeave(object sender, EventArgs e)
         {
             lblCursorPos.ResetText();
-        }
-
-        private void ChkAntiAlias_CheckedChanged(object sender, EventArgs e)
-        {
-            cnvsMain.Invalidate();
         }
     }
 }
