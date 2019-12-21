@@ -31,9 +31,9 @@
             this.lblDrawing = new System.Windows.Forms.Label();
             this.lblCursorPos = new System.Windows.Forms.Label();
             this.rbFixedRectangle = new System.Windows.Forms.RadioButton();
-            this.rbFixedLine = new System.Windows.Forms.RadioButton();
             this.rbFreeRectangle = new System.Windows.Forms.RadioButton();
             this.pnlToolsContainer = new System.Windows.Forms.Panel();
+            this.rbFreeLine = new System.Windows.Forms.RadioButton();
             this.rbPanner = new System.Windows.Forms.RadioButton();
             this.lblTools = new System.Windows.Forms.Label();
             this.cnvsMain = new Canvas();
@@ -71,22 +71,10 @@
             this.rbFixedRectangle.UseVisualStyleBackColor = true;
             this.rbFixedRectangle.CheckedChanged += new System.EventHandler(this.RbFixedRectangle_CheckedChanged);
             // 
-            // rbFixedLine
-            // 
-            this.rbFixedLine.AutoSize = true;
-            this.rbFixedLine.Location = new System.Drawing.Point(115, 28);
-            this.rbFixedLine.Name = "rbFixedLine";
-            this.rbFixedLine.Size = new System.Drawing.Size(73, 17);
-            this.rbFixedLine.TabIndex = 11;
-            this.rbFixedLine.TabStop = true;
-            this.rbFixedLine.Text = "Fixed Line";
-            this.rbFixedLine.UseVisualStyleBackColor = true;
-            this.rbFixedLine.CheckedChanged += new System.EventHandler(this.RbFixedLine_CheckedChanged);
-            // 
             // rbFreeRectangle
             // 
             this.rbFreeRectangle.AutoSize = true;
-            this.rbFreeRectangle.Location = new System.Drawing.Point(195, 28);
+            this.rbFreeRectangle.Location = new System.Drawing.Point(110, 28);
             this.rbFreeRectangle.Name = "rbFreeRectangle";
             this.rbFreeRectangle.Size = new System.Drawing.Size(98, 17);
             this.rbFreeRectangle.TabIndex = 12;
@@ -100,20 +88,32 @@
             this.pnlToolsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlToolsContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlToolsContainer.Controls.Add(this.rbFreeLine);
             this.pnlToolsContainer.Controls.Add(this.rbPanner);
             this.pnlToolsContainer.Controls.Add(this.lblTools);
             this.pnlToolsContainer.Controls.Add(this.rbFreeRectangle);
-            this.pnlToolsContainer.Controls.Add(this.rbFixedLine);
             this.pnlToolsContainer.Controls.Add(this.rbFixedRectangle);
             this.pnlToolsContainer.Location = new System.Drawing.Point(15, 10);
             this.pnlToolsContainer.Name = "pnlToolsContainer";
             this.pnlToolsContainer.Size = new System.Drawing.Size(972, 62);
             this.pnlToolsContainer.TabIndex = 13;
             // 
+            // rbFreeLine
+            // 
+            this.rbFreeLine.AutoSize = true;
+            this.rbFreeLine.Location = new System.Drawing.Point(214, 28);
+            this.rbFreeLine.Name = "rbFreeLine";
+            this.rbFreeLine.Size = new System.Drawing.Size(69, 17);
+            this.rbFreeLine.TabIndex = 16;
+            this.rbFreeLine.TabStop = true;
+            this.rbFreeLine.Text = "Free Line";
+            this.rbFreeLine.UseVisualStyleBackColor = true;
+            this.rbFreeLine.CheckedChanged += new System.EventHandler(this.RbFreeLine_CheckedChanged);
+            // 
             // rbPanner
             // 
             this.rbPanner.AutoSize = true;
-            this.rbPanner.Location = new System.Drawing.Point(299, 28);
+            this.rbPanner.Location = new System.Drawing.Point(289, 28);
             this.rbPanner.Name = "rbPanner";
             this.rbPanner.Size = new System.Drawing.Size(44, 17);
             this.rbPanner.TabIndex = 15;
@@ -176,11 +176,11 @@
         private System.Windows.Forms.Label lblCursorPos;
         private Canvas cnvsMain;
         private System.Windows.Forms.RadioButton rbFixedRectangle;
-        private System.Windows.Forms.RadioButton rbFixedLine;
         private System.Windows.Forms.RadioButton rbFreeRectangle;
         private System.Windows.Forms.Panel pnlToolsContainer;
         private System.Windows.Forms.Label lblTools;
         private System.Windows.Forms.RadioButton rbPanner;
+        private System.Windows.Forms.RadioButton rbFreeLine;
     }
 }
 

@@ -23,11 +23,6 @@ namespace DrawingProject
         }
 
         #region Radio Button events that change the tool.
-        private void RbFixedLine_CheckedChanged(object sender, EventArgs e)
-        {
-            SetupTool<FixedLineTool>();
-        }
-
         private void RbFixedRectangle_CheckedChanged(object sender, EventArgs e)
         {
             SetupTool<FixedRectangleTool>();
@@ -42,6 +37,11 @@ namespace DrawingProject
         private void RbPanner_CheckedChanged(object sender, EventArgs e)
         {
             SetupTool<Panner>();
+        }
+
+        private void RbFreeLine_CheckedChanged(object sender, EventArgs e)
+        {
+            SetupTool<LineTool>();
         }
         #endregion
 

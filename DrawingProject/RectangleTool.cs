@@ -23,31 +23,31 @@ namespace DrawingProject
         {
             currentPoint = WorldPoint;
 
-            if (IsDrawing)
-            {
-                CreationDrawable = GetRectangle();
-                Canvas.Invalidate();
-            }
+            if (!IsDrawing)
+                return;
+            
+            CreationDrawable = GetRectangle();
+            Canvas.Invalidate();
         }
 
         public override void MouseUp(MouseEventArgs e)
         {
-            if (IsDrawing)
-            {
-                IsDrawing = false;
+            if (!IsDrawing)
+                return;
 
-                // Mouse up means that we want to draw our final result, so we longer need creation shapes.
-                CreationDrawable = null;
+            IsDrawing = false;
 
-                // The final drawn result.
-                var rectangle = GetRectangle(true);
-                
-                // Add final result to the Canvas.
-                if (rectangle.Width > 0 && rectangle.Height > 0)
-                    Canvas.Drawables.Add(rectangle);
+            // Mouse up means that we want to draw our final result, so we longer need creation shapes.
+            CreationDrawable = null;
 
-                Canvas.Invalidate();
-            }
+            // The final drawn result.
+            var rectangle = GetRectangle(true);
+            
+            // Add final result to the Canvas.
+            if (rectangle.Width > 0 && rectangle.Height > 0)
+                Canvas.Drawables.Add(rectangle);
+
+            Canvas.Invalidate();
         }
 
         // Gets the DrawableRectangle that is defined by the start position and the current position of the mouse.
