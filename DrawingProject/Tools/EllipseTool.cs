@@ -52,11 +52,7 @@ namespace DrawingProject.Tools
         private DrawableEllipse GetEllipse(bool finalResult = false)
         {
             // Get the bounding rectangle
-            var rectangle = new Rectangle(
-                Math.Min(startPoint.X, currentPoint.X),
-                Math.Min(startPoint.Y, currentPoint.Y),
-                Math.Abs(startPoint.X - currentPoint.X),
-                Math.Abs(startPoint.Y - currentPoint.Y));
+            var rectangle = GetBoundingRectangle();
 
             // Make the creation shapes and the final shape different colors. Give creation shape a dashed line.
             Pen pen = finalResult ?
@@ -67,6 +63,23 @@ namespace DrawingProject.Tools
                                    };
 
             return new DrawableEllipse(pen, rectangle);
+        }
+
+        // Create the bounding rectangle that is used to create a Drawable Ellipse.
+        private Rectangle GetBoundingRectangle()
+        {
+            int width = startPoint.X - currentPoint.X;
+            int height = startPoint.Y - currentPoint.Y;
+
+            // Draw a circle if Control key is held. Therefore, width and length of bounding rectangle are equal, to make a square.
+            if (IsControlHeld)
+                width = height = Math.Max(width, height);
+
+            return new Rectangle(
+                Math.Min(startPoint.X, currentPoint.X),
+                Math.Min(startPoint.Y, currentPoint.Y),
+                Math.Abs(width),
+                Math.Abs(height));
         }
     }
 }

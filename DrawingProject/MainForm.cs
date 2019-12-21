@@ -55,6 +55,20 @@ namespace DrawingProject
         }
         #endregion
 
+        #region Event handlers for key presses
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+                Tool.IsControlHeld = true;
+        }
+
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+                Tool.IsControlHeld = false;
+        }
+        #endregion
+
         private T SetupTool<T>() where T : Tool, new()
         {
             // Create new instance of the specified tool and assign it's canvas.

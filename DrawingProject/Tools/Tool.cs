@@ -13,6 +13,7 @@ namespace DrawingProject.Tools
     {
         public Canvas Canvas { get; set; }
         public bool IsDrawing { get; protected set; }
+        public bool IsControlHeld { get; set; }
 
         /// <summary>The X co-ordinate of the tool's mouse position, in world space.</summary>
         protected int WorldX { get; set; }

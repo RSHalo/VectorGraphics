@@ -32,6 +32,7 @@
             this.lblCursorPos = new System.Windows.Forms.Label();
             this.rbRectangle = new System.Windows.Forms.RadioButton();
             this.pnlToolsContainer = new System.Windows.Forms.Panel();
+            this.rbEllipse = new System.Windows.Forms.RadioButton();
             this.rbLine = new System.Windows.Forms.RadioButton();
             this.rbPanner = new System.Windows.Forms.RadioButton();
             this.lblTools = new System.Windows.Forms.Label();
@@ -39,7 +40,7 @@
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.chkAntiAlias = new System.Windows.Forms.CheckBox();
             this.cnvsMain = new Canvas();
-            this.rbEllipse = new System.Windows.Forms.RadioButton();
+            this.lblKey = new System.Windows.Forms.Label();
             this.pnlToolsContainer.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.SuspendLayout();
@@ -77,8 +78,6 @@
             // 
             // pnlToolsContainer
             // 
-            this.pnlToolsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlToolsContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlToolsContainer.Controls.Add(this.rbEllipse);
             this.pnlToolsContainer.Controls.Add(this.rbLine);
@@ -88,6 +87,18 @@
             this.pnlToolsContainer.Name = "pnlToolsContainer";
             this.pnlToolsContainer.Size = new System.Drawing.Size(412, 40);
             this.pnlToolsContainer.TabIndex = 13;
+            // 
+            // rbEllipse
+            // 
+            this.rbEllipse.AutoSize = true;
+            this.rbEllipse.Location = new System.Drawing.Point(160, 11);
+            this.rbEllipse.Name = "rbEllipse";
+            this.rbEllipse.Size = new System.Drawing.Size(55, 17);
+            this.rbEllipse.TabIndex = 17;
+            this.rbEllipse.TabStop = true;
+            this.rbEllipse.Text = "Ellipse";
+            this.rbEllipse.UseVisualStyleBackColor = true;
+            this.rbEllipse.CheckedChanged += new System.EventHandler(this.RbEllipse_CheckedChanged);
             // 
             // rbLine
             // 
@@ -135,8 +146,6 @@
             // 
             // pnlSettings
             // 
-            this.pnlSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlSettings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlSettings.Controls.Add(this.chkAntiAlias);
             this.pnlSettings.Location = new System.Drawing.Point(478, 28);
@@ -175,23 +184,21 @@
             this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
             this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
             // 
-            // rbEllipse
+            // lblKey
             // 
-            this.rbEllipse.AutoSize = true;
-            this.rbEllipse.Location = new System.Drawing.Point(160, 11);
-            this.rbEllipse.Name = "rbEllipse";
-            this.rbEllipse.Size = new System.Drawing.Size(55, 17);
-            this.rbEllipse.TabIndex = 17;
-            this.rbEllipse.TabStop = true;
-            this.rbEllipse.Text = "Ellipse";
-            this.rbEllipse.UseVisualStyleBackColor = true;
-            this.rbEllipse.CheckedChanged += new System.EventHandler(this.RbEllipse_CheckedChanged);
+            this.lblKey.AutoSize = true;
+            this.lblKey.Location = new System.Drawing.Point(990, 40);
+            this.lblKey.Name = "lblKey";
+            this.lblKey.Size = new System.Drawing.Size(35, 13);
+            this.lblKey.TabIndex = 15;
+            this.lblKey.Text = "label1";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1213, 640);
+            this.Controls.Add(this.lblKey);
             this.Controls.Add(this.pnlSettings);
             this.Controls.Add(this.lblSettings);
             this.Controls.Add(this.lblTools);
@@ -200,8 +207,11 @@
             this.Controls.Add(this.lblCursorPos);
             this.Controls.Add(this.lblDrawing);
             this.DoubleBuffered = true;
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.pnlToolsContainer.ResumeLayout(false);
             this.pnlToolsContainer.PerformLayout();
             this.pnlSettings.ResumeLayout(false);
@@ -224,6 +234,7 @@
         private System.Windows.Forms.Panel pnlSettings;
         private System.Windows.Forms.CheckBox chkAntiAlias;
         private System.Windows.Forms.RadioButton rbEllipse;
+        private System.Windows.Forms.Label lblKey;
     }
 }
 
