@@ -44,6 +44,11 @@ namespace DrawingProject
             SetupTool<RectangleTool>();
         }
 
+        private void RbEllipse_CheckedChanged(object sender, EventArgs e)
+        {
+            SetupTool<EllipseTool>();
+        }
+
         private void RbPanner_CheckedChanged(object sender, EventArgs e)
         {
             SetupTool<Panner>();

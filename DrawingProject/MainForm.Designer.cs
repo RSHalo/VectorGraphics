@@ -39,6 +39,7 @@
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.chkAntiAlias = new System.Windows.Forms.CheckBox();
             this.cnvsMain = new Canvas();
+            this.rbEllipse = new System.Windows.Forms.RadioButton();
             this.pnlToolsContainer.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +80,7 @@
             this.pnlToolsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlToolsContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlToolsContainer.Controls.Add(this.rbEllipse);
             this.pnlToolsContainer.Controls.Add(this.rbLine);
             this.pnlToolsContainer.Controls.Add(this.rbPanner);
             this.pnlToolsContainer.Controls.Add(this.rbRectangle);
@@ -102,7 +104,7 @@
             // rbPanner
             // 
             this.rbPanner.AutoSize = true;
-            this.rbPanner.Location = new System.Drawing.Point(160, 11);
+            this.rbPanner.Location = new System.Drawing.Point(247, 11);
             this.rbPanner.Name = "rbPanner";
             this.rbPanner.Size = new System.Drawing.Size(44, 17);
             this.rbPanner.TabIndex = 15;
@@ -173,6 +175,18 @@
             this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
             this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
             // 
+            // rbEllipse
+            // 
+            this.rbEllipse.AutoSize = true;
+            this.rbEllipse.Location = new System.Drawing.Point(160, 11);
+            this.rbEllipse.Name = "rbEllipse";
+            this.rbEllipse.Size = new System.Drawing.Size(55, 17);
+            this.rbEllipse.TabIndex = 17;
+            this.rbEllipse.TabStop = true;
+            this.rbEllipse.Text = "Ellipse";
+            this.rbEllipse.UseVisualStyleBackColor = true;
+            this.rbEllipse.CheckedChanged += new System.EventHandler(this.RbEllipse_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,6 +223,7 @@
         private System.Windows.Forms.Label lblSettings;
         private System.Windows.Forms.Panel pnlSettings;
         private System.Windows.Forms.CheckBox chkAntiAlias;
+        private System.Windows.Forms.RadioButton rbEllipse;
     }
 }
 

@@ -49,7 +49,9 @@
     <Compile Include="Canvas.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Drawables\DrawableEllipse.cs" />
     <Compile Include="Drawables\DrawableRectangle.cs" />
+    <Compile Include="Tools\EllipseTool.cs" />
     <Compile Include="Tools\LineTool.cs" />
     <Compile Include="Tools\Panner.cs" />
     <Compile Include="Tools\Tool.cs" />
