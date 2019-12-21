@@ -84,6 +84,35 @@ namespace DrawingProject
         }
         #endregion
 
+        #region Event handlers for mouse events
+        private void CnvsMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            Tool.MouseDown(e);
+        }
+
+        private void CnvsMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            lblCursorPos.Text = $"X: { e.X }, Y: { e.Y }";
+            Tool.UpdateWorldCoords(e);
+            Tool.MouseMoved(e);
+        }
+
+        private void CnvsMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            Tool.Clicked(e);
+        }
+
+        private void CnvsMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            Tool.MouseUp(e);
+        }
+
+        private void CnvsMain_MouseLeave(object sender, EventArgs e)
+        {
+            lblCursorPos.ResetText();
+        }
+        #endregion
+
         private T SetupTool<T>() where T : Tool, new()
         {
             // Create new instance of the specified tool and assign it's canvas.
@@ -97,9 +126,6 @@ namespace DrawingProject
 
             return tool;
         }
-
-        /// <summary>Transforms page co-ordinates to world co-ordinates and assigns them to the tool.</summary>
-        private void UpdateWorldCoords(MouseEventArgs e) => Tool.UpdateWorldCoords(e);
 
         private void CnvsMain_Paint(object sender, PaintEventArgs e)
         {
@@ -124,33 +150,6 @@ namespace DrawingProject
             // We want to show the shape being created by the mouse moving, so we draw the Tool's "CreationDrawable" shape.
             if (Tool.IsDrawing)
                 Tool.CreationDrawable?.Draw(graphics);
-        }
-
-        private void CnvsMain_MouseDown(object sender, MouseEventArgs e)
-        {
-            Tool.MouseDown(e);
-        }
-
-        private void CnvsMain_MouseMove(object sender, MouseEventArgs e)
-        {
-            lblCursorPos.Text = $"X: { e.X }, Y: { e.Y }";
-            UpdateWorldCoords(e);
-            Tool.MouseMoved(e);
-        }
-
-        private void CnvsMain_MouseClick(object sender, MouseEventArgs e)
-        {
-            Tool.Clicked(e);
-        }
-
-        private void CnvsMain_MouseUp(object sender, MouseEventArgs e)
-        {
-            Tool.MouseUp(e);
-        }
-
-        private void CnvsMain_MouseLeave(object sender, EventArgs e)
-        {
-            lblCursorPos.ResetText();
         }
     }
 }
