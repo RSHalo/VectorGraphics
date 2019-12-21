@@ -39,8 +39,8 @@
             this.lblSettings = new System.Windows.Forms.Label();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.chkAntiAlias = new System.Windows.Forms.CheckBox();
-            this.cnvsMain = new Canvas();
             this.btnClear = new System.Windows.Forms.Button();
+            this.cnvsMain = new Canvas();
             this.pnlToolsContainer.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.SuspendLayout();
@@ -69,10 +69,10 @@
             this.rbRectangle.AutoSize = true;
             this.rbRectangle.Location = new System.Drawing.Point(5, 11);
             this.rbRectangle.Name = "rbRectangle";
-            this.rbRectangle.Size = new System.Drawing.Size(98, 17);
+            this.rbRectangle.Size = new System.Drawing.Size(74, 17);
             this.rbRectangle.TabIndex = 12;
             this.rbRectangle.TabStop = true;
-            this.rbRectangle.Text = "Free Rectangle";
+            this.rbRectangle.Text = "Rectangle";
             this.rbRectangle.UseVisualStyleBackColor = true;
             this.rbRectangle.CheckedChanged += new System.EventHandler(this.RbRectangle_CheckedChanged);
             // 
@@ -91,7 +91,7 @@
             // rbEllipse
             // 
             this.rbEllipse.AutoSize = true;
-            this.rbEllipse.Location = new System.Drawing.Point(160, 11);
+            this.rbEllipse.Location = new System.Drawing.Point(132, 11);
             this.rbEllipse.Name = "rbEllipse";
             this.rbEllipse.Size = new System.Drawing.Size(55, 17);
             this.rbEllipse.TabIndex = 17;
@@ -103,7 +103,7 @@
             // rbLine
             // 
             this.rbLine.AutoSize = true;
-            this.rbLine.Location = new System.Drawing.Point(109, 11);
+            this.rbLine.Location = new System.Drawing.Point(81, 11);
             this.rbLine.Name = "rbLine";
             this.rbLine.Size = new System.Drawing.Size(45, 17);
             this.rbLine.TabIndex = 16;
@@ -115,7 +115,7 @@
             // rbPanner
             // 
             this.rbPanner.AutoSize = true;
-            this.rbPanner.Location = new System.Drawing.Point(247, 11);
+            this.rbPanner.Location = new System.Drawing.Point(219, 11);
             this.rbPanner.Name = "rbPanner";
             this.rbPanner.Size = new System.Drawing.Size(44, 17);
             this.rbPanner.TabIndex = 15;
@@ -164,6 +164,17 @@
             this.chkAntiAlias.UseVisualStyleBackColor = true;
             this.chkAntiAlias.CheckedChanged += new System.EventHandler(this.ChkAntiAlias_CheckedChanged);
             // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Location = new System.Drawing.Point(1126, 54);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 15;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
             // cnvsMain
             // 
             this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -183,17 +194,6 @@
             this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
             this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
             this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
-            // 
-            // btnClear
-            // 
-            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClear.Location = new System.Drawing.Point(1126, 54);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 15;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // MainForm
             // 
