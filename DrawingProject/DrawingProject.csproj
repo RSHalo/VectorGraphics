@@ -49,22 +49,21 @@
     <Compile Include="Canvas.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DrawableRectangle.cs" />
-    <Compile Include="LineTool.cs" />
-    <Compile Include="Panner.cs" />
-    <Compile Include="Tool.cs" />
-    <Compile Include="FixedRectangleTool.cs" />
+    <Compile Include="Drawables\DrawableRectangle.cs" />
+    <Compile Include="Tools\LineTool.cs" />
+    <Compile Include="Tools\Panner.cs" />
+    <Compile Include="Tools\Tool.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="IDrawable.cs" />
-    <Compile Include="DrawableLine.cs" />
+    <Compile Include="Drawables\IDrawable.cs" />
+    <Compile Include="Drawables\DrawableLine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RectangleTool.cs" />
+    <Compile Include="Tools\RectangleTool.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

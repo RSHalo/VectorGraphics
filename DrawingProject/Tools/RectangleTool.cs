@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DrawingProject.Drawables;
 
-namespace DrawingProject
+namespace DrawingProject.Tools
 {
     class RectangleTool : Tool
     {

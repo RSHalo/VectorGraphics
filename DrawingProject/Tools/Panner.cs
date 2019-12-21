@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DrawingProject
+namespace DrawingProject.Tools
 {
     /// <summary>Pans around the world space by manipulating the Canvas' Page-to-World offset.</summary>
     class Panner : Tool

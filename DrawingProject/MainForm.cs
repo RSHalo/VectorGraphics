@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DrawingProject.Tools;
 
 namespace DrawingProject
 {
@@ -23,20 +24,14 @@ namespace DrawingProject
         }
 
         #region Radio Button events that change the tool.
-        private void RbFixedRectangle_CheckedChanged(object sender, EventArgs e)
-        {
-            SetupTool<FixedRectangleTool>();
-        }
-
         private void RbLine_CheckedChanged(object sender, EventArgs e)
         {
             SetupTool<LineTool>();
         }
 
-        private void RbFreeRectangle_CheckedChanged(object sender, EventArgs e)
+        private void RbRectangle_CheckedChanged(object sender, EventArgs e)
         {
             SetupTool<RectangleTool>();
-            // If I need to assign extra things specific to Rectangle, I can capture the returned object from SetupTool here and act on it.
         }
 
         private void RbPanner_CheckedChanged(object sender, EventArgs e)
@@ -72,7 +67,7 @@ namespace DrawingProject
             // So, if we do all drawing when the containing Panel is drawn, then any time we can see our Panel, all our lines/rectangles will have been drawn too.
             // This is a very important concept. When you want to research, do a Google search like: "Drawing Paint event", "Drawing OnPaint override".
 
-            foreach (IDrawable drawable in cnvsMain.Drawables)
+            foreach (Drawables.IDrawable drawable in cnvsMain.Drawables)
             {
                 drawable.Draw(e.Graphics);
             }

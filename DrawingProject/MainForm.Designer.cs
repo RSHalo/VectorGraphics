@@ -30,8 +30,7 @@
         {
             this.lblDrawing = new System.Windows.Forms.Label();
             this.lblCursorPos = new System.Windows.Forms.Label();
-            this.rbFixedRectangle = new System.Windows.Forms.RadioButton();
-            this.rbFreeRectangle = new System.Windows.Forms.RadioButton();
+            this.rbRectangle = new System.Windows.Forms.RadioButton();
             this.pnlToolsContainer = new System.Windows.Forms.Panel();
             this.rbLine = new System.Windows.Forms.RadioButton();
             this.rbPanner = new System.Windows.Forms.RadioButton();
@@ -59,29 +58,17 @@
             this.lblCursorPos.Size = new System.Drawing.Size(0, 13);
             this.lblCursorPos.TabIndex = 5;
             // 
-            // rbFixedRectangle
+            // rbRectangle
             // 
-            this.rbFixedRectangle.AutoSize = true;
-            this.rbFixedRectangle.Location = new System.Drawing.Point(4, 9);
-            this.rbFixedRectangle.Name = "rbFixedRectangle";
-            this.rbFixedRectangle.Size = new System.Drawing.Size(102, 17);
-            this.rbFixedRectangle.TabIndex = 10;
-            this.rbFixedRectangle.TabStop = true;
-            this.rbFixedRectangle.Text = "Fixed Rectangle";
-            this.rbFixedRectangle.UseVisualStyleBackColor = true;
-            this.rbFixedRectangle.CheckedChanged += new System.EventHandler(this.RbFixedRectangle_CheckedChanged);
-            // 
-            // rbFreeRectangle
-            // 
-            this.rbFreeRectangle.AutoSize = true;
-            this.rbFreeRectangle.Location = new System.Drawing.Point(112, 9);
-            this.rbFreeRectangle.Name = "rbFreeRectangle";
-            this.rbFreeRectangle.Size = new System.Drawing.Size(98, 17);
-            this.rbFreeRectangle.TabIndex = 12;
-            this.rbFreeRectangle.TabStop = true;
-            this.rbFreeRectangle.Text = "Free Rectangle";
-            this.rbFreeRectangle.UseVisualStyleBackColor = true;
-            this.rbFreeRectangle.CheckedChanged += new System.EventHandler(this.RbFreeRectangle_CheckedChanged);
+            this.rbRectangle.AutoSize = true;
+            this.rbRectangle.Location = new System.Drawing.Point(5, 11);
+            this.rbRectangle.Name = "rbRectangle";
+            this.rbRectangle.Size = new System.Drawing.Size(98, 17);
+            this.rbRectangle.TabIndex = 12;
+            this.rbRectangle.TabStop = true;
+            this.rbRectangle.Text = "Free Rectangle";
+            this.rbRectangle.UseVisualStyleBackColor = true;
+            this.rbRectangle.CheckedChanged += new System.EventHandler(this.RbRectangle_CheckedChanged);
             // 
             // pnlToolsContainer
             // 
@@ -90,8 +77,7 @@
             this.pnlToolsContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlToolsContainer.Controls.Add(this.rbLine);
             this.pnlToolsContainer.Controls.Add(this.rbPanner);
-            this.pnlToolsContainer.Controls.Add(this.rbFreeRectangle);
-            this.pnlToolsContainer.Controls.Add(this.rbFixedRectangle);
+            this.pnlToolsContainer.Controls.Add(this.rbRectangle);
             this.pnlToolsContainer.Location = new System.Drawing.Point(15, 28);
             this.pnlToolsContainer.Name = "pnlToolsContainer";
             this.pnlToolsContainer.Size = new System.Drawing.Size(972, 40);
@@ -100,7 +86,7 @@
             // rbLine
             // 
             this.rbLine.AutoSize = true;
-            this.rbLine.Location = new System.Drawing.Point(216, 9);
+            this.rbLine.Location = new System.Drawing.Point(109, 11);
             this.rbLine.Name = "rbLine";
             this.rbLine.Size = new System.Drawing.Size(45, 17);
             this.rbLine.TabIndex = 16;
@@ -112,7 +98,7 @@
             // rbPanner
             // 
             this.rbPanner.AutoSize = true;
-            this.rbPanner.Location = new System.Drawing.Point(267, 9);
+            this.rbPanner.Location = new System.Drawing.Point(160, 11);
             this.rbPanner.Name = "rbPanner";
             this.rbPanner.Size = new System.Drawing.Size(44, 17);
             this.rbPanner.TabIndex = 15;
@@ -175,8 +161,7 @@
         private System.Windows.Forms.Label lblDrawing;
         private System.Windows.Forms.Label lblCursorPos;
         private Canvas cnvsMain;
-        private System.Windows.Forms.RadioButton rbFixedRectangle;
-        private System.Windows.Forms.RadioButton rbFreeRectangle;
+        private System.Windows.Forms.RadioButton rbRectangle;
         private System.Windows.Forms.Panel pnlToolsContainer;
         private System.Windows.Forms.Label lblTools;
         private System.Windows.Forms.RadioButton rbPanner;
