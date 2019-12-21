@@ -35,8 +35,12 @@
             this.rbLine = new System.Windows.Forms.RadioButton();
             this.rbPanner = new System.Windows.Forms.RadioButton();
             this.lblTools = new System.Windows.Forms.Label();
+            this.lblSettings = new System.Windows.Forms.Label();
+            this.pnlSettings = new System.Windows.Forms.Panel();
+            this.chkAntiAlias = new System.Windows.Forms.CheckBox();
             this.cnvsMain = new Canvas();
             this.pnlToolsContainer.SuspendLayout();
+            this.pnlSettings.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblDrawing
@@ -53,7 +57,7 @@
             // 
             this.lblCursorPos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCursorPos.AutoSize = true;
-            this.lblCursorPos.Location = new System.Drawing.Point(12, 506);
+            this.lblCursorPos.Location = new System.Drawing.Point(12, 609);
             this.lblCursorPos.Name = "lblCursorPos";
             this.lblCursorPos.Size = new System.Drawing.Size(0, 13);
             this.lblCursorPos.TabIndex = 5;
@@ -80,7 +84,7 @@
             this.pnlToolsContainer.Controls.Add(this.rbRectangle);
             this.pnlToolsContainer.Location = new System.Drawing.Point(15, 28);
             this.pnlToolsContainer.Name = "pnlToolsContainer";
-            this.pnlToolsContainer.Size = new System.Drawing.Size(972, 40);
+            this.pnlToolsContainer.Size = new System.Drawing.Size(412, 40);
             this.pnlToolsContainer.TabIndex = 13;
             // 
             // rbLine
@@ -117,6 +121,38 @@
             this.lblTools.TabIndex = 0;
             this.lblTools.Text = "Tools";
             // 
+            // lblSettings
+            // 
+            this.lblSettings.AutoSize = true;
+            this.lblSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSettings.Location = new System.Drawing.Point(475, 12);
+            this.lblSettings.Name = "lblSettings";
+            this.lblSettings.Size = new System.Drawing.Size(53, 13);
+            this.lblSettings.TabIndex = 14;
+            this.lblSettings.Text = "Settings";
+            // 
+            // pnlSettings
+            // 
+            this.pnlSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlSettings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSettings.Controls.Add(this.chkAntiAlias);
+            this.pnlSettings.Location = new System.Drawing.Point(478, 28);
+            this.pnlSettings.Name = "pnlSettings";
+            this.pnlSettings.Size = new System.Drawing.Size(412, 40);
+            this.pnlSettings.TabIndex = 14;
+            // 
+            // chkAntiAlias
+            // 
+            this.chkAntiAlias.AutoSize = true;
+            this.chkAntiAlias.Location = new System.Drawing.Point(4, 11);
+            this.chkAntiAlias.Name = "chkAntiAlias";
+            this.chkAntiAlias.Size = new System.Drawing.Size(69, 17);
+            this.chkAntiAlias.TabIndex = 0;
+            this.chkAntiAlias.Text = "Anti Alias";
+            this.chkAntiAlias.UseVisualStyleBackColor = true;
+            this.chkAntiAlias.CheckedChanged += new System.EventHandler(this.ChkAntiAlias_CheckedChanged);
+            // 
             // cnvsMain
             // 
             this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -128,7 +164,7 @@
             this.cnvsMain.Name = "cnvsMain";
             this.cnvsMain.OffsetX = 0F;
             this.cnvsMain.OffsetY = 0F;
-            this.cnvsMain.Size = new System.Drawing.Size(972, 396);
+            this.cnvsMain.Size = new System.Drawing.Size(1186, 499);
             this.cnvsMain.TabIndex = 8;
             this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
             this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
@@ -141,7 +177,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(999, 537);
+            this.ClientSize = new System.Drawing.Size(1213, 640);
+            this.Controls.Add(this.pnlSettings);
+            this.Controls.Add(this.lblSettings);
             this.Controls.Add(this.lblTools);
             this.Controls.Add(this.pnlToolsContainer);
             this.Controls.Add(this.cnvsMain);
@@ -152,6 +190,8 @@
             this.Text = "Form1";
             this.pnlToolsContainer.ResumeLayout(false);
             this.pnlToolsContainer.PerformLayout();
+            this.pnlSettings.ResumeLayout(false);
+            this.pnlSettings.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,6 +206,9 @@
         private System.Windows.Forms.Label lblTools;
         private System.Windows.Forms.RadioButton rbPanner;
         private System.Windows.Forms.RadioButton rbLine;
+        private System.Windows.Forms.Label lblSettings;
+        private System.Windows.Forms.Panel pnlSettings;
+        private System.Windows.Forms.CheckBox chkAntiAlias;
     }
 }
 
