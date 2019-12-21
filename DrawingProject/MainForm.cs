@@ -28,6 +28,11 @@ namespace DrawingProject
             SetupTool<FixedRectangleTool>();
         }
 
+        private void RbLine_CheckedChanged(object sender, EventArgs e)
+        {
+            SetupTool<LineTool>();
+        }
+
         private void RbFreeRectangle_CheckedChanged(object sender, EventArgs e)
         {
             SetupTool<RectangleTool>();
@@ -37,11 +42,6 @@ namespace DrawingProject
         private void RbPanner_CheckedChanged(object sender, EventArgs e)
         {
             SetupTool<Panner>();
-        }
-
-        private void RbFreeLine_CheckedChanged(object sender, EventArgs e)
-        {
-            SetupTool<LineTool>();
         }
         #endregion
 
