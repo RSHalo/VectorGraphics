@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DrawingProject.Tools;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 namespace DrawingProject
 {
     public partial class MainForm : Form
     {
         // TODO: Research 2d scene graph.
-        
-            // The tool selected by the user.
+
+        // The tool selected by the user.
         Tool Tool = new Tool();
 
         // The SmoothingMode selected by the user.
@@ -31,6 +32,14 @@ namespace DrawingProject
         public MainForm()
         {
             InitializeComponent();
+
+            // Create a cross at the origin, for debugging.
+            cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(0, -5), new Point(0, 5)));
+            cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(-5, 0), new Point(5, 0)));
+
+            // Create a cross at an arbitrary location, for debugging. We want to keep this point fixed when scaling.
+            cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(300, 270), new Point(300, 280)));
+            cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(295, 275), new Point(305, 275)));
         }
 
         #region Event handlers for radio buttons that change the tool.
@@ -93,7 +102,7 @@ namespace DrawingProject
         private void CnvsMain_MouseMove(object sender, MouseEventArgs e)
         {
             lblCursorPos.Text = $"Screen: X: { e.X }, Y: { e.Y }";
-            lblOffset.Text =    $"Offset: X: { cnvsMain.OffsetX }, Y: { cnvsMain.OffsetY }";
+            lblOffset.Text = $"Offset: X: { cnvsMain.OffsetX }, Y: { cnvsMain.OffsetY }";
 
             Tool.UpdateWorldCoords(e);
             lblWorldPos.Text = $"World:  X: { Tool.WorldX }, Y: { Tool.WorldY }";
@@ -140,20 +149,15 @@ namespace DrawingProject
             graphics.SmoothingMode = SmoothingMode;
 
             // Apply the translation defined by the offset values.
-            //graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY, MatrixOrder.Append);
+            graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY, MatrixOrder.Append);
 
-            //graphics.ScaleTransform(1, 1, MatrixOrder.Prepend);
-            //graphics.TranslateTransform(0, 0, MatrixOrder.Prepend);
-            //graphics.ScaleTransform(2, 2, MatrixOrder.Prepend);
-            
-            if (cnvsMain.IsZoomed)
-            {
-                graphics.ScaleTransform(cnvsMain.ZoomScale, cnvsMain.ZoomScale, MatrixOrder.Append);
-                graphics.TranslateTransform(cnvsMain.ZoomViewportOffsetX, cnvsMain.ZoomViewportOffsetY, MatrixOrder.Append);
-            }
+            graphics.ScaleTransform(cnvsMain.ZoomScale, cnvsMain.ZoomScale, MatrixOrder.Append);
+
+            // Translate so that the zoom point remians fixed on screen
+            graphics.TranslateTransform(-cnvsMain.moveAfterZoomX, -cnvsMain.moveAfterZoomY, MatrixOrder.Append);
 
             lblScale.Text = $"Zoom Scale: { cnvsMain.ZoomScale.ToString() }";
-            lblZoomOffset.Text = $"Zoom Offset: X: { cnvsMain.ZoomViewportOffsetX }, Y: { cnvsMain.ZoomViewportOffsetY }";
+            lblZoomOffset.Text = $"Zoom Offset: X: { cnvsMain.moveAfterZoomX }, Y: { cnvsMain.moveAfterZoomY }";
 
             // All drawing happens when this Canvas is painted on the screen.
             // You don't just draw a line and expect it to persist. The drawing will dissapear when you minimise then maximise the form.
@@ -169,6 +173,14 @@ namespace DrawingProject
             // We want to show the shape being created by the mouse moving, so we draw the Tool's "CreationDrawable" shape.
             if (Tool.IsDrawing)
                 Tool.CreationDrawable?.Draw(graphics);
+        }
+
+        PointF WorldToScreen(float worldX, float worldY, float zoomScale)
+        {
+            float screenX = (zoomScale * worldX); //+ cnvsMain.OffsetX;
+            float screenY = (zoomScale * worldY); //+ cnvsMain.OffsetY;
+
+            return new PointF(screenX, screenY);
         }
     }
 }
