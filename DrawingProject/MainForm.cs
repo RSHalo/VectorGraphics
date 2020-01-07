@@ -15,8 +15,8 @@ namespace DrawingProject
     public partial class MainForm : Form
     {
         // TODO: Research 2d scene graph.
-
-        // The tool selected by the user.
+        
+            // The tool selected by the user.
         Tool Tool = new Tool();
 
         // The SmoothingMode selected by the user.
@@ -92,8 +92,12 @@ namespace DrawingProject
 
         private void CnvsMain_MouseMove(object sender, MouseEventArgs e)
         {
-            lblCursorPos.Text = $"X: { e.X }, Y: { e.Y }";
+            lblCursorPos.Text = $"Screen: X: { e.X }, Y: { e.Y }";
+            lblOffset.Text =    $"Offset: X: { cnvsMain.OffsetX }, Y: { cnvsMain.OffsetY }";
+
             Tool.UpdateWorldCoords(e);
+            lblWorldPos.Text = $"World:  X: { Tool.WorldX }, Y: { Tool.WorldY }";
+
             Tool.MouseMoved(e);
         }
 
@@ -110,6 +114,8 @@ namespace DrawingProject
         private void CnvsMain_MouseLeave(object sender, EventArgs e)
         {
             lblCursorPos.ResetText();
+            lblOffset.ResetText();
+            lblWorldPos.ResetText();
         }
         #endregion
 
@@ -132,9 +138,22 @@ namespace DrawingProject
             var graphics = e.Graphics;
 
             graphics.SmoothingMode = SmoothingMode;
-            
+
             // Apply the translation defined by the offset values.
-            graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY);
+            //graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY, MatrixOrder.Append);
+
+            //graphics.ScaleTransform(1, 1, MatrixOrder.Prepend);
+            //graphics.TranslateTransform(0, 0, MatrixOrder.Prepend);
+            //graphics.ScaleTransform(2, 2, MatrixOrder.Prepend);
+            
+            if (cnvsMain.IsZoomed)
+            {
+                graphics.ScaleTransform(cnvsMain.ZoomScale, cnvsMain.ZoomScale, MatrixOrder.Append);
+                graphics.TranslateTransform(cnvsMain.ZoomViewportOffsetX, cnvsMain.ZoomViewportOffsetY, MatrixOrder.Append);
+            }
+
+            lblScale.Text = $"Zoom Scale: { cnvsMain.ZoomScale.ToString() }";
+            lblZoomOffset.Text = $"Zoom Offset: X: { cnvsMain.ZoomViewportOffsetX }, Y: { cnvsMain.ZoomViewportOffsetY }";
 
             // All drawing happens when this Canvas is painted on the screen.
             // You don't just draw a line and expect it to persist. The drawing will dissapear when you minimise then maximise the form.
