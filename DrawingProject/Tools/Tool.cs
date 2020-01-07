@@ -32,8 +32,8 @@ namespace DrawingProject.Tools
         public void UpdateWorldCoords(MouseEventArgs e)
         {
             // World coordinates will not equal screen coordinates if the canvas has been panned. We need to consider the offset caused by panning.
-            WorldX = (int)((e.X - Canvas.OffsetX + Canvas.moveAfterZoomX) / Canvas.ZoomScale);
-            WorldY = (int)((e.Y - Canvas.OffsetY + Canvas.moveAfterZoomY) / Canvas.ZoomScale);
+            WorldX = (int)((e.X - Canvas.OffsetX) / Canvas.ZoomScale);
+            WorldY = (int)((e.Y - Canvas.OffsetY) / Canvas.ZoomScale);
         }
 
         public virtual void MouseDown(MouseEventArgs e)

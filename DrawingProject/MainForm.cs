@@ -37,9 +37,12 @@ namespace DrawingProject
             cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(0, -5), new Point(0, 5)));
             cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(-5, 0), new Point(5, 0)));
 
-            // Create a cross at an arbitrary location, for debugging. We want to keep this point fixed when scaling.
+            // Create a cross at an arbitrary location, for debugging.
             cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(300, 270), new Point(300, 280)));
             cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(295, 275), new Point(305, 275)));
+
+            // Create a rectangle at an arbitrary location, for debugging.
+            cnvsMain.Drawables.Add(new Drawables.DrawableRectangle(Pens.Blue, 20, 30, 500, 300));
         }
 
         #region Event handlers for radio buttons that change the tool.
@@ -153,11 +156,7 @@ namespace DrawingProject
 
             graphics.ScaleTransform(cnvsMain.ZoomScale, cnvsMain.ZoomScale, MatrixOrder.Append);
 
-            // Translate so that the zoom point remians fixed on screen
-            graphics.TranslateTransform(-cnvsMain.moveAfterZoomX, -cnvsMain.moveAfterZoomY, MatrixOrder.Append);
-
             lblScale.Text = $"Zoom Scale: { cnvsMain.ZoomScale.ToString() }";
-            lblZoomOffset.Text = $"Zoom Offset: X: { cnvsMain.moveAfterZoomX }, Y: { cnvsMain.moveAfterZoomY }";
 
             // All drawing happens when this Canvas is painted on the screen.
             // You don't just draw a line and expect it to persist. The drawing will dissapear when you minimise then maximise the form.

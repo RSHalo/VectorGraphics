@@ -18,19 +18,7 @@ class Canvas : Panel
 
     private int mouseWheelIndent;
     public float LastZoomScale { get; private set; } = 1;
-    public float ZoomScale
-    {
-        get
-        {
-            return mouseWheelIndent >= 0 ? mouseWheelIndent + 1 : (1 / (-mouseWheelIndent + 1f));
-        }
-
-        private set { }
-    }
-
-    public float moveAfterZoomX;
-    public float moveAfterZoomY;
-
+    public float ZoomScale { get; private set; } = 1;
 
     public Canvas()
     {
@@ -52,20 +40,8 @@ class Canvas : Panel
         else
             mouseWheelIndent--;
 
-        // Get screen coords of the point we wish to zoom about. Might need to include main offset here?
-        PointF zoomPointBefore = new PointF(300 * LastZoomScale, 275 * LastZoomScale);
-        PointF zoomPointAfter = new PointF(300 * ZoomScale, 275 * ZoomScale);
+        ZoomScale = mouseWheelIndent >= 0 ? mouseWheelIndent + 1 : (1 / (-mouseWheelIndent + 1f));
 
-        // Get the translate required to keep the point at the same point on the screen.
-        // Translations are done in terms of screen coordinates, that is why we calculated screen coords above.
-        float dx = zoomPointAfter.X - zoomPointBefore.X;
-        float dy = zoomPointAfter.Y - zoomPointBefore.Y;
-
-        // The total translate required from the origin. The above was just the change in translate from the previous position.
-        moveAfterZoomX += dx;
-        moveAfterZoomY += dy;
-
-        // Refresh() instead of Invalidate() because we want immediate updates. Very fast scrolling broke the zooming when Invalidate() was used.
         Refresh();
     }
 }
