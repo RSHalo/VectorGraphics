@@ -154,22 +154,11 @@ namespace DrawingProject
             // Apply the translation defined by the offset values.
             //graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY, MatrixOrder.Append);
 
-            // Apply zoom defined by mouse wheel.
+            // Apply scaling defined by Canvas.ZoomScale
             graphics.ScaleTransform(cnvsMain.ZoomScale, cnvsMain.ZoomScale, MatrixOrder.Append);
 
-
-            //// Translation to fix top left of rectangle when zooming.
-            //// World points get moved along the screen in a straight diagonal line when scaling is applied. Since we are only interested in one world point, we are only
-            //// concerned about one growing diagonal line of world points that we need to translate back to the original position. That is why we simply multiply the change 
-            //// in X and Y (for one zoom) by the scale, because this tells us how far along that growing diagonal line our current world point is.
-            //graphics.TranslateTransform(-20*(cnvsMain.ZoomScale - 1), -30 * (cnvsMain.ZoomScale - 1), MatrixOrder.Append);
-
-            // Translation to fix mouse position when zooming. Only works while keeping mouse position constant.
-            // We do not move the mouse here. This means we are essentially doing the same as the above scenerio. So we can use the simple translation logic again.
-            // Instead of hardcoded -20 and -30, we use the screen coordinates of the mouse.
-               graphics.TranslateTransform(-cnvsMain.MouseStartZoomScreenPoint.X * (cnvsMain.ZoomScale - 1),
-                                            -cnvsMain.MouseStartZoomScreenPoint.Y * (cnvsMain.ZoomScale - 1),
-                                            MatrixOrder.Append);
+            // Translate after scaling. This will provide the mouse-pos-is-fixed behaviour when zooming.
+            graphics.TranslateTransform(-cnvsMain.ZoomOffsetX, -cnvsMain.ZoomOffsetY, MatrixOrder.Append);
 
             // All drawing happens when this Canvas is painted on the screen.
             // You don't just draw a line and expect it to persist. The drawing will dissapear when you minimise then maximise the form.
