@@ -93,6 +93,8 @@ class Canvas : Panel
 
         OffsetX = 0f;
         OffsetY = 0f;
+
+        mouseWheelIndent = 0;
         ZoomScale = 1;
     }
 }
