@@ -38,8 +38,8 @@ namespace DrawingProject.Tools
             float distancePannedY = currentPoint.Y - lastPoint.Y;
 
             // Update the Canvas' offset so that the world appears to move according to the mouse movement.
-            Canvas.OffsetX -= distancePannedX;
-            Canvas.OffsetY -= distancePannedY;
+            Canvas.OffsetX += distancePannedX;
+            Canvas.OffsetY += distancePannedY;
 
             // Update for next time this Event Handler is called.
             lastPoint = currentPoint;

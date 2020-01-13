@@ -43,7 +43,6 @@
             this.lblOffset = new System.Windows.Forms.Label();
             this.lblWorldPos = new System.Windows.Forms.Label();
             this.lblScale = new System.Windows.Forms.Label();
-            this.lblZoomOffset = new System.Windows.Forms.Label();
             this.cnvsMain = new Canvas();
             this.pnlToolsContainer.SuspendLayout();
             this.pnlSettings.SuspendLayout();
@@ -206,15 +205,6 @@
             this.lblScale.TabIndex = 19;
             this.lblScale.Text = "label3";
             // 
-            // lblZoomOffset
-            // 
-            this.lblZoomOffset.AutoSize = true;
-            this.lblZoomOffset.Location = new System.Drawing.Point(198, 592);
-            this.lblZoomOffset.Name = "lblZoomOffset";
-            this.lblZoomOffset.Size = new System.Drawing.Size(35, 13);
-            this.lblZoomOffset.TabIndex = 20;
-            this.lblZoomOffset.Text = "label3";
-            // 
             // cnvsMain
             // 
             this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -240,7 +230,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1213, 640);
-            this.Controls.Add(this.lblZoomOffset);
             this.Controls.Add(this.lblScale);
             this.Controls.Add(this.lblWorldPos);
             this.Controls.Add(this.lblOffset);
@@ -284,7 +273,6 @@
         private System.Windows.Forms.Label lblOffset;
         private System.Windows.Forms.Label lblWorldPos;
         private System.Windows.Forms.Label lblScale;
-        private System.Windows.Forms.Label lblZoomOffset;
     }
 }
 

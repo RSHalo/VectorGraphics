@@ -11,24 +11,18 @@ class Canvas : Panel
     // The drawable shapes that need to be drawn when the Canvas is painted.
     public List<IDrawable> Drawables = new List<IDrawable>();
 
-    /// <summary>The X offset from the page co-ordinates to the world co-ordinates</summary>
+    /// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
     public float OffsetX { get; set; }
-    /// <summary>The Y offset from the page co-ordinates to the world co-ordinates</summary>
+    /// <summary>The Y offset from the page co-ordinates to the world co-ordinates.</summary>
     public float OffsetY { get; set; }
 
     private int mouseWheelIndent;
-    public float LastZoomScale { get; private set; } = 1;
     public float ZoomScale { get; private set; } = 1;
 
     /// <summary>World coordinates of the mouse position before zooming.</summary>
     public PointF BeforeZoomWorld { get; private set; }
     /// <summary>World coordinates of the mouse position after zooming.</summary>
     public PointF AfterZoomWorld { get; private set; }
-
-    /// <summary>The X amount to Translate after scaling for zoom</summary>
-    public float ZoomOffsetX { get; set; }
-    /// <summary>The Y amount to Translate after scaling for zoom</summary>
-    public float ZoomOffsetY { get; set; }
 
     public Canvas()
     {
@@ -55,9 +49,9 @@ class Canvas : Panel
         AfterZoomWorld = ScreenToWorld(e.X, e.Y);
 
         // The X and Y changes between the two world coordinates. These represent the distances that the world needs to move to place the original world coordinate correctly.
-        // These values will be positive when zooming in.
-        float dx = BeforeZoomWorld.X - AfterZoomWorld.X;
-        float dy = BeforeZoomWorld.Y - AfterZoomWorld.Y;
+        // These values will be negative when zooming in on the 4th Cartesian quadrant.
+        float dx = AfterZoomWorld.X - BeforeZoomWorld.X;
+        float dy = AfterZoomWorld.Y - BeforeZoomWorld.Y;
 
         // These changes need to be scaled! This is because the parameters of ScaleTransform are in pixels, and they need to be scaled to match the world coords (which have been scaled).
         dx *= ZoomScale;
@@ -85,8 +79,8 @@ class Canvas : Panel
     /// <summary>Gets corresponding world coordinates, given screen coordinates.</summary>
     public PointF ScreenToWorld(float screenX, float screenY)
     {
-        float worldX = (screenX + OffsetX) / ZoomScale;
-        float worldY = (screenY + OffsetY) / ZoomScale;
+        float worldX = (screenX - OffsetX) / ZoomScale;
+        float worldY = (screenY - OffsetY) / ZoomScale;
 
         return new PointF(worldX, worldY);
     }

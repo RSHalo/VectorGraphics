@@ -110,8 +110,6 @@ namespace DrawingProject
             Tool.UpdateWorldCoords(e);
             lblWorldPos.Text = $"World:  X: { Tool.WorldX }, Y: { Tool.WorldY }";
 
-            lblZoomOffset.Text = $"Zoom Offset: X: { cnvsMain.ZoomOffsetX}, Y: { cnvsMain.ZoomOffsetY }";
-
             Tool.MouseMoved(e);
         }
 
@@ -153,15 +151,12 @@ namespace DrawingProject
 
             graphics.SmoothingMode = SmoothingMode;
 
-
             // Apply scaling defined by Canvas.ZoomScale
             graphics.ScaleTransform(cnvsMain.ZoomScale, cnvsMain.ZoomScale, MatrixOrder.Append);
 
-            // Translate after scaling. This will provide the mouse-pos-is-fixed behaviour when zooming.
-            //graphics.TranslateTransform(-cnvsMain.ZoomOffsetX, -cnvsMain.ZoomOffsetY, MatrixOrder.Append);
 
             // Apply the translation defined by the offset values.
-            graphics.TranslateTransform(-cnvsMain.OffsetX, -cnvsMain.OffsetY, MatrixOrder.Append);
+            graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY, MatrixOrder.Append);
 
             // All drawing happens when this Canvas is painted on the screen.
             // You don't just draw a line and expect it to persist. The drawing will dissapear when you minimise then maximise the form.
