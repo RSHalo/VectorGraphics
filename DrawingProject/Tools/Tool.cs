@@ -31,9 +31,10 @@ namespace DrawingProject.Tools
         /// <summary>Transforms screen coordinates to world co-ordinates and assigns them to the tool.</summary>
         public void UpdateWorldCoords(MouseEventArgs e)
         {
-            // World coordinates will not equal screen coordinates if the canvas has been panned. We need to consider the offset caused by panning.
-            WorldX = (int)((e.X - Canvas.OffsetX) / Canvas.ZoomScale);
-            WorldY = (int)((e.Y - Canvas.OffsetY) / Canvas.ZoomScale);
+            PointF point = Canvas.ScreenToWorld(e.X, e.Y);
+
+            WorldX = (int)point.X;
+            WorldY = (int)point.Y;
         }
 
         public virtual void MouseDown(MouseEventArgs e)
