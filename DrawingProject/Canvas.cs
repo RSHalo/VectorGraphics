@@ -16,8 +16,9 @@ class Canvas : Panel
     /// <summary>The Y offset from the page co-ordinates to the world co-ordinates.</summary>
     public float OffsetY { get; set; }
 
-    private int mouseWheelIndent;
+    /// <summary>The scale factor which determines how zoomed in/out the view is.</summary>
     public float ZoomScale { get; private set; } = 1;
+    private int mouseWheelIndent;
 
     /// <summary>World coordinates of the mouse position before zooming.</summary>
     public PointF BeforeZoomWorld { get; private set; }
@@ -83,5 +84,15 @@ class Canvas : Panel
         float worldY = (screenY - OffsetY) / ZoomScale;
 
         return new PointF(worldX, worldY);
+    }
+
+    /// <summary>Resets to a blank canvas.</summary>
+    public void Reset()
+    {
+        Drawables.Clear();
+
+        OffsetX = 0f;
+        OffsetY = 0f;
+        ZoomScale = 1;
     }
 }

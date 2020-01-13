@@ -89,9 +89,7 @@ namespace DrawingProject
 
         private void BtnClear_Click(object sender, EventArgs e)
         {
-            cnvsMain.Drawables.Clear();
-            cnvsMain.OffsetX = 0;
-            cnvsMain.OffsetY = 0;
+            cnvsMain.Reset();
             cnvsMain.Invalidate();
         }
         #endregion
