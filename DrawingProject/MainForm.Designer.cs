@@ -43,9 +43,11 @@
             this.lblOffset = new System.Windows.Forms.Label();
             this.lblWorldPos = new System.Windows.Forms.Label();
             this.lblScale = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.cnvsMain = new Canvas();
             this.pnlToolsContainer.SuspendLayout();
             this.pnlSettings.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblDrawing
@@ -172,7 +174,7 @@
             // lblCursorPos
             // 
             this.lblCursorPos.AutoSize = true;
-            this.lblCursorPos.Location = new System.Drawing.Point(18, 565);
+            this.lblCursorPos.Location = new System.Drawing.Point(8, 5);
             this.lblCursorPos.Name = "lblCursorPos";
             this.lblCursorPos.Size = new System.Drawing.Size(35, 13);
             this.lblCursorPos.TabIndex = 16;
@@ -181,7 +183,7 @@
             // lblOffset
             // 
             this.lblOffset.AutoSize = true;
-            this.lblOffset.Location = new System.Drawing.Point(18, 592);
+            this.lblOffset.Location = new System.Drawing.Point(8, 29);
             this.lblOffset.Name = "lblOffset";
             this.lblOffset.Size = new System.Drawing.Size(35, 13);
             this.lblOffset.TabIndex = 17;
@@ -190,7 +192,7 @@
             // lblWorldPos
             // 
             this.lblWorldPos.AutoSize = true;
-            this.lblWorldPos.Location = new System.Drawing.Point(18, 618);
+            this.lblWorldPos.Location = new System.Drawing.Point(8, 54);
             this.lblWorldPos.Name = "lblWorldPos";
             this.lblWorldPos.Size = new System.Drawing.Size(35, 13);
             this.lblWorldPos.TabIndex = 18;
@@ -199,11 +201,25 @@
             // lblScale
             // 
             this.lblScale.AutoSize = true;
-            this.lblScale.Location = new System.Drawing.Point(198, 565);
+            this.lblScale.Location = new System.Drawing.Point(8, 79);
             this.lblScale.Name = "lblScale";
             this.lblScale.Size = new System.Drawing.Size(35, 13);
             this.lblScale.TabIndex = 19;
             this.lblScale.Text = "label3";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblCursorPos);
+            this.panel1.Controls.Add(this.lblWorldPos);
+            this.panel1.Controls.Add(this.lblScale);
+            this.panel1.Controls.Add(this.lblOffset);
+            this.panel1.Location = new System.Drawing.Point(16, 531);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1185, 99);
+            this.panel1.TabIndex = 20;
             // 
             // cnvsMain
             // 
@@ -216,7 +232,7 @@
             this.cnvsMain.Name = "cnvsMain";
             this.cnvsMain.OffsetX = 0F;
             this.cnvsMain.OffsetY = 0F;
-            this.cnvsMain.Size = new System.Drawing.Size(1186, 447);
+            this.cnvsMain.Size = new System.Drawing.Size(1186, 428);
             this.cnvsMain.TabIndex = 8;
             this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
             this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
@@ -230,10 +246,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1213, 640);
-            this.Controls.Add(this.lblScale);
-            this.Controls.Add(this.lblWorldPos);
-            this.Controls.Add(this.lblOffset);
-            this.Controls.Add(this.lblCursorPos);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.pnlSettings);
             this.Controls.Add(this.lblSettings);
@@ -241,6 +253,7 @@
             this.Controls.Add(this.pnlToolsContainer);
             this.Controls.Add(this.cnvsMain);
             this.Controls.Add(this.lblDrawing);
+            this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.Name = "MainForm";
@@ -251,6 +264,8 @@
             this.pnlToolsContainer.PerformLayout();
             this.pnlSettings.ResumeLayout(false);
             this.pnlSettings.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,6 +288,7 @@
         private System.Windows.Forms.Label lblOffset;
         private System.Windows.Forms.Label lblWorldPos;
         private System.Windows.Forms.Label lblScale;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
