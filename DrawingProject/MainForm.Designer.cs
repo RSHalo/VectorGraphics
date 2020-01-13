@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lblDrawing = new System.Windows.Forms.Label();
-            this.lblCursorPos = new System.Windows.Forms.Label();
             this.rbRectangle = new System.Windows.Forms.RadioButton();
             this.pnlToolsContainer = new System.Windows.Forms.Panel();
             this.rbEllipse = new System.Windows.Forms.RadioButton();
@@ -40,9 +39,15 @@
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.chkAntiAlias = new System.Windows.Forms.CheckBox();
             this.btnClear = new System.Windows.Forms.Button();
+            this.lblCursorPos = new System.Windows.Forms.Label();
+            this.lblOffset = new System.Windows.Forms.Label();
+            this.lblWorldPos = new System.Windows.Forms.Label();
+            this.lblScale = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.cnvsMain = new Canvas();
             this.pnlToolsContainer.SuspendLayout();
             this.pnlSettings.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblDrawing
@@ -54,15 +59,6 @@
             this.lblDrawing.Size = new System.Drawing.Size(101, 13);
             this.lblDrawing.TabIndex = 2;
             this.lblDrawing.Text = "Drawing Surface";
-            // 
-            // lblCursorPos
-            // 
-            this.lblCursorPos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCursorPos.AutoSize = true;
-            this.lblCursorPos.Location = new System.Drawing.Point(12, 609);
-            this.lblCursorPos.Name = "lblCursorPos";
-            this.lblCursorPos.Size = new System.Drawing.Size(0, 13);
-            this.lblCursorPos.TabIndex = 5;
             // 
             // rbRectangle
             // 
@@ -175,6 +171,56 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
+            // lblCursorPos
+            // 
+            this.lblCursorPos.AutoSize = true;
+            this.lblCursorPos.Location = new System.Drawing.Point(8, 5);
+            this.lblCursorPos.Name = "lblCursorPos";
+            this.lblCursorPos.Size = new System.Drawing.Size(35, 13);
+            this.lblCursorPos.TabIndex = 16;
+            this.lblCursorPos.Text = "label1";
+            // 
+            // lblOffset
+            // 
+            this.lblOffset.AutoSize = true;
+            this.lblOffset.Location = new System.Drawing.Point(8, 29);
+            this.lblOffset.Name = "lblOffset";
+            this.lblOffset.Size = new System.Drawing.Size(35, 13);
+            this.lblOffset.TabIndex = 17;
+            this.lblOffset.Text = "label2";
+            // 
+            // lblWorldPos
+            // 
+            this.lblWorldPos.AutoSize = true;
+            this.lblWorldPos.Location = new System.Drawing.Point(8, 54);
+            this.lblWorldPos.Name = "lblWorldPos";
+            this.lblWorldPos.Size = new System.Drawing.Size(35, 13);
+            this.lblWorldPos.TabIndex = 18;
+            this.lblWorldPos.Text = "label3";
+            // 
+            // lblScale
+            // 
+            this.lblScale.AutoSize = true;
+            this.lblScale.Location = new System.Drawing.Point(8, 79);
+            this.lblScale.Name = "lblScale";
+            this.lblScale.Size = new System.Drawing.Size(35, 13);
+            this.lblScale.TabIndex = 19;
+            this.lblScale.Text = "label3";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblCursorPos);
+            this.panel1.Controls.Add(this.lblWorldPos);
+            this.panel1.Controls.Add(this.lblScale);
+            this.panel1.Controls.Add(this.lblOffset);
+            this.panel1.Location = new System.Drawing.Point(16, 531);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1185, 99);
+            this.panel1.TabIndex = 20;
+            // 
             // cnvsMain
             // 
             this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -186,7 +232,7 @@
             this.cnvsMain.Name = "cnvsMain";
             this.cnvsMain.OffsetX = 0F;
             this.cnvsMain.OffsetY = 0F;
-            this.cnvsMain.Size = new System.Drawing.Size(1186, 499);
+            this.cnvsMain.Size = new System.Drawing.Size(1186, 428);
             this.cnvsMain.TabIndex = 8;
             this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
             this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
@@ -206,8 +252,8 @@
             this.Controls.Add(this.lblTools);
             this.Controls.Add(this.pnlToolsContainer);
             this.Controls.Add(this.cnvsMain);
-            this.Controls.Add(this.lblCursorPos);
             this.Controls.Add(this.lblDrawing);
+            this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.Name = "MainForm";
@@ -218,6 +264,8 @@
             this.pnlToolsContainer.PerformLayout();
             this.pnlSettings.ResumeLayout(false);
             this.pnlSettings.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,7 +273,6 @@
 
         #endregion
         private System.Windows.Forms.Label lblDrawing;
-        private System.Windows.Forms.Label lblCursorPos;
         private Canvas cnvsMain;
         private System.Windows.Forms.RadioButton rbRectangle;
         private System.Windows.Forms.Panel pnlToolsContainer;
@@ -237,6 +284,11 @@
         private System.Windows.Forms.CheckBox chkAntiAlias;
         private System.Windows.Forms.RadioButton rbEllipse;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label lblCursorPos;
+        private System.Windows.Forms.Label lblOffset;
+        private System.Windows.Forms.Label lblWorldPos;
+        private System.Windows.Forms.Label lblScale;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

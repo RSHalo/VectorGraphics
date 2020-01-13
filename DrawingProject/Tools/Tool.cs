@@ -16,11 +16,11 @@ namespace DrawingProject.Tools
         public bool IsControlHeld { get; set; }
 
         /// <summary>The X co-ordinate of the tool's mouse position, in world space.</summary>
-        protected int WorldX { get; set; }
+        public int WorldX { get; set; }
         /// <summary>The Y co-ordinate of the tool's mouse position, in world space.</summary>
-        protected int WorldY { get; set; }
+        public int WorldY { get; set; }
 
-        protected Point WorldPoint => new Point(WorldX, WorldY);
+        public Point WorldPoint => new Point(WorldX, WorldY);
 
         /// <summary>The shape to be drawn while the tool is creating a final result.</summary>
         // E.g. The rectangle that moves along with the mouse when you are drawing a rectangle.
@@ -28,11 +28,13 @@ namespace DrawingProject.Tools
 
         public Cursor Cursor { get; protected set; } = Cursors.Default;
 
-        /// <summary>Transforms page co-ordinates to world co-ordinates and assigns them to the tool.</summary>
+        /// <summary>Transforms screen coordinates to world co-ordinates and assigns them to the tool.</summary>
         public void UpdateWorldCoords(MouseEventArgs e)
         {
-            WorldX = e.X - (int)Canvas.OffsetX;
-            WorldY = e.Y - (int)Canvas.OffsetY;
+            PointF point = Canvas.ScreenToWorld(e.X, e.Y);
+
+            WorldX = (int)point.X;
+            WorldY = (int)point.Y;
         }
 
         public virtual void MouseDown(MouseEventArgs e)

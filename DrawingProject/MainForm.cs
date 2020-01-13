@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DrawingProject.Tools;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 namespace DrawingProject
 {
@@ -31,6 +32,17 @@ namespace DrawingProject
         public MainForm()
         {
             InitializeComponent();
+
+            // Create a cross at the origin, for debugging.
+            cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(0, -5), new Point(0, 5)));
+            cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(-5, 0), new Point(5, 0)));
+
+            // Create a cross at an arbitrary location, for debugging.
+            cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(300, 270), new Point(300, 280)));
+            cnvsMain.Drawables.Add(new Drawables.DrawableLine(Pens.Black, new Point(295, 275), new Point(305, 275)));
+
+            // Create a rectangle at an arbitrary location, for debugging.
+            cnvsMain.Drawables.Add(new Drawables.DrawableRectangle(Pens.Blue, 20, 30, 500, 300));
         }
 
         #region Event handlers for radio buttons that change the tool.
@@ -77,9 +89,7 @@ namespace DrawingProject
 
         private void BtnClear_Click(object sender, EventArgs e)
         {
-            cnvsMain.Drawables.Clear();
-            cnvsMain.OffsetX = 0;
-            cnvsMain.OffsetY = 0;
+            cnvsMain.Reset();
             cnvsMain.Invalidate();
         }
         #endregion
@@ -92,8 +102,12 @@ namespace DrawingProject
 
         private void CnvsMain_MouseMove(object sender, MouseEventArgs e)
         {
-            lblCursorPos.Text = $"X: { e.X }, Y: { e.Y }";
+            lblCursorPos.Text = $"Screen: X: { e.X }, Y: { e.Y }";
+            lblOffset.Text = $"Offset: X: { cnvsMain.OffsetX }, Y: { cnvsMain.OffsetY }";
+
             Tool.UpdateWorldCoords(e);
+            lblWorldPos.Text = $"World:  X: { Tool.WorldX }, Y: { Tool.WorldY }";
+
             Tool.MouseMoved(e);
         }
 
@@ -110,6 +124,8 @@ namespace DrawingProject
         private void CnvsMain_MouseLeave(object sender, EventArgs e)
         {
             lblCursorPos.ResetText();
+            lblOffset.ResetText();
+            lblWorldPos.ResetText();
         }
         #endregion
 
@@ -132,9 +148,13 @@ namespace DrawingProject
             var graphics = e.Graphics;
 
             graphics.SmoothingMode = SmoothingMode;
-            
+
+            // Apply scaling defined by Canvas.ZoomScale
+            graphics.ScaleTransform(cnvsMain.ZoomScale, cnvsMain.ZoomScale, MatrixOrder.Append);
+
+
             // Apply the translation defined by the offset values.
-            graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY);
+            graphics.TranslateTransform(cnvsMain.OffsetX, cnvsMain.OffsetY, MatrixOrder.Append);
 
             // All drawing happens when this Canvas is painted on the screen.
             // You don't just draw a line and expect it to persist. The drawing will dissapear when you minimise then maximise the form.
@@ -150,6 +170,8 @@ namespace DrawingProject
             // We want to show the shape being created by the mouse moving, so we draw the Tool's "CreationDrawable" shape.
             if (Tool.IsDrawing)
                 Tool.CreationDrawable?.Draw(graphics);
+
+            lblScale.Text = $"Zoom Scale: { cnvsMain.ZoomScale.ToString() }";
         }
     }
 }
