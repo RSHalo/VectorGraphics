@@ -64,8 +64,8 @@ class Canvas : Panel
         dy *= ZoomScale;
 
         // Add these changes to the current ZoomOffsets. This is updating the distances that TranslateTransform actually uses to move the world around.
-        ZoomOffsetX += dx;
-        ZoomOffsetY += dy;
+        OffsetX += dx;
+        OffsetY += dy;
 
         // Refresh instead of Invalidate to get synchronous updating. Prevents errors with very fast mouse wheel scrolling.
         Refresh();
@@ -85,8 +85,8 @@ class Canvas : Panel
     /// <summary>Gets corresponding world coordinates, given screen coordinates.</summary>
     public PointF ScreenToWorld(float screenX, float screenY)
     {
-        float worldX = (screenX + ZoomOffsetX) / ZoomScale;
-        float worldY = (screenY + ZoomOffsetY) / ZoomScale;
+        float worldX = (screenX + OffsetX) / ZoomScale;
+        float worldY = (screenY + OffsetY) / ZoomScale;
 
         return new PointF(worldX, worldY);
     }
