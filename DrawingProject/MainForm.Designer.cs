@@ -45,6 +45,7 @@
             this.lblScale = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cnvsMain = new Canvas();
+            this.rbPointer = new System.Windows.Forms.RadioButton();
             this.pnlToolsContainer.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -75,6 +76,7 @@
             // pnlToolsContainer
             // 
             this.pnlToolsContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlToolsContainer.Controls.Add(this.rbPointer);
             this.pnlToolsContainer.Controls.Add(this.rbEllipse);
             this.pnlToolsContainer.Controls.Add(this.rbLine);
             this.pnlToolsContainer.Controls.Add(this.rbPanner);
@@ -113,10 +115,10 @@
             this.rbPanner.AutoSize = true;
             this.rbPanner.Location = new System.Drawing.Point(219, 11);
             this.rbPanner.Name = "rbPanner";
-            this.rbPanner.Size = new System.Drawing.Size(44, 17);
+            this.rbPanner.Size = new System.Drawing.Size(59, 17);
             this.rbPanner.TabIndex = 15;
             this.rbPanner.TabStop = true;
-            this.rbPanner.Text = "Pan";
+            this.rbPanner.Text = "Panner";
             this.rbPanner.UseVisualStyleBackColor = true;
             this.rbPanner.CheckedChanged += new System.EventHandler(this.RbPanner_CheckedChanged);
             // 
@@ -241,6 +243,18 @@
             this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
             this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
             // 
+            // rbPointer
+            // 
+            this.rbPointer.AutoSize = true;
+            this.rbPointer.Location = new System.Drawing.Point(284, 11);
+            this.rbPointer.Name = "rbPointer";
+            this.rbPointer.Size = new System.Drawing.Size(58, 17);
+            this.rbPointer.TabIndex = 18;
+            this.rbPointer.TabStop = true;
+            this.rbPointer.Text = "Pointer";
+            this.rbPointer.UseVisualStyleBackColor = true;
+            this.rbPointer.CheckedChanged += new System.EventHandler(this.rbPointer_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,6 +303,7 @@
         private System.Windows.Forms.Label lblWorldPos;
         private System.Windows.Forms.Label lblScale;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rbPointer;
     }
 }
 

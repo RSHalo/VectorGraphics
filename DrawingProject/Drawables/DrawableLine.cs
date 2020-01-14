@@ -24,5 +24,10 @@ namespace DrawingProject.Drawables
         {
             graphics.DrawLine(Pen, StartPoint, EndPoint);
         }
+
+        public bool HitTest(int worldX, int worldY)
+        {
+            return false;
+        }
     }
 }

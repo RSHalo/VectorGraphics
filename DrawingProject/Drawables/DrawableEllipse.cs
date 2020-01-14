@@ -22,5 +22,10 @@ namespace DrawingProject.Drawables
         {
             graphics.DrawEllipse(Pen, boundingRectangle);
         }
+
+        public bool HitTest(int worldX, int worldY)
+        {
+            return false;
+        }
     }
 }

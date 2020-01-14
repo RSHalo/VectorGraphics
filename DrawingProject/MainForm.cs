@@ -65,6 +65,11 @@ namespace DrawingProject
         {
             SetupTool<Panner>();
         }
+
+        private void rbPointer_CheckedChanged(object sender, EventArgs e)
+        {
+            SetupTool<Pointer>();
+        }
         #endregion
 
         #region Event handlers for key presses
