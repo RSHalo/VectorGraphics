@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace DrawingProject.Canvas
 {
+	/// <summary>Holds the collection of shapes that are to be drawn to a canvas.</summary>
 	public class DrawableCollection : IEnumerable<IDrawable>
 	{
 		private List<IDrawable> _drawables = new List<IDrawable>();
@@ -15,6 +16,8 @@ namespace DrawingProject.Canvas
 		private int _lineCount = 0;
 		private int _rectangleCount = 0;
 		private int _ellipseCount = 0;
+
+		public IDrawable SelectedShape { get; set; }
 
 		public IEnumerator<IDrawable> GetEnumerator() => _drawables.GetEnumerator();
 
@@ -30,20 +33,25 @@ namespace DrawingProject.Canvas
 		public void AddLine(DrawableLine line)
 		{
 			line.Id = $"Line{ ++_lineCount }";
-			_drawables.Add(line);
+			AddShape(line);
 		}
 
 		public void AddRectangle(DrawableRectangle rectangle)
 		{
 			rectangle.Id = $"Rectangle{ ++_rectangleCount }";
-			_drawables.Add(rectangle);
+			AddShape(rectangle);
 		}
 
 		public void AddEllipse(DrawableEllipse ellipse)
 		{
 			ellipse.Id = $"Ellipse{ ++_ellipseCount }";
-			_drawables.Add(ellipse);
+			AddShape(ellipse);
 		}
 
+		private void AddShape(IDrawable shape)
+		{
+			_drawables.Add(shape);
+			SelectedShape = shape;
+		}
 	}
 }

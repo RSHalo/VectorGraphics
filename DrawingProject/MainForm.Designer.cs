@@ -46,6 +46,9 @@
 			this.lblScale = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.cnvsMain = new CanvasControl();
+			this.lblCoordState = new System.Windows.Forms.Label();
+			this.lblSelectedShapeTitle = new System.Windows.Forms.Label();
+			this.lblSelectedShapeId = new System.Windows.Forms.Label();
 			this.pnlToolsContainer.SuspendLayout();
 			this.pnlSettings.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -177,7 +180,7 @@
 			// btnClear
 			// 
 			this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnClear.Location = new System.Drawing.Point(1126, 54);
+			this.btnClear.Location = new System.Drawing.Point(1140, 54);
 			this.btnClear.Name = "btnClear";
 			this.btnClear.Size = new System.Drawing.Size(75, 23);
 			this.btnClear.TabIndex = 15;
@@ -223,16 +226,15 @@
 			// 
 			// panel1
 			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Controls.Add(this.lblCursorPos);
 			this.panel1.Controls.Add(this.lblWorldPos);
 			this.panel1.Controls.Add(this.lblScale);
 			this.panel1.Controls.Add(this.lblOffset);
-			this.panel1.Location = new System.Drawing.Point(16, 531);
+			this.panel1.Location = new System.Drawing.Point(16, 563);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1185, 99);
+			this.panel1.Size = new System.Drawing.Size(278, 99);
 			this.panel1.TabIndex = 20;
 			// 
 			// cnvsMain
@@ -246,7 +248,7 @@
 			this.cnvsMain.Name = "cnvsMain";
 			this.cnvsMain.OffsetX = 0F;
 			this.cnvsMain.OffsetY = 0F;
-			this.cnvsMain.Size = new System.Drawing.Size(1186, 428);
+			this.cnvsMain.Size = new System.Drawing.Size(1200, 428);
 			this.cnvsMain.TabIndex = 8;
 			this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
 			this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
@@ -255,11 +257,44 @@
 			this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
 			this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
 			// 
+			// lblCoordState
+			// 
+			this.lblCoordState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.lblCoordState.AutoSize = true;
+			this.lblCoordState.Location = new System.Drawing.Point(16, 544);
+			this.lblCoordState.Name = "lblCoordState";
+			this.lblCoordState.Size = new System.Drawing.Size(123, 13);
+			this.lblCoordState.TabIndex = 21;
+			this.lblCoordState.Text = "Coordinate System State";
+			// 
+			// lblSelectedShapeTitle
+			// 
+			this.lblSelectedShapeTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.lblSelectedShapeTitle.AutoSize = true;
+			this.lblSelectedShapeTitle.Location = new System.Drawing.Point(322, 544);
+			this.lblSelectedShapeTitle.Name = "lblSelectedShapeTitle";
+			this.lblSelectedShapeTitle.Size = new System.Drawing.Size(89, 13);
+			this.lblSelectedShapeTitle.TabIndex = 22;
+			this.lblSelectedShapeTitle.Text = "Selected Shape: ";
+			// 
+			// lblSelectedShapeId
+			// 
+			this.lblSelectedShapeId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.lblSelectedShapeId.AutoSize = true;
+			this.lblSelectedShapeId.Location = new System.Drawing.Point(405, 544);
+			this.lblSelectedShapeId.Name = "lblSelectedShapeId";
+			this.lblSelectedShapeId.Size = new System.Drawing.Size(38, 13);
+			this.lblSelectedShapeId.TabIndex = 23;
+			this.lblSelectedShapeId.Text = "NONE";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1213, 640);
+			this.ClientSize = new System.Drawing.Size(1227, 672);
+			this.Controls.Add(this.lblSelectedShapeId);
+			this.Controls.Add(this.lblSelectedShapeTitle);
+			this.Controls.Add(this.lblCoordState);
 			this.Controls.Add(this.btnClear);
 			this.Controls.Add(this.pnlSettings);
 			this.Controls.Add(this.lblSettings);
@@ -304,6 +339,9 @@
         private System.Windows.Forms.Label lblScale;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton rbPointer;
-    }
+		private System.Windows.Forms.Label lblCoordState;
+		private System.Windows.Forms.Label lblSelectedShapeTitle;
+		private System.Windows.Forms.Label lblSelectedShapeId;
+	}
 }
 

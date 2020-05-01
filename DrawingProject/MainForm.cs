@@ -176,7 +176,22 @@ namespace DrawingProject
             if (Tool.IsDrawing)
                 Tool.CreationDrawable?.Draw(graphics);
 
-            lblScale.Text = $"Zoom Scale: { cnvsMain.ZoomScale.ToString() }";
+			UpdatePeripherals();
         }
+
+		/// <summary>Updates labels and other controls around the main canvas.</summary>
+		public void UpdatePeripherals()
+		{
+			lblScale.Text = $"Zoom Scale: { cnvsMain.ZoomScale.ToString() }";
+
+			if (cnvsMain.Drawables.SelectedShape == null)
+			{
+				lblSelectedShapeId.Text = string.Empty;
+			}
+			else
+			{
+				lblSelectedShapeId.Text = cnvsMain.Drawables.SelectedShape.Id;
+			}
+		}
 	}
 }

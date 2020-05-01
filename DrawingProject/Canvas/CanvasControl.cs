@@ -9,13 +9,14 @@ using DrawingProject.Canvas;
 
 class CanvasControl : Panel
 {
-    // The drawable shapes that need to be drawn when the Canvas is painted.
-    public DrawableCollection Drawables = new DrawableCollection();
+	/// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
+	public DrawableCollection Drawables = new DrawableCollection();
 
 	// Add IDrawables to the Drawables collection
 	public void AddLine(DrawableLine line) => Drawables.AddLine(line);
 	public void AddRectangle(DrawableRectangle rectangle) => Drawables.AddRectangle(rectangle);
 	public void AddEllipse(DrawableEllipse ellipse) => Drawables.AddEllipse(ellipse);
+
 
 	/// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
 	public float OffsetX { get; set; }

@@ -13,12 +13,10 @@ namespace DrawingProject.Tools
     {
         public override void MouseUp(MouseEventArgs e)
         {
-            foreach (IDrawable shape in Canvas.Drawables)
-            {
-                if (shape.HitTest(WorldX, WorldY))
-                    MessageBox.Show(shape.Id);
-            }
+			// Tell the Canvas what shape we hit. If no shape hit, value is null (because we are using FirstOrDefault).
+			Canvas.Drawables.SelectedShape =  Canvas.Drawables.FirstOrDefault(d => d.HitTest(WorldX, WorldY));
 
+			// Redraw canvas because we may want visual changes when a shape is selected.
             Canvas.Invalidate();
         }
     }
