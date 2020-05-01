@@ -53,5 +53,11 @@ namespace DrawingProject.Canvas
 			_drawables.Add(shape);
 			SelectedShape = shape;
 		}
+
+		public void DeleteSelectedShape()
+		{
+			_drawables.Remove(SelectedShape);
+			SelectedShape = null;
+		}
 	}
 }

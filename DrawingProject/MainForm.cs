@@ -82,8 +82,16 @@ namespace DrawingProject
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.ControlKey)
-                Tool.IsControlHeld = false;
+			if (e.KeyCode == Keys.ControlKey)
+			{
+				Tool.IsControlHeld = false;
+			}
+			else if (e.KeyCode == Keys.Delete && !Tool.IsDrawing)
+			{
+				// Delete the selected shape if the current tool is not drawing.
+				cnvsMain.Drawables.DeleteSelectedShape();
+				cnvsMain.Invalidate();
+			}
         }
         #endregion
 
