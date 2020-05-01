@@ -58,6 +58,8 @@ namespace DrawingProject.Canvas
 		{
 			_drawables.Remove(SelectedShape);
 			SelectedShape = null;
+
+			// List<T>.Remove doesn't throw an exception when SelectedShape is null. I don't think I will add a null check here.
 		}
 	}
 }
