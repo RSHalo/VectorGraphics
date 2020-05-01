@@ -46,7 +46,7 @@ namespace DrawingProject.Tools
 
             // Add final result to the Canvas.
             if (line.StartPoint != line.EndPoint)
-                Canvas.Drawables.Add(line);
+                Canvas.Drawables.AddLine(line);
 
             Canvas.Invalidate();
         }
