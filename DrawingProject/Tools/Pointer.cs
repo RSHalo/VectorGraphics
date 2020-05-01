@@ -16,7 +16,7 @@ namespace DrawingProject.Tools
             foreach (IDrawable shape in Canvas.Drawables)
             {
                 if (shape.HitTest(WorldX, WorldY))
-                    MessageBox.Show("Hit");
+                    MessageBox.Show(shape.Id);
             }
 
             Canvas.Invalidate();

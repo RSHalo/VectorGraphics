@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace DrawingProject.Drawables
 {
-    class DrawableLine : IDrawable
+    public class DrawableLine : IDrawable
     {
-        public Pen Pen { get; set; }
+		public string Id { get; set; }
+		public Pen Pen { get; set; }
+
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
 

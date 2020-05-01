@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace DrawingProject.Drawables
 {
-    class DrawableEllipse : IDrawable
+    public class DrawableEllipse : IDrawable
     {
-        public Pen Pen { get; set; }
         private Rectangle boundingRectangle;
+		public string Id { get; set; }
+		public Pen Pen { get; set; }
 
         public DrawableEllipse(Pen pen, Rectangle rectangle)
         {

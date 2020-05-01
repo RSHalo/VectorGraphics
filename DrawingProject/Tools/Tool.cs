@@ -11,7 +11,7 @@ namespace DrawingProject.Tools
 {
     class Tool
     {
-        public Canvas Canvas { get; set; }
+        public CanvasControl Canvas { get; set; }
         public bool IsDrawing { get; protected set; }
         public bool IsControlHeld { get; set; }
 

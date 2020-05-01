@@ -43,7 +43,7 @@ namespace DrawingProject.Tools
             if (startPoint != currentPoint)
             {
                 var ellipse = GetEllipse(true);
-                Canvas.Drawables.Add(ellipse);
+                Canvas.Drawables.AddEllipse(ellipse);
             }
 
             Canvas.Invalidate();

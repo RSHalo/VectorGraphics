@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace DrawingProject.Drawables
 {
-    interface IDrawable
+    public interface IDrawable
     {
-        Pen Pen { get; set; }
+		string Id { get; set; }
 
-        void Draw(Graphics graphics);
+		Pen Pen { get; set; }
+
+		void Draw(Graphics graphics);
 
         /// <summary>
         /// Tests if the clicked mouse position hits the drawable shape.

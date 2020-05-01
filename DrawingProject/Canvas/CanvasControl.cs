@@ -5,14 +5,20 @@ using System.Windows.Forms;
 using DrawingProject.Drawables;
 using System.Diagnostics;
 using System.Drawing;
+using DrawingProject.Canvas;
 
-class Canvas : Panel
+class CanvasControl : Panel
 {
     // The drawable shapes that need to be drawn when the Canvas is painted.
-    public List<IDrawable> Drawables = new List<IDrawable>();
+    public DrawableCollection Drawables = new DrawableCollection();
 
-    /// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
-    public float OffsetX { get; set; }
+	// Add IDrawables to the Drawables collection
+	public void AddLine(DrawableLine line) => Drawables.AddLine(line);
+	public void AddRectangle(DrawableRectangle rectangle) => Drawables.AddRectangle(rectangle);
+	public void AddEllipse(DrawableEllipse ellipse) => Drawables.AddEllipse(ellipse);
+
+	/// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
+	public float OffsetX { get; set; }
     /// <summary>The Y offset from the page co-ordinates to the world co-ordinates.</summary>
     public float OffsetY { get; set; }
 
@@ -25,7 +31,7 @@ class Canvas : Panel
     /// <summary>World coordinates of the mouse position after zooming.</summary>
     public PointF AfterZoomWorld { get; private set; }
 
-    public Canvas()
+    public CanvasControl()
     {
         DoubleBuffered = true;
         SetStyle(ControlStyles.ResizeRedraw, true);
