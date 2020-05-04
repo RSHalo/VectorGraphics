@@ -99,8 +99,17 @@ class CanvasControl : Panel
         return new PointF(worldX, worldY);
     }
 
-    /// <summary>Resets to a blank canvas.</summary>
-    public void Reset()
+	/// <summary>Gets corresponding screen coordinates, given world coordinates.</summary>
+	public PointF WorldToScreen(float worldX, float worldY)
+	{
+		float screenX = OffsetX + (worldX * ZoomScale);
+		float screenY = OffsetY + (worldY * ZoomScale);
+
+		return new PointF(screenX, screenY);
+	}
+
+	/// <summary>Resets to a blank canvas.</summary>
+	public void Reset()
     {
         Drawables.Clear();
 
@@ -138,7 +147,8 @@ class CanvasControl : Panel
 
 		foreach (var resizer in _resizers)
 		{
-			var control = new ResizeControl(50, 50);
+			var screenCoords = WorldToScreen(resizer.X, resizer.Y);
+			var control = new ResizeControl((int)screenCoords.X, (int)screenCoords.Y);
 
 			_resizeControls.Add(control);
 

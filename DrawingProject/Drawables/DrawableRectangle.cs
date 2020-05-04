@@ -51,7 +51,7 @@ namespace DrawingProject.Drawables
 
 		public List<IResizer> GetResizers()
 		{
-			var resizer = new TopLeftRectangleResizer(this);
+			var resizer = new TopLeftRectangleResizer(this, X, Y);
 
 			return new List<IResizer>
 			{
