@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 
 namespace DrawingProject.Resizing
 {
-	public interface IResizer
+	public abstract class Resizer
 	{
+		public const int DefaultSideLength = 5;
+
 		/// <summary>The X coordinate of the required resize control, in world space.</summary>
-		int X { get; }
+		public float X { get; protected set; }
 
 		/// <summary>The Y coordinate of the required resize control, in world space.</summary>
-		int Y { get; }
+		public float Y { get; protected set; }
 
 		/// <summary>The drawable shape that the resizer belongs to.</summary>
 		IDrawable ParentShape { get; }
 
 		/// <summary>Resizes the Shape according to user actions.</summary>
-		void Rezise();
+		public abstract void Rezise();
 	}
 }

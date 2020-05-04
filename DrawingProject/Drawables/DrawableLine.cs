@@ -40,7 +40,7 @@ namespace DrawingProject.Drawables
             return path.IsOutlineVisible(worldX, worldY, new Pen(Color.Black, 10));
         }
 
-		public List<IResizer> GetResizers()
+		public List<Resizer> GetResizers()
 		{
 			throw new NotImplementedException();
 		}

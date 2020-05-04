@@ -19,7 +19,7 @@ class CanvasControl : Panel
 	public void AddEllipse(DrawableEllipse ellipse) => Drawables.AddEllipse(ellipse);
 
 	/// <summary>The IResize objects that contain the world-space information for the resize controls.</summary>
-	private List<IResizer> _resizers = new List<IResizer>();
+	private List<Resizer> _resizers = new List<Resizer>();
 
 	/// <summary>The ResizeControls that will be painted to the screen.</summary>
 	private List<ResizeControl> _resizeControls = new List<ResizeControl>();
@@ -155,10 +155,10 @@ class CanvasControl : Panel
 		}
 	}
 
-	private ResizeControl CreateResizeControl(IResizer resizer)
+	private ResizeControl CreateResizeControl(Resizer resizer)
 	{
 		// The size of the control.
-		int controlSideLength = (int)(ZoomScale * ResizeControl.DefaultSideLength);
+		int controlSideLength = (int)(ZoomScale * Resizer.DefaultSideLength);
 
 		var screenCoords = WorldToScreen(resizer.X, resizer.Y);
 

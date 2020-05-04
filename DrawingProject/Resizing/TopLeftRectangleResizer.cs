@@ -7,21 +7,19 @@ using DrawingProject.Drawables;
 
 namespace DrawingProject.Resizing
 {
-	class TopLeftRectangleResizer : IResizer
+	class TopRectangleResizer : Resizer
 	{
-		public int X { get; }
-		public int Y { get; }
-
 		public IDrawable ParentShape { get; private set; }
 
-		public TopLeftRectangleResizer(DrawableRectangle rectangle, int worldX, int worldY)
+		public TopRectangleResizer(DrawableRectangle rectangle)
 		{
 			ParentShape = rectangle;
-			X = worldX;
-			Y = worldY;
+
+			X = rectangle.X + (rectangle.Width / 2f) - (DefaultSideLength / 2f);
+			Y = rectangle.Y - (DefaultSideLength / 2f);
 		}
 
-		public void Rezise()
+		public override void Rezise()
 		{
 			throw new NotImplementedException();
 		}

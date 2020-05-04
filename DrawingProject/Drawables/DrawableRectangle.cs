@@ -49,11 +49,11 @@ namespace DrawingProject.Drawables
             return (!intersectionRect.IsEmpty && intersectionRect.Size != selectionRect.Size);
         }
 
-		public List<IResizer> GetResizers()
+		public List<Resizer> GetResizers()
 		{
-			var resizer = new TopLeftRectangleResizer(this, X, Y);
+			var resizer = new TopRectangleResizer(this);
 
-			return new List<IResizer>
+			return new List<Resizer>
 			{
 				resizer
 			};
