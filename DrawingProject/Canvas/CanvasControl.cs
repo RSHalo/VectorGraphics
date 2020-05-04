@@ -147,12 +147,27 @@ class CanvasControl : Panel
 
 		foreach (var resizer in _resizers)
 		{
-			var screenCoords = WorldToScreen(resizer.X, resizer.Y);
-			var control = new ResizeControl((int)screenCoords.X, (int)screenCoords.Y);
+			var control = CreateResizeControl(resizer);
 
 			_resizeControls.Add(control);
 
 			Controls.Add(control);
 		}
+	}
+
+	private ResizeControl CreateResizeControl(IResizer resizer)
+	{
+		// The size of the control.
+		int controlSideLength = (int)(ZoomScale * ResizeControl.DefaultSideLength);
+
+		var screenCoords = WorldToScreen(resizer.X, resizer.Y);
+
+		var control = new ResizeControl((int)screenCoords.X, (int)screenCoords.Y)
+		{
+			Width = controlSideLength,
+			Height = controlSideLength
+		};
+
+		return control;
 	}
 }

@@ -12,6 +12,8 @@ namespace DrawingProject.Resizing
 {
 	public partial class ResizeControl : UserControl
 	{
+		public const int DefaultSideLength = 5;
+
 		public IResizer Resizer { get; set; }
 
 		public ResizeControl()
