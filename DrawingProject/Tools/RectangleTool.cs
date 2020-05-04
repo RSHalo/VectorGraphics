@@ -46,7 +46,7 @@ namespace DrawingProject.Tools
             
             // Add final result to the Canvas.
             if (rectangle.Width > 0 && rectangle.Height > 0)
-                Canvas.Drawables.AddRectangle(rectangle);
+                Canvas.AddRectangle(rectangle);
 
             Canvas.Invalidate();
         }

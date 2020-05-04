@@ -6,6 +6,7 @@ using DrawingProject.Drawables;
 using System.Diagnostics;
 using System.Drawing;
 using DrawingProject.Canvas;
+using DrawingProject.Resizing;
 
 class CanvasControl : Panel
 {
@@ -17,6 +18,11 @@ class CanvasControl : Panel
 	public void AddRectangle(DrawableRectangle rectangle) => Drawables.AddRectangle(rectangle);
 	public void AddEllipse(DrawableEllipse ellipse) => Drawables.AddEllipse(ellipse);
 
+	/// <summary>The IResize objects that contain the world-space information for the resize controls.</summary>
+	private List<IResizer> _resizers = new List<IResizer>();
+
+	/// <summary>The ResizeControls that will be painted to the screen.</summary>
+	private List<ResizeControl> _resizeControls = new List<ResizeControl>();
 
 	/// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
 	public float OffsetX { get; set; }
@@ -104,4 +110,39 @@ class CanvasControl : Panel
         mouseWheelIndent = 0;
         ZoomScale = 1;
     }
+
+	// The selected shape has changed, so we need to redraw the resize controls.
+	public void UpdateSelection(IDrawable selectedShape)
+	{
+		Drawables.SelectedShape = selectedShape;
+
+		Invalidate();
+	}
+
+	public void UpdateResizers()
+	{
+		foreach (var control in _resizeControls)
+		{
+			Controls.Remove(control);
+		}
+
+		_resizeControls.Clear();
+		_resizers.Clear();
+
+		if (Drawables.SelectedShape == null)
+		{
+			return;
+		}
+
+		_resizers = Drawables.SelectedShape.GetResizers();
+
+		foreach (var resizer in _resizers)
+		{
+			var control = new ResizeControl(50, 50);
+
+			_resizeControls.Add(control);
+
+			Controls.Add(control);
+		}
+	}
 }

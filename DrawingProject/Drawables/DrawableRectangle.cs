@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DrawingProject.Resizing;
 
 namespace DrawingProject.Drawables
 {
@@ -47,5 +48,15 @@ namespace DrawingProject.Drawables
             // completely inside the rectangle, therefore we make sure the intersection isn't the same size as the selection rectangle.
             return (!intersectionRect.IsEmpty && intersectionRect.Size != selectionRect.Size);
         }
-    }
+
+		public List<IResizer> GetResizers()
+		{
+			var resizer = new TopLeftRectangleResizer(this);
+
+			return new List<IResizer>
+			{
+				resizer
+			};
+		}
+	}
 }

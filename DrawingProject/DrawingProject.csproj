@@ -52,6 +52,14 @@
     <Compile Include="Canvas\DrawableCollection.cs" />
     <Compile Include="Drawables\DrawableEllipse.cs" />
     <Compile Include="Drawables\DrawableRectangle.cs" />
+    <Compile Include="Resizing\IResizer.cs" />
+    <Compile Include="Resizing\ResizeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resizing\ResizeControl.Designer.cs">
+      <DependentUpon>ResizeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resizing\TopLeftRectangleResizer.cs" />
     <Compile Include="Tools\EllipseTool.cs" />
     <Compile Include="Tools\LineTool.cs" />
     <Compile Include="Tools\Panner.cs" />
@@ -81,6 +89,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Resizing\ResizeControl.resx">
+      <DependentUpon>ResizeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

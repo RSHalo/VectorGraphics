@@ -1,4 +1,5 @@
 ﻿using DrawingProject.Drawables;
+using DrawingProject.Resizing;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,10 +15,8 @@ namespace DrawingProject.Tools
         public override void MouseUp(MouseEventArgs e)
         {
 			// Tell the Canvas what shape we hit. If no shape hit, value is null (because we are using FirstOrDefault).
-			Canvas.Drawables.SelectedShape =  Canvas.Drawables.FirstOrDefault(d => d.HitTest(WorldX, WorldY));
-
-			// Redraw canvas because we may want visual changes when a shape is selected.
-            Canvas.Invalidate();
+			var shape = Canvas.Drawables.FirstOrDefault(d => d.HitTest(WorldX, WorldY));
+			Canvas.UpdateSelection(shape);
         }
     }
 }

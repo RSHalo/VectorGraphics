@@ -45,10 +45,11 @@
 			this.lblWorldPos = new System.Windows.Forms.Label();
 			this.lblScale = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.cnvsMain = new CanvasControl();
 			this.lblCoordState = new System.Windows.Forms.Label();
 			this.lblSelectedShapeTitle = new System.Windows.Forms.Label();
 			this.lblSelectedShapeId = new System.Windows.Forms.Label();
+			this.cnvsMain = new CanvasControl();
+			this.btnDrawResizer = new System.Windows.Forms.Button();
 			this.pnlToolsContainer.SuspendLayout();
 			this.pnlSettings.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -237,26 +238,6 @@
 			this.panel1.Size = new System.Drawing.Size(278, 99);
 			this.panel1.TabIndex = 20;
 			// 
-			// cnvsMain
-			// 
-			this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.cnvsMain.Cursor = System.Windows.Forms.Cursors.Default;
-			this.cnvsMain.Location = new System.Drawing.Point(15, 97);
-			this.cnvsMain.Name = "cnvsMain";
-			this.cnvsMain.OffsetX = 0F;
-			this.cnvsMain.OffsetY = 0F;
-			this.cnvsMain.Size = new System.Drawing.Size(1200, 428);
-			this.cnvsMain.TabIndex = 8;
-			this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
-			this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
-			this.cnvsMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseDown);
-			this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
-			this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
-			this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
-			// 
 			// lblCoordState
 			// 
 			this.lblCoordState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -287,11 +268,43 @@
 			this.lblSelectedShapeId.TabIndex = 23;
 			this.lblSelectedShapeId.Text = "NONE";
 			// 
+			// cnvsMain
+			// 
+			this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.cnvsMain.Cursor = System.Windows.Forms.Cursors.Default;
+			this.cnvsMain.Location = new System.Drawing.Point(15, 97);
+			this.cnvsMain.Name = "cnvsMain";
+			this.cnvsMain.OffsetX = 0F;
+			this.cnvsMain.OffsetY = 0F;
+			this.cnvsMain.Size = new System.Drawing.Size(1200, 428);
+			this.cnvsMain.TabIndex = 8;
+			this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
+			this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
+			this.cnvsMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseDown);
+			this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
+			this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
+			this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
+			// 
+			// btnDrawResizer
+			// 
+			this.btnDrawResizer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnDrawResizer.Location = new System.Drawing.Point(824, 593);
+			this.btnDrawResizer.Name = "btnDrawResizer";
+			this.btnDrawResizer.Size = new System.Drawing.Size(75, 23);
+			this.btnDrawResizer.TabIndex = 24;
+			this.btnDrawResizer.Text = "Draw resizer";
+			this.btnDrawResizer.UseVisualStyleBackColor = true;
+			this.btnDrawResizer.Click += new System.EventHandler(this.btnDrawResizer_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1227, 672);
+			this.Controls.Add(this.btnDrawResizer);
 			this.Controls.Add(this.lblSelectedShapeId);
 			this.Controls.Add(this.lblSelectedShapeTitle);
 			this.Controls.Add(this.lblCoordState);
@@ -342,6 +355,7 @@
 		private System.Windows.Forms.Label lblCoordState;
 		private System.Windows.Forms.Label lblSelectedShapeTitle;
 		private System.Windows.Forms.Label lblSelectedShapeId;
+		private System.Windows.Forms.Button btnDrawResizer;
 	}
 }
 

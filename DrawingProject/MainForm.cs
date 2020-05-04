@@ -184,6 +184,8 @@ namespace DrawingProject
             if (Tool.IsDrawing)
                 Tool.CreationDrawable?.Draw(graphics);
 
+			cnvsMain.UpdateResizers();
+
 			UpdatePeripherals();
         }
 
@@ -200,6 +202,13 @@ namespace DrawingProject
 			{
 				lblSelectedShapeId.Text = cnvsMain.Drawables.SelectedShape.Id;
 			}
+		}
+
+		private void btnDrawResizer_Click(object sender, EventArgs e)
+		{
+			Resizing.ResizeControl resizer = new Resizing.ResizeControl();
+			resizer.Location = new Point(50, 50);
+			cnvsMain.Controls.Add(resizer);
 		}
 	}
 }
