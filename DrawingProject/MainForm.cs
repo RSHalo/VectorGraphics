@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DrawingProject.Tools;
 using System.Drawing.Drawing2D;
 using System.Diagnostics;
+using DrawingProject.Resizing;
 
 namespace DrawingProject
 {
@@ -34,17 +35,19 @@ namespace DrawingProject
         {
             InitializeComponent();
 
-            // Create a cross at the origin, for debugging.
-            cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(0, -5), new Point(0, 5)));
-            cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(-5, 0), new Point(5, 0)));
+            //// Create a cross at the origin, for debugging.
+            //cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(0, -5), new Point(0, 5)));
+            //cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(-5, 0), new Point(5, 0)));
 
-            // Create a cross at an arbitrary location, for debugging.
-            cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(300, 270), new Point(300, 280)));
-            cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(295, 275), new Point(305, 275)));
+            //// Create a cross at an arbitrary location, for debugging.
+            //cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(300, 270), new Point(300, 280)));
+            //cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(295, 275), new Point(305, 275)));
 
             // Create a rectangle at an arbitrary location, for debugging.
             cnvsMain.Drawables.AddRectangle(new DrawableRectangle(Pens.Blue, 20, 30, 500, 300));
-        }
+
+			cnvsMain.Drawables.SelectedShapeChanged += cnvsMain.OnSelectedShapeChanged;
+		}
 
         #region Event handlers for radio buttons that change the tool.
         private void RbLine_CheckedChanged(object sender, EventArgs e)
@@ -184,8 +187,6 @@ namespace DrawingProject
             if (Tool.IsDrawing)
                 Tool.CreationDrawable?.Draw(graphics);
 
-			cnvsMain.UpdateResizers();
-
 			UpdatePeripherals();
         }
 
@@ -204,11 +205,39 @@ namespace DrawingProject
 			}
 		}
 
-		private void btnDrawResizer_Click(object sender, EventArgs e)
+		public bool IsPanelMove { get; set; }
+		Point startPoint;
+		Point currentPoint;
+
+		private void panel2_MouseDown(object sender, MouseEventArgs e)
 		{
-			Resizing.ResizeControl resizer = new Resizing.ResizeControl();
-			resizer.Location = new Point(50, 50);
-			cnvsMain.Controls.Add(resizer);
+			IsPanelMove = true;
+			startPoint = new Point(e.X, e.Y);
 		}
+
+		private void panel2_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (!IsPanelMove)
+				return;
+
+			currentPoint = new Point(e.X, e.Y);
+
+			int dx = currentPoint.X - startPoint.X;
+			int dy = currentPoint.Y - startPoint.Y;
+
+			panel2.Left += dx;
+			panel2.Top += dy;
+
+			Debug.WriteLine($"Start: { startPoint.ToString() }, Current: { currentPoint.ToString() }");
+
+			//startPoint = currentPoint;
+		}
+		 
+		private void panel2_MouseUp(object sender, MouseEventArgs e)
+		{
+			IsPanelMove = false;
+		}
+
+		
 	}
 }

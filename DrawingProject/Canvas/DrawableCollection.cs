@@ -17,7 +17,21 @@ namespace DrawingProject.Canvas
 		private int _rectangleCount = 0;
 		private int _ellipseCount = 0;
 
-		public IDrawable SelectedShape { get; set; }
+		public event EventHandler SelectedShapeChanged;
+
+		private IDrawable _selectedShape;
+
+		public IDrawable SelectedShape
+		{
+			get => _selectedShape;
+
+			set
+			{
+				_selectedShape = value;
+
+				SelectedShapeChanged?.Invoke(this, EventArgs.Empty);
+			}
+		}
 
 		public IEnumerator<IDrawable> GetEnumerator() => _drawables.GetEnumerator();
 

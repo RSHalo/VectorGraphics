@@ -37,6 +37,9 @@
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.Name = "ResizeControl";
 			this.Size = new System.Drawing.Size(5, 5);
+			this.Click += new System.EventHandler(this.ResizeControl_Click);
+			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResizeControl_MouseDown);
+			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResizeControl_MouseMove);
 			this.ResumeLayout(false);
 
 		}

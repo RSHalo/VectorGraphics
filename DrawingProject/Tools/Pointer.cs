@@ -16,7 +16,7 @@ namespace DrawingProject.Tools
         {
 			// Tell the Canvas what shape we hit. If no shape hit, value is null (because we are using FirstOrDefault).
 			var shape = Canvas.Drawables.FirstOrDefault(d => d.HitTest(WorldX, WorldY));
-			Canvas.UpdateSelection(shape);
+			Canvas.Drawables.SelectedShape = shape;
         }
     }
 }

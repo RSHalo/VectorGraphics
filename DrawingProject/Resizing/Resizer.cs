@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DrawingProject.Resizing
 {
+	/// <summary>Contains the world-space information that is used to generate the resize controls.</summary>
 	public abstract class Resizer
 	{
 		public const int DefaultSideLength = 5;
+
+		public bool IsResizing { get; set; } = false;
 
 		/// <summary>The X coordinate of the required resize control, in world space.</summary>
 		public float X { get; protected set; }
@@ -22,5 +26,20 @@ namespace DrawingProject.Resizing
 
 		/// <summary>Resizes the Shape according to user actions.</summary>
 		public abstract void Rezise();
+
+		public virtual void MouseDown(MouseEventArgs e)
+		{
+
+		}
+
+		public virtual void MouseMoved(MouseEventArgs e)
+		{
+			
+		}
+
+		public virtual void MouseUp(MouseEventArgs e)
+		{
+
+		}
 	}
 }

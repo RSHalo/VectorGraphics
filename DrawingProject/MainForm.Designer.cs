@@ -49,7 +49,7 @@
 			this.lblSelectedShapeTitle = new System.Windows.Forms.Label();
 			this.lblSelectedShapeId = new System.Windows.Forms.Label();
 			this.cnvsMain = new CanvasControl();
-			this.btnDrawResizer = new System.Windows.Forms.Button();
+			this.panel2 = new System.Windows.Forms.Panel();
 			this.pnlToolsContainer.SuspendLayout();
 			this.pnlSettings.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -288,23 +288,23 @@
 			this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
 			this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
 			// 
-			// btnDrawResizer
+			// panel2
 			// 
-			this.btnDrawResizer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnDrawResizer.Location = new System.Drawing.Point(824, 593);
-			this.btnDrawResizer.Name = "btnDrawResizer";
-			this.btnDrawResizer.Size = new System.Drawing.Size(75, 23);
-			this.btnDrawResizer.TabIndex = 24;
-			this.btnDrawResizer.Text = "Draw resizer";
-			this.btnDrawResizer.UseVisualStyleBackColor = true;
-			this.btnDrawResizer.Click += new System.EventHandler(this.btnDrawResizer_Click);
+			this.panel2.BackColor = System.Drawing.SystemColors.HotTrack;
+			this.panel2.Location = new System.Drawing.Point(954, 20);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(55, 48);
+			this.panel2.TabIndex = 24;
+			this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
+			this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
+			this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseUp);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1227, 672);
-			this.Controls.Add(this.btnDrawResizer);
+			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.lblSelectedShapeId);
 			this.Controls.Add(this.lblSelectedShapeTitle);
 			this.Controls.Add(this.lblCoordState);
@@ -355,7 +355,7 @@
 		private System.Windows.Forms.Label lblCoordState;
 		private System.Windows.Forms.Label lblSelectedShapeTitle;
 		private System.Windows.Forms.Label lblSelectedShapeId;
-		private System.Windows.Forms.Button btnDrawResizer;
+		private System.Windows.Forms.Panel panel2;
 	}
 }
 

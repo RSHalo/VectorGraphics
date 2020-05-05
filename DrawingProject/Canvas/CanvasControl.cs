@@ -7,8 +7,9 @@ using System.Diagnostics;
 using System.Drawing;
 using DrawingProject.Canvas;
 using DrawingProject.Resizing;
+using System.Linq;
 
-class CanvasControl : Panel
+public class CanvasControl : Panel
 {
 	/// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
 	public DrawableCollection Drawables = new DrawableCollection();
@@ -17,12 +18,6 @@ class CanvasControl : Panel
 	public void AddLine(DrawableLine line) => Drawables.AddLine(line);
 	public void AddRectangle(DrawableRectangle rectangle) => Drawables.AddRectangle(rectangle);
 	public void AddEllipse(DrawableEllipse ellipse) => Drawables.AddEllipse(ellipse);
-
-	/// <summary>The IResize objects that contain the world-space information for the resize controls.</summary>
-	private List<Resizer> _resizers = new List<Resizer>();
-
-	/// <summary>The ResizeControls that will be painted to the screen.</summary>
-	private List<ResizeControl> _resizeControls = new List<ResizeControl>();
 
 	/// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
 	public float OffsetX { get; set; }
@@ -120,40 +115,47 @@ class CanvasControl : Panel
         ZoomScale = 1;
     }
 
-	// The selected shape has changed, so we need to redraw the resize controls.
-	public void UpdateSelection(IDrawable selectedShape)
+	public void OnSelectedShapeChanged(object source, EventArgs e)
 	{
-		Drawables.SelectedShape = selectedShape;
+		RemoveResizeControls();
 
-		Invalidate();
-	}
+		// When the selected shape changes, new resize controls are needed.
+		List<Resizer> resizers = Drawables.SelectedShape.GetResizers();
 
-	public void UpdateResizers()
-	{
-		foreach (var control in _resizeControls)
-		{
-			Controls.Remove(control);
-		}
-
-		_resizeControls.Clear();
-		_resizers.Clear();
-
-		if (Drawables.SelectedShape == null)
-		{
-			return;
-		}
-
-		_resizers = Drawables.SelectedShape.GetResizers();
-
-		foreach (var resizer in _resizers)
+		// Add ResizeControls to the canvas.
+		foreach (var resizer in resizers)
 		{
 			var control = CreateResizeControl(resizer);
-
-			_resizeControls.Add(control);
-
 			Controls.Add(control);
 		}
 	}
+
+	//public void UpdateResizers()
+	//{
+	//	foreach (var control in _resizeControls)
+	//	{
+	//		Controls.Remove(control);
+	//	}
+
+	//	_resizeControls.Clear();
+	//	_resizers.Clear();
+
+	//	if (Drawables.SelectedShape == null)
+	//	{
+	//		return;
+	//	}
+
+	//	_resizers = Drawables.SelectedShape.GetResizers();
+
+	//	foreach (var resizer in _resizers)
+	//	{
+	//		var control = CreateResizeControl(resizer);
+
+	//		_resizeControls.Add(control);
+
+	//		Controls.Add(control);
+	//	}
+	//}
 
 	private ResizeControl CreateResizeControl(Resizer resizer)
 	{
@@ -164,10 +166,22 @@ class CanvasControl : Panel
 
 		var control = new ResizeControl((int)screenCoords.X, (int)screenCoords.Y)
 		{
+			// Assign a Resizer object to the control. This way, we can call the appropriate Resizer functionality when handling mouse events on the control.
+			Resizer = resizer,
+
 			Width = controlSideLength,
-			Height = controlSideLength
+			Height = controlSideLength,
+			Tag = ResizeControl.TagId
 		};
 
 		return control;
+	}
+
+	private void RemoveResizeControls()
+	{
+		foreach (var control in Controls.OfType<ResizeControl>())
+		{
+			Controls.Remove(control);
+		}
 	}
 }
