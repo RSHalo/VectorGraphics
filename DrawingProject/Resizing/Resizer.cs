@@ -1,6 +1,7 @@
 ﻿using DrawingProject.Drawables;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace DrawingProject.Resizing
 	{
 		public const int DefaultSideLength = 5;
 
+		/// <summary>Flags whether or not the user is currently resizing.</summary>
 		public bool IsResizing { get; set; } = false;
 
 		/// <summary>The X coordinate of the required resize control, in world space.</summary>

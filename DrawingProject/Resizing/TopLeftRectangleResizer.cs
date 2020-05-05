@@ -26,21 +26,12 @@ namespace DrawingProject.Resizing
 
 		public override void MouseDown(MouseEventArgs e)
 		{
-			IsResizing = true;
+			
 		}
 
 		public override void MouseMoved(MouseEventArgs e)
 		{
-			if (!IsResizing)
-				return;
 
-			var rect1 = _drawnRectangle.Rectangle;
-
-			var rect2 = new Rectangle(rect1.X, rect1.Y - e.Y, rect1.Width, rect1.Height + e.Y);
-
-			_drawnRectangle.Rectangle = rect2;
-
-			//System.Diagnostics.Debug.WriteLine("Called");
 		}
 
 		public override void MouseUp(MouseEventArgs e)

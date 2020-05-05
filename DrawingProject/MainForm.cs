@@ -46,6 +46,7 @@ namespace DrawingProject
             // Create a rectangle at an arbitrary location, for debugging.
             cnvsMain.Drawables.AddRectangle(new DrawableRectangle(Pens.Blue, 20, 30, 500, 300));
 
+			// An event is published when the selected shape is changed. The canvas is subscribed to this event so that it can react accordingly.
 			cnvsMain.Drawables.SelectedShapeChanged += cnvsMain.OnSelectedShapeChanged;
 		}
 

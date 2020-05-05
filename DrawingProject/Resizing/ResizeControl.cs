@@ -16,6 +16,15 @@ namespace DrawingProject.Resizing
 
 		public Resizer Resizer { get; set; }
 
+		/// <summary>Flags whether or not the user is currently resizing.</summary>
+		public bool IsResizing { get; set; } = false;
+
+		/// <summary>
+		/// The position of the cursor when a user first holds the mouse down on the resize control. This is in screen space becuase we get this value
+		/// from MouseEventArgs e.X
+		/// </summary>
+		protected Point _startCursorPoint;
+
 		public ResizeControl()
 		{
 			InitializeComponent();
@@ -33,12 +42,29 @@ namespace DrawingProject.Resizing
 
 		private void ResizeControl_MouseDown(object sender, MouseEventArgs e)
 		{
-			Resizer.MouseDown(e);
+			IsResizing = true;
+			_startCursorPoint = new Point(e.X, e.Y);
+
+			//Resizer.MouseDown(e);
 		}
 
 		private void ResizeControl_MouseMove(object sender, MouseEventArgs e)
 		{
-			Resizer.MouseMoved(e);
+			if (!IsResizing)
+				return;
+
+			var currentCursorPoint = new Point(e.X, e.Y);
+
+			int dx = currentCursorPoint.X - _startCursorPoint.X;
+			int dy = currentCursorPoint.Y - _startCursorPoint.Y;
+
+			Left += dx;
+			Top += dy;
+		}
+
+		private void ResizeControl_MouseUp(object sender, MouseEventArgs e)
+		{
+			IsResizing = false;
 		}
 	}
 }

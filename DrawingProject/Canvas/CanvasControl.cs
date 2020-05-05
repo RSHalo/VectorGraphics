@@ -115,9 +115,13 @@ public class CanvasControl : Panel
         ZoomScale = 1;
     }
 
+	/// <summary>Gets the appropriate resize controls for the newly selected shape.</summary>
 	public void OnSelectedShapeChanged(object source, EventArgs e)
 	{
 		RemoveResizeControls();
+
+		if (Drawables.SelectedShape == null)
+			return;
 
 		// When the selected shape changes, new resize controls are needed.
 		List<Resizer> resizers = Drawables.SelectedShape.GetResizers();
