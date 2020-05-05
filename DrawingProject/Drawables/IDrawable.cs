@@ -24,6 +24,6 @@ namespace DrawingProject.Drawables
         /// <returns>True if hit, false otherwise.</returns>
         bool HitTest(int worldX, int worldY);
 
-		List<Resizer> GetResizers();
+		List<ResizeControl> GetResizers();
     }
 }

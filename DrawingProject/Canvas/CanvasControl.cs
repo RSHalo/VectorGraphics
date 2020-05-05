@@ -123,14 +123,28 @@ public class CanvasControl : Panel
 		if (Drawables.SelectedShape == null)
 			return;
 
+		AddResizeControls();
+	}
+
+	private void AddResizeControls()
+	{
 		// When the selected shape changes, new resize controls are needed.
-		List<Resizer> resizers = Drawables.SelectedShape.GetResizers();
+		List<ResizeControl> resizers = Drawables.SelectedShape.GetResizers();
+
+		// Zoom scale will affect the onscreen size of the resize control. Accomodate for this here.
+		int controlSideLength = (int)(ZoomScale * ResizeControl.DefaultSideLength);
 
 		// Add ResizeControls to the canvas.
 		foreach (var resizer in resizers)
 		{
-			var control = CreateResizeControl(resizer);
-			Controls.Add(control);
+			var screenCoords = WorldToScreen(resizer.WorldX, resizer.WorldY);
+			var screenLocation = new Point((int)screenCoords.X, (int)screenCoords.Y);
+
+			resizer.Location = screenLocation;
+			resizer.Width = controlSideLength;
+			resizer.Height = controlSideLength;
+
+			Controls.Add(resizer);
 		}
 	}
 
@@ -161,25 +175,28 @@ public class CanvasControl : Panel
 	//	}
 	//}
 
-	private ResizeControl CreateResizeControl(Resizer resizer)
-	{
-		// The size of the control.
-		int controlSideLength = (int)(ZoomScale * Resizer.DefaultSideLength);
+	//private ResizeControl CreateResizeControl(Resizer resizer)
+	//{
+	//	// The size of the control.
+	//	int controlSideLength = (int)(ZoomScale * Resizer.DefaultSideLength);
 
-		var screenCoords = WorldToScreen(resizer.X, resizer.Y);
+	//	var screenCoords = WorldToScreen(resizer.X, resizer.Y);
 
-		var control = new ResizeControl((int)screenCoords.X, (int)screenCoords.Y)
-		{
-			// Assign a Resizer object to the control. This way, we can call the appropriate Resizer functionality when handling mouse events on the control.
-			Resizer = resizer,
+	//	// TODO: Get world coords from control.worldX then convert them to screen here. Kind of makes sense - canvas is responsible for specifying the screen coords as it adds 
+	//	// the child controls.
 
-			Width = controlSideLength,
-			Height = controlSideLength,
-			Tag = ResizeControl.TagId
-		};
+	//	var control = new ResizeControl((int)screenCoords.X, (int)screenCoords.Y)
+	//	{
+	//		// Assign a Resizer object to the control. This way, we can call the appropriate Resizer functionality when handling mouse events on the control.
+	//		Resizer = resizer,
 
-		return control;
-	}
+	//		Width = controlSideLength,
+	//		Height = controlSideLength,
+	//		Tag = ResizeControl.TagId
+	//	};
+
+	//	return control;
+	//}
 
 	private void RemoveResizeControls()
 	{

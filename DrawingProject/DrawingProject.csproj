@@ -60,6 +60,9 @@
       <DependentUpon>ResizeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Resizing\TopLeftRectangleResizer.cs" />
+    <Compile Include="Resizing\TopRectangleResizeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Tools\EllipseTool.cs" />
     <Compile Include="Tools\LineTool.cs" />
     <Compile Include="Tools\Panner.cs" />

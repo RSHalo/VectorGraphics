@@ -11,13 +11,11 @@ namespace DrawingProject.Resizing
 {
 	class TopRectangleResizer : Resizer
 	{
-		public IDrawable ParentShape { get; private set; }
-
 		private DrawableRectangle _drawnRectangle;
 
 		public TopRectangleResizer(DrawableRectangle drawableRectangle)
 		{
-			ParentShape = drawableRectangle;
+			//ParentShape = drawableRectangle;
 			_drawnRectangle = drawableRectangle;
 
 			X = drawableRectangle.X + (drawableRectangle.Width / 2f) - (DefaultSideLength / 2f);
