@@ -205,40 +205,5 @@ namespace DrawingProject
 				lblSelectedShapeId.Text = cnvsMain.Drawables.SelectedShape.Id;
 			}
 		}
-
-		public bool IsPanelMove { get; set; }
-		Point startPoint;
-		Point currentPoint;
-
-		private void panel2_MouseDown(object sender, MouseEventArgs e)
-		{
-			IsPanelMove = true;
-			startPoint = new Point(e.X, e.Y);
-		}
-
-		private void panel2_MouseMove(object sender, MouseEventArgs e)
-		{
-			if (!IsPanelMove)
-				return;
-
-			currentPoint = new Point(e.X, e.Y);
-
-			int dx = currentPoint.X - startPoint.X;
-			int dy = currentPoint.Y - startPoint.Y;
-
-			panel2.Left += dx;
-			panel2.Top += dy;
-
-			Debug.WriteLine($"Start: { startPoint.ToString() }, Current: { currentPoint.ToString() }");
-
-			//startPoint = currentPoint;
-		}
-		 
-		private void panel2_MouseUp(object sender, MouseEventArgs e)
-		{
-			IsPanelMove = false;
-		}
-
-		
 	}
 }

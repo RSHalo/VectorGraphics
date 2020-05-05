@@ -149,56 +149,6 @@ public class CanvasControl : Panel
 		}
 	}
 
-	//public void UpdateResizers()
-	//{
-	//	foreach (var control in _resizeControls)
-	//	{
-	//		Controls.Remove(control);
-	//	}
-
-	//	_resizeControls.Clear();
-	//	_resizers.Clear();
-
-	//	if (Drawables.SelectedShape == null)
-	//	{
-	//		return;
-	//	}
-
-	//	_resizers = Drawables.SelectedShape.GetResizers();
-
-	//	foreach (var resizer in _resizers)
-	//	{
-	//		var control = CreateResizeControl(resizer);
-
-	//		_resizeControls.Add(control);
-
-	//		Controls.Add(control);
-	//	}
-	//}
-
-	//private ResizeControl CreateResizeControl(Resizer resizer)
-	//{
-	//	// The size of the control.
-	//	int controlSideLength = (int)(ZoomScale * Resizer.DefaultSideLength);
-
-	//	var screenCoords = WorldToScreen(resizer.X, resizer.Y);
-
-	//	// TODO: Get world coords from control.worldX then convert them to screen here. Kind of makes sense - canvas is responsible for specifying the screen coords as it adds 
-	//	// the child controls.
-
-	//	var control = new ResizeControl((int)screenCoords.X, (int)screenCoords.Y)
-	//	{
-	//		// Assign a Resizer object to the control. This way, we can call the appropriate Resizer functionality when handling mouse events on the control.
-	//		Resizer = resizer,
-
-	//		Width = controlSideLength,
-	//		Height = controlSideLength,
-	//		Tag = ResizeControl.TagId
-	//	};
-
-	//	return control;
-	//}
-
 	private void RemoveResizeControls()
 	{
 		foreach (var control in Controls.OfType<ResizeControl>())

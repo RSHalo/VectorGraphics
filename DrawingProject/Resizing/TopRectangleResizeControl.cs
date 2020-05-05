@@ -16,14 +16,13 @@ namespace DrawingProject.Resizing
 		{
 			_drawnRectangle = drawableRectangle;
 
+			// Set the control to be displayed in the middle of the top line of the rectangle.
 			WorldX = drawableRectangle.X + (drawableRectangle.Width / 2f) - (DefaultSideLength / 2f);
 			WorldY = drawableRectangle.Y - (DefaultSideLength / 2f);
 		}
 
-		protected override void MoveControl(MouseEventArgs e)
+		protected override void ResizeShape()
 		{
-			base.MoveControl(e);
-
 			int rect1X = _drawnRectangle.Rectangle.X;
 			int rect1Y = _drawnRectangle.Rectangle.Y;
 

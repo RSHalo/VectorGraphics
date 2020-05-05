@@ -52,14 +52,12 @@
     <Compile Include="Canvas\DrawableCollection.cs" />
     <Compile Include="Drawables\DrawableEllipse.cs" />
     <Compile Include="Drawables\DrawableRectangle.cs" />
-    <Compile Include="Resizing\Resizer.cs" />
     <Compile Include="Resizing\ResizeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Resizing\ResizeControl.Designer.cs">
       <DependentUpon>ResizeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resizing\TopLeftRectangleResizer.cs" />
     <Compile Include="Resizing\TopRectangleResizeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -49,7 +49,6 @@
 			this.lblSelectedShapeTitle = new System.Windows.Forms.Label();
 			this.lblSelectedShapeId = new System.Windows.Forms.Label();
 			this.cnvsMain = new CanvasControl();
-			this.panel2 = new System.Windows.Forms.Panel();
 			this.pnlToolsContainer.SuspendLayout();
 			this.pnlSettings.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -288,23 +287,11 @@
 			this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
 			this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
 			// 
-			// panel2
-			// 
-			this.panel2.BackColor = System.Drawing.SystemColors.HotTrack;
-			this.panel2.Location = new System.Drawing.Point(954, 20);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(55, 48);
-			this.panel2.TabIndex = 24;
-			this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
-			this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseMove);
-			this.panel2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseUp);
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1227, 672);
-			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.lblSelectedShapeId);
 			this.Controls.Add(this.lblSelectedShapeTitle);
 			this.Controls.Add(this.lblCoordState);
@@ -355,7 +342,6 @@
 		private System.Windows.Forms.Label lblCoordState;
 		private System.Windows.Forms.Label lblSelectedShapeTitle;
 		private System.Windows.Forms.Label lblSelectedShapeId;
-		private System.Windows.Forms.Panel panel2;
 	}
 }
 

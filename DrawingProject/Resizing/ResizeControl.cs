@@ -15,8 +15,6 @@ namespace DrawingProject.Resizing
 	{
 		public CanvasControl Canvas { get; set; }
 
-		public const string TagId = "ResizeControl";
-
 		public const int DefaultSideLength = 5;
 
 		/// <summary>Flags whether or not the user is currently resizing.</summary>
@@ -62,8 +60,11 @@ namespace DrawingProject.Resizing
 				return;
 
 			MoveControl(e);
+
+			ResizeShape();
 		}
 
+		/// <summary>Moves the resize control to give the appearance of dragging.</summary>
 		protected virtual void MoveControl(MouseEventArgs e)
 		{
 			_currentCursorPoint = new Point(e.X, e.Y);
@@ -74,6 +75,9 @@ namespace DrawingProject.Resizing
 			Left += dx;
 			Top += dy;
 		}
+
+		/// <summary>Resizes the underlying IDrawable shape that this control belongs to.</summary>
+		protected abstract void ResizeShape();
 
 		private void ResizeControl_MouseUp(object sender, MouseEventArgs e)
 		{
