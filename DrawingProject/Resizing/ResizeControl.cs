@@ -13,6 +13,8 @@ namespace DrawingProject.Resizing
 {
 	public abstract partial class ResizeControl : UserControl
 	{
+		public CanvasControl Canvas { get; set; }
+
 		public const string TagId = "ResizeControl";
 
 		public const int DefaultSideLength = 5;
@@ -34,32 +36,40 @@ namespace DrawingProject.Resizing
 
 		/// <summary>
 		/// The position of the cursor when a user first holds the mouse down on the resize control. This is in screen space becuase we get this value
-		/// from MouseEventArgs e.X
+		/// from MouseEventArgs e.X. This is used for dragging the control around
 		/// </summary>
 		protected Point _startCursorPoint;
+
+		protected Point _currentCursorPoint;
+
+		protected int dx;
+		protected int dy;
 
 		public ResizeControl()
 		{
 			InitializeComponent();
 		}
 
-		private void ResizeControl_MouseDown(object sender, MouseEventArgs e)
+		protected void ResizeControl_MouseDown(object sender, MouseEventArgs e)
 		{
 			IsResizing = true;
 			_startCursorPoint = new Point(e.X, e.Y);
-
-			//Resizer.MouseDown(e);
 		}
 
-		private void ResizeControl_MouseMove(object sender, MouseEventArgs e)
+		protected virtual void ResizeControl_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (!IsResizing)
 				return;
 
-			var currentCursorPoint = new Point(e.X, e.Y);
+			MoveControl(e);
+		}
 
-			int dx = currentCursorPoint.X - _startCursorPoint.X;
-			int dy = currentCursorPoint.Y - _startCursorPoint.Y;
+		protected virtual void MoveControl(MouseEventArgs e)
+		{
+			_currentCursorPoint = new Point(e.X, e.Y);
+
+			dx = _currentCursorPoint.X - _startCursorPoint.X;
+			dy = _currentCursorPoint.Y - _startCursorPoint.Y;
 
 			Left += dx;
 			Top += dy;

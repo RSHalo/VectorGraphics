@@ -143,6 +143,7 @@ public class CanvasControl : Panel
 			resizer.Location = screenLocation;
 			resizer.Width = controlSideLength;
 			resizer.Height = controlSideLength;
+			resizer.Canvas = this;
 
 			Controls.Add(resizer);
 		}
