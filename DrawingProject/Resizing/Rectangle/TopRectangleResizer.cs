@@ -19,13 +19,13 @@ namespace DrawingProject.Resizing.Rectangle
 
 		protected override void ResizeShape()
 		{
-			int rect1X = _drawnRectangle.Rectangle.X;
-			int rect1Y = _drawnRectangle.Rectangle.Y;
+			int currentX = _drawnRectangle.X;
+			int currentY = _drawnRectangle.Y;
 
-			int newY = _drawnRectangle.Rectangle.Y + dy;
-			int newHeight = _drawnRectangle.Rectangle.Height - dy;
+			int newY = currentY + dy;
+			int newHeight = _drawnRectangle.Height - dy;
 
-			_drawnRectangle.Rectangle = new System.Drawing.Rectangle(rect1X, newY, _drawnRectangle.Width, newHeight);
+			_drawnRectangle.Rectangle = new System.Drawing.Rectangle(currentX, newY, _drawnRectangle.Width, newHeight);
 
 			Canvas.Invalidate();
 		}
