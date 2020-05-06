@@ -151,7 +151,14 @@ public class CanvasControl : Panel
 
 	private void RemoveResizeControls()
 	{
-		foreach (var control in Controls.OfType<ResizeControl>())
+		var resizeControls = new List<Control>();
+
+		foreach (var resizeControl in Controls.OfType<ResizeControl>())
+		{
+			resizeControls.Add(resizeControl);
+		}
+
+		foreach (var control in resizeControls)
 		{
 			Controls.Remove(control);
 		}

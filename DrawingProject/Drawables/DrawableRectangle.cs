@@ -54,11 +54,15 @@ namespace DrawingProject.Drawables
 		{
 			var topResizer = new TopRectangleResizer(this);
 			var bottomResizer = new BottomRectangleResizer(this);
+			var leftResizer = new LeftRectangleResizer(this);
+			var rightResizer = new RightRectangleResizer(this);
 
 			return new List<ResizeControl>
 			{
 				topResizer,
-				bottomResizer
+				bottomResizer,
+				leftResizer,
+				rightResizer
 			};
 		}
 	}

@@ -36,10 +36,5 @@ namespace DrawingProject.Resizing.Rectangle
 			// Only move this control vertically.
 			Top += dy;
 		}
-
-		public override void Rezise()
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

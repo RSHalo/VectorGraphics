@@ -29,9 +29,6 @@ namespace DrawingProject.Resizing
 		/// <summary>The drawable shape that the resizer belongs to.</summary>
 		public IDrawable ParentShape { get; protected set; }
 
-		/// <summary>Resizes the Shape according to user actions.</summary>
-		public abstract void Rezise();
-
 		/// <summary>
 		/// The position of the cursor when a user first holds the mouse down on the resize control. This is in screen space becuase we get this value
 		/// from MouseEventArgs e.X. This is used for dragging the control around

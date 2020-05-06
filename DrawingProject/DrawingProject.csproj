@@ -55,7 +55,13 @@
     <Compile Include="Resizing\Rectangle\BottomRectangleResizer.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Resizing\Rectangle\LeftRectangleResizer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Resizing\Rectangle\RectangleResizer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Resizing\Rectangle\RightRectangleResizer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Resizing\ResizeControl.cs">
