@@ -59,6 +59,10 @@ namespace DrawingProject.Resizing
 			MoveControl(e);
 
 			ResizeShape();
+
+			// The other resize controls on the canvas may be need to moved around as a result of moving this one.
+			// E.g. Consider how a left rectangle resizer will need to be moved as a result of changing a rectangle's height using a top rectangle resizer. 
+			Canvas.RefreshResizers();
 		}
 
 		/// <summary>Moves the resize control to give the appearance of dragging.</summary>
@@ -77,5 +81,8 @@ namespace DrawingProject.Resizing
 		{
 			IsResizing = false;
 		}
+
+		/// <summary>Updates the world space coordinates of the control, to correctly align with the ParentShape.</summary>
+		public abstract void UpdateWorldLocation();
 	}
 }

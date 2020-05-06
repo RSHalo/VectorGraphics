@@ -36,5 +36,11 @@ namespace DrawingProject.Resizing.Rectangle
 			// Only move this control vertically.
 			Top += dy;
 		}
+
+		public override void UpdateWorldLocation()
+		{
+			WorldX = _drawnRectangle.X + (_drawnRectangle.Width / 2f) - (DefaultSideLength / 2f);
+			WorldY = _drawnRectangle.Y + _drawnRectangle.Height - (DefaultSideLength / 2f);
+		}
 	}
 }

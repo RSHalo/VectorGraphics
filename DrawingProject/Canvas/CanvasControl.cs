@@ -19,6 +19,9 @@ public class CanvasControl : Panel
 	public void AddRectangle(DrawableRectangle rectangle) => Drawables.AddRectangle(rectangle);
 	public void AddEllipse(DrawableEllipse ellipse) => Drawables.AddEllipse(ellipse);
 
+	/// <summary>current ResizeControls on the canvas.</summary>
+	public List<ResizeControl> Resizers = new List<ResizeControl>();
+
 	/// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
 	public float OffsetX { get; set; }
     /// <summary>The Y offset from the page co-ordinates to the world co-ordinates.</summary>
@@ -126,16 +129,16 @@ public class CanvasControl : Panel
 		AddResizeControls();
 	}
 
-	private void AddResizeControls()
+	public void AddResizeControls()
 	{
 		// When the selected shape changes, new resize controls are needed.
-		List<ResizeControl> resizers = Drawables.SelectedShape.GetResizers();
+		Resizers = Drawables.SelectedShape.GetResizers();
 
 		// Zoom scale will affect the onscreen size of the resize control. Accomodate for this here.
 		int controlSideLength = (int)(ZoomScale * ResizeControl.DefaultSideLength);
 
 		// Add ResizeControls to the canvas.
-		foreach (var resizer in resizers)
+		foreach (var resizer in Resizers)
 		{
 			var screenCoords = WorldToScreen(resizer.WorldX, resizer.WorldY);
 			var screenLocation = new Point((int)screenCoords.X, (int)screenCoords.Y);
@@ -149,18 +152,30 @@ public class CanvasControl : Panel
 		}
 	}
 
-	private void RemoveResizeControls()
+	public void RemoveResizeControls()
 	{
-		var resizeControls = new List<Control>();
-
-		foreach (var resizeControl in Controls.OfType<ResizeControl>())
-		{
-			resizeControls.Add(resizeControl);
-		}
-
-		foreach (var control in resizeControls)
+		foreach (var control in Resizers)
 		{
 			Controls.Remove(control);
+		}
+
+		Resizers.Clear();
+	}
+
+	/// <summary>
+	/// Updates the locations of the current resizer controls. This is necessary when resize controls need to be moved around due to their parent shape
+	/// being moved by another resize control.
+	/// </summary>
+	public void RefreshResizers()
+	{
+		foreach (var resizer in Resizers)
+		{
+			resizer.UpdateWorldLocation();
+
+			var screenCoords = WorldToScreen(resizer.WorldX, resizer.WorldY);
+			var screenLocation = new Point((int)screenCoords.X, (int)screenCoords.Y);
+
+			resizer.Location = screenLocation;
 		}
 	}
 }
