@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DrawingProject.Resizing;
+using DrawingProject.Resizing.Rectangle;
 
 namespace DrawingProject.Drawables
 {
@@ -51,11 +52,13 @@ namespace DrawingProject.Drawables
 
 		public List<ResizeControl> GetResizers()
 		{
-			var resizer = new TopRectangleResizeControl(this);
+			var topResizer = new TopRectangleResizer(this);
+			var bottomResizer = new BottomRectangleResizer(this);
 
 			return new List<ResizeControl>
 			{
-				resizer
+				topResizer,
+				bottomResizer
 			};
 		}
 	}

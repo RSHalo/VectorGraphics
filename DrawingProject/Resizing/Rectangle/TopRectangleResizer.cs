@@ -6,16 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DrawingProject.Resizing
+namespace DrawingProject.Resizing.Rectangle
 {
-	class TopRectangleResizeControl : ResizeControl
+	class TopRectangleResizer : RectangleResizer
 	{
-		private readonly DrawableRectangle _drawnRectangle;
-
-		public TopRectangleResizeControl(DrawableRectangle drawableRectangle) : base()
+		public TopRectangleResizer(DrawableRectangle drawableRectangle) : base(drawableRectangle)
 		{
-			_drawnRectangle = drawableRectangle;
-
 			// Set the control to be displayed in the middle of the top line of the rectangle.
 			WorldX = drawableRectangle.X + (drawableRectangle.Width / 2f) - (DefaultSideLength / 2f);
 			WorldY = drawableRectangle.Y - (DefaultSideLength / 2f);
