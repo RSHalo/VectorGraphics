@@ -17,6 +17,8 @@ namespace DrawingProject.Resizing
 
 		public const int DefaultSideLength = 5;
 
+		public int SideLength => (int)(Canvas.ZoomScale * DefaultSideLength);
+
 		/// <summary>Flags whether or not the user is currently resizing.</summary>
 		public bool IsResizing { get; set; } = false;
 
@@ -83,6 +85,27 @@ namespace DrawingProject.Resizing
 		}
 
 		/// <summary>Updates the world space coordinates of the control, to correctly align with the ParentShape.</summary>
-		public abstract void UpdateWorldLocation();
+		public virtual void UpdateWorldState()
+		{
+			// For sizing
+			Height = SideLength;
+			Width = SideLength;
+
+			// For positioning
+			UpdateWorldCoords();
+
+			UpdateLocation();
+		}
+
+		protected abstract void UpdateWorldCoords();
+
+		private void UpdateLocation()
+		{
+			var screenCoords = Canvas.WorldToScreen(WorldX, WorldY);
+			var screenLocation = new Point((int)screenCoords.X, (int)screenCoords.Y);
+
+			Location = screenLocation;
+		}
+
 	}
 }

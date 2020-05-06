@@ -134,19 +134,12 @@ public class CanvasControl : Panel
 		// When the selected shape changes, new resize controls are needed.
 		Resizers = Drawables.SelectedShape.GetResizers();
 
-		// Zoom scale will affect the onscreen size of the resize control. Accomodate for this here.
-		int controlSideLength = (int)(ZoomScale * ResizeControl.DefaultSideLength);
-
 		// Add ResizeControls to the canvas.
 		foreach (var resizer in Resizers)
 		{
-			var screenCoords = WorldToScreen(resizer.WorldX, resizer.WorldY);
-			var screenLocation = new Point((int)screenCoords.X, (int)screenCoords.Y);
-
-			resizer.Location = screenLocation;
-			resizer.Width = controlSideLength;
-			resizer.Height = controlSideLength;
 			resizer.Canvas = this;
+
+			resizer.UpdateWorldState();
 
 			Controls.Add(resizer);
 		}
@@ -163,19 +156,13 @@ public class CanvasControl : Panel
 	}
 
 	/// <summary>
-	/// Updates the locations of the current resizer controls. This is necessary when resize controls need to be moved around due to their parent shape
-	/// being moved by another resize control.
+	/// Updates the locations and sizes of the current resizer controls appropriately, based on the underlying IDrawable, as well as canvas offset/zoom scale.
 	/// </summary>
 	public void RefreshResizers()
 	{
 		foreach (var resizer in Resizers)
 		{
-			resizer.UpdateWorldLocation();
-
-			var screenCoords = WorldToScreen(resizer.WorldX, resizer.WorldY);
-			var screenLocation = new Point((int)screenCoords.X, (int)screenCoords.Y);
-
-			resizer.Location = screenLocation;
+			resizer.UpdateWorldState();
 		}
 	}
 }

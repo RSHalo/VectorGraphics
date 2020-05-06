@@ -38,7 +38,7 @@ namespace DrawingProject.Resizing.Rectangle
 			Top += dy;
 		}
 
-		public override void UpdateWorldLocation()
+		protected override void UpdateWorldCoords()
 		{
 			WorldX = _drawnRectangle.X + (_drawnRectangle.Width / 2f) - (DefaultSideLength / 2f);
 			WorldY = _drawnRectangle.Y - (DefaultSideLength / 2f);

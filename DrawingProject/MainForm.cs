@@ -188,6 +188,8 @@ namespace DrawingProject
             if (Tool.IsDrawing)
                 Tool.CreationDrawable?.Draw(graphics);
 
+			cnvsMain.RefreshResizers();
+
 			UpdatePeripherals();
         }
 
