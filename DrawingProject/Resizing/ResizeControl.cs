@@ -71,9 +71,6 @@ namespace DrawingProject.Resizing
 
 			dx = _currentCursorPoint.X - _startCursorPoint.X;
 			dy = _currentCursorPoint.Y - _startCursorPoint.Y;
-
-			Left += dx;
-			Top += dy;
 		}
 
 		/// <summary>Resizes the underlying IDrawable shape that this control belongs to.</summary>

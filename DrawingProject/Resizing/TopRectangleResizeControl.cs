@@ -34,6 +34,14 @@ namespace DrawingProject.Resizing
 			Canvas.Invalidate();
 		}
 
+		protected override void MoveControl(MouseEventArgs e)
+		{
+			base.MoveControl(e);
+
+			// Only move this control vertically.
+			Top += dy;
+		}
+
 		public override void Rezise()
 		{
 			throw new NotImplementedException();
