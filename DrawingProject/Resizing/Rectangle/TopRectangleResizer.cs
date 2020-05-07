@@ -22,8 +22,8 @@ namespace DrawingProject.Resizing.Rectangle
 			int currentX = _drawnRectangle.X;
 			int currentY = _drawnRectangle.Y;
 
-			int newY = currentY + dy;
-			int newHeight = _drawnRectangle.Height - dy;
+			int newY = currentY + DyWorld;
+			int newHeight = _drawnRectangle.Height - DyWorld;
 
 			_drawnRectangle.Rectangle = new System.Drawing.Rectangle(currentX, newY, _drawnRectangle.Width, newHeight);
 

@@ -37,10 +37,21 @@ namespace DrawingProject.Resizing
 		/// </summary>
 		protected Point _startCursorPoint;
 
+		/// <summary>
+		/// The position of the cursor after a mouse move event. This is in screen space. This is used for dragging the control around.
+		/// </summary>
 		protected Point _currentCursorPoint;
 
+		/// <summary>The screen space x-direction change of the cursor after a mouse drag.</summary>
 		protected int dx;
+		/// <summary>The screen space y-direction change of the cursor after a mouse drag.</summary>
 		protected int dy;
+
+		/// <summary>The world space x-direction change of the cursor after a mouse drag.</summary>
+		protected int DxWorld => (int)(dx / Canvas.ZoomScale);
+		/// <summary>The world space y-direction change of the cursor after a mouse drag.</summary>
+		protected int DyWorld => (int)(dy / Canvas.ZoomScale);
+
 
 		public ResizeControl()
 		{
