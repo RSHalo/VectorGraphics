@@ -19,13 +19,10 @@ namespace DrawingProject.Resizing.Rectangle
 
 		protected override void ResizeShape()
 		{
-			int currentX = _drawnRectangle.X;
-			int currentY = _drawnRectangle.Y;
+			int newX = RectangleX + DxWorld;
+			int newWidth = RectangleWidth - DxWorld;
 
-			int newX = currentX + DxWorld;
-			int newWidth = _drawnRectangle.Width - DxWorld;
-
-			_drawnRectangle.Rectangle = new System.Drawing.Rectangle(newX, currentY, newWidth, _drawnRectangle.Height);
+			_drawnRectangle.Rectangle = new System.Drawing.Rectangle(newX, RectangleY, newWidth, RectangleHeight);
 
 			Canvas.Invalidate();
 		}
@@ -40,8 +37,8 @@ namespace DrawingProject.Resizing.Rectangle
 
 		protected override void UpdateWorldCoords()
 		{
-			WorldX = _drawnRectangle.X - (DefaultSideLength / 2f);
-			WorldY = _drawnRectangle.Y + (_drawnRectangle.Height / 2) - (DefaultSideLength / 2f);
+			WorldX = RectangleX - (DefaultSideLength / 2f);
+			WorldY = RectangleY + (RectangleHeight / 2) - (DefaultSideLength / 2f);
 		}
 	}
 }

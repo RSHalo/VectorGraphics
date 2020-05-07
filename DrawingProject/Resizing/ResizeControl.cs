@@ -95,7 +95,7 @@ namespace DrawingProject.Resizing
 			IsResizing = false;
 		}
 
-		/// <summary>Updates the world space coordinates of the control, to correctly align with the ParentShape.</summary>
+		/// <summary>Updates the world space sizing and locations of the control, to correctly align with the ParentShape.</summary>
 		public virtual void UpdateWorldState()
 		{
 			// For sizing
@@ -108,6 +108,7 @@ namespace DrawingProject.Resizing
 			UpdateLocation();
 		}
 
+		/// <summary>Updates the world space coordinates of the control.</summary>
 		protected abstract void UpdateWorldCoords();
 
 		private void UpdateLocation()
