@@ -23,8 +23,6 @@ namespace DrawingProject.Resizing.Rectangle
 			int newWidth = RectangleWidth - DxWorld;
 
 			_drawnRectangle.Rectangle = new System.Drawing.Rectangle(newX, RectangleY, newWidth, RectangleHeight);
-
-			Canvas.Invalidate();
 		}
 
 		protected override void MoveControl(MouseEventArgs e)

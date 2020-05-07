@@ -15,7 +15,7 @@ namespace DrawingProject.Resizing
 	{
 		public CanvasControl Canvas { get; set; }
 
-		public const int DefaultSideLength = 5;
+		public const int DefaultSideLength = 10;
 
 		public int SideLength => (int)(Canvas.ZoomScale * DefaultSideLength);
 
@@ -73,9 +73,10 @@ namespace DrawingProject.Resizing
 
 			ResizeShape();
 
-			// The other resize controls on the canvas may be need to moved around as a result of moving this one.
-			// E.g. Consider how a left rectangle resizer will need to be moved as a result of changing a rectangle's height using a top rectangle resizer. 
-			Canvas.RefreshResizers();
+			// Redraw the canvas after resizing the underlying IDrawable. This will show the IDrawable changes, but will also trigger the positions of the other
+			// resize controls to update. Other resize controls will need their positions updated when one control is moved. E.g. Consider how a left rectangle resizer will need to
+			// moved when the rectangle is moved due to a top rectangle resizer.
+			Canvas.Invalidate();
 		}
 
 		/// <summary>Moves the resize control to give the appearance of dragging.</summary>

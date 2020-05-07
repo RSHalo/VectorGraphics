@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DrawingProject.Resizing;
+using DrawingProject.Resizing.Line;
 
 namespace DrawingProject.Drawables
 {
@@ -42,7 +43,12 @@ namespace DrawingProject.Drawables
 
 		public List<ResizeControl> GetResizers()
 		{
-			throw new NotImplementedException();
+			// Return two line resizer controls. One for the start of the line, and one for the end of the line.
+			return new List<ResizeControl>
+			{
+				new LineResizer(this, true),
+				new LineResizer(this, false)
+			};
 		}
 	}
 }

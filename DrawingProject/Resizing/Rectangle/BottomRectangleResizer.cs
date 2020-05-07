@@ -22,8 +22,6 @@ namespace DrawingProject.Resizing.Rectangle
 			int newHeight = RectangleHeight + DyWorld;
 
 			_drawnRectangle.Rectangle = new System.Drawing.Rectangle(RectangleX, RectangleY, RectangleWidth, newHeight);
-
-			Canvas.Invalidate();
 		}
 
 		protected override void MoveControl(MouseEventArgs e)
