@@ -5,6 +5,8 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DrawingProject.Resizing;
+using DrawingProject.Resizing.Line;
 
 namespace DrawingProject.Drawables
 {
@@ -38,5 +40,15 @@ namespace DrawingProject.Drawables
             // Give the mouse point a pen width of 10 to make it easier to select lines. A bigger point means we don't have to be as close to the line to select it.
             return path.IsOutlineVisible(worldX, worldY, new Pen(Color.Black, 10));
         }
-    }
+
+		public List<ResizeControl> GetResizers()
+		{
+			// Return two line resizer controls. One for the start of the line, and one for the end of the line.
+			return new List<ResizeControl>
+			{
+				new LineResizer(this, true),
+				new LineResizer(this, false)
+			};
+		}
+	}
 }

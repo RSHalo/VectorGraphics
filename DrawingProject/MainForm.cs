@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DrawingProject.Tools;
 using System.Drawing.Drawing2D;
 using System.Diagnostics;
+using DrawingProject.Resizing;
 
 namespace DrawingProject
 {
@@ -34,17 +35,20 @@ namespace DrawingProject
         {
             InitializeComponent();
 
-            // Create a cross at the origin, for debugging.
-            cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(0, -5), new Point(0, 5)));
-            cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(-5, 0), new Point(5, 0)));
+            //// Create a cross at the origin, for debugging.
+            //cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(0, -5), new Point(0, 5)));
+            //cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(-5, 0), new Point(5, 0)));
 
-            // Create a cross at an arbitrary location, for debugging.
-            cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(300, 270), new Point(300, 280)));
-            cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(295, 275), new Point(305, 275)));
+            //// Create a cross at an arbitrary location, for debugging.
+            //cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(300, 270), new Point(300, 280)));
+            //cnvsMain.Drawables.AddLine(new DrawableLine(Pens.Black, new Point(295, 275), new Point(305, 275)));
 
             // Create a rectangle at an arbitrary location, for debugging.
             cnvsMain.Drawables.AddRectangle(new DrawableRectangle(Pens.Blue, 20, 30, 500, 300));
-        }
+
+			// An event is published when the selected shape is changed. The canvas is subscribed to this event so that it can react accordingly.
+			cnvsMain.Drawables.SelectedShapeChanged += cnvsMain.OnSelectedShapeChanged;
+		}
 
         #region Event handlers for radio buttons that change the tool.
         private void RbLine_CheckedChanged(object sender, EventArgs e)
@@ -183,6 +187,8 @@ namespace DrawingProject
             // We want to show the shape being created by the mouse moving, so we draw the Tool's "CreationDrawable" shape.
             if (Tool.IsDrawing)
                 Tool.CreationDrawable?.Draw(graphics);
+
+			cnvsMain.RefreshResizers();
 
 			UpdatePeripherals();
         }

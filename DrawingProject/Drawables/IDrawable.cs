@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrawingProject.Resizing;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -22,5 +23,7 @@ namespace DrawingProject.Drawables
         /// <param name="worldY">The world Y coordiante of the clicked mouse.</param>
         /// <returns>True if hit, false otherwise.</returns>
         bool HitTest(int worldX, int worldY);
+
+		List<ResizeControl> GetResizers();
     }
 }

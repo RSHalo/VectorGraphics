@@ -6,8 +6,10 @@ using DrawingProject.Drawables;
 using System.Diagnostics;
 using System.Drawing;
 using DrawingProject.Canvas;
+using DrawingProject.Resizing;
+using System.Linq;
 
-class CanvasControl : Panel
+public class CanvasControl : Panel
 {
 	/// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
 	public DrawableCollection Drawables = new DrawableCollection();
@@ -17,6 +19,8 @@ class CanvasControl : Panel
 	public void AddRectangle(DrawableRectangle rectangle) => Drawables.AddRectangle(rectangle);
 	public void AddEllipse(DrawableEllipse ellipse) => Drawables.AddEllipse(ellipse);
 
+	/// <summary>current ResizeControls on the canvas.</summary>
+	public List<ResizeControl> Resizers = new List<ResizeControl>();
 
 	/// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
 	public float OffsetX { get; set; }
@@ -93,10 +97,20 @@ class CanvasControl : Panel
         return new PointF(worldX, worldY);
     }
 
-    /// <summary>Resets to a blank canvas.</summary>
-    public void Reset()
+	/// <summary>Gets corresponding screen coordinates, given world coordinates.</summary>
+	public PointF WorldToScreen(float worldX, float worldY)
+	{
+		float screenX = OffsetX + (worldX * ZoomScale);
+		float screenY = OffsetY + (worldY * ZoomScale);
+
+		return new PointF(screenX, screenY);
+	}
+
+	/// <summary>Resets to a blank canvas.</summary>
+	public void Reset()
     {
         Drawables.Clear();
+		Drawables.SelectedShape = null;
 
         OffsetX = 0f;
         OffsetY = 0f;
@@ -104,4 +118,52 @@ class CanvasControl : Panel
         mouseWheelIndent = 0;
         ZoomScale = 1;
     }
+
+	/// <summary>Gets the appropriate resize controls for the newly selected shape.</summary>
+	public void OnSelectedShapeChanged(object source, EventArgs e)
+	{
+		RemoveResizeControls();
+
+		if (Drawables.SelectedShape == null)
+			return;
+
+		AddResizeControls();
+	}
+
+	public void AddResizeControls()
+	{
+		// When the selected shape changes, new resize controls are needed.
+		Resizers = Drawables.SelectedShape.GetResizers();
+
+		// Add ResizeControls to the canvas.
+		foreach (var resizer in Resizers)
+		{
+			resizer.Canvas = this;
+
+			resizer.UpdateWorldState();
+
+			Controls.Add(resizer);
+		}
+	}
+
+	public void RemoveResizeControls()
+	{
+		foreach (var control in Resizers)
+		{
+			Controls.Remove(control);
+		}
+
+		Resizers.Clear();
+	}
+
+	/// <summary>
+	/// Updates the locations and sizes of the current resizer controls appropriately, based on the underlying IDrawable, as well as canvas offset/zoom scale.
+	/// </summary>
+	public void RefreshResizers()
+	{
+		foreach (var resizer in Resizers)
+		{
+			resizer.UpdateWorldState();
+		}
+	}
 }

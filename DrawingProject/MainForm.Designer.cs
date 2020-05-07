@@ -45,10 +45,10 @@
 			this.lblWorldPos = new System.Windows.Forms.Label();
 			this.lblScale = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.cnvsMain = new CanvasControl();
 			this.lblCoordState = new System.Windows.Forms.Label();
 			this.lblSelectedShapeTitle = new System.Windows.Forms.Label();
 			this.lblSelectedShapeId = new System.Windows.Forms.Label();
+			this.cnvsMain = new CanvasControl();
 			this.pnlToolsContainer.SuspendLayout();
 			this.pnlSettings.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -237,26 +237,6 @@
 			this.panel1.Size = new System.Drawing.Size(278, 99);
 			this.panel1.TabIndex = 20;
 			// 
-			// cnvsMain
-			// 
-			this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.cnvsMain.Cursor = System.Windows.Forms.Cursors.Default;
-			this.cnvsMain.Location = new System.Drawing.Point(15, 97);
-			this.cnvsMain.Name = "cnvsMain";
-			this.cnvsMain.OffsetX = 0F;
-			this.cnvsMain.OffsetY = 0F;
-			this.cnvsMain.Size = new System.Drawing.Size(1200, 428);
-			this.cnvsMain.TabIndex = 8;
-			this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
-			this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
-			this.cnvsMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseDown);
-			this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
-			this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
-			this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
-			// 
 			// lblCoordState
 			// 
 			this.lblCoordState.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -286,6 +266,26 @@
 			this.lblSelectedShapeId.Size = new System.Drawing.Size(38, 13);
 			this.lblSelectedShapeId.TabIndex = 23;
 			this.lblSelectedShapeId.Text = "NONE";
+			// 
+			// cnvsMain
+			// 
+			this.cnvsMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.cnvsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.cnvsMain.Cursor = System.Windows.Forms.Cursors.Default;
+			this.cnvsMain.Location = new System.Drawing.Point(15, 97);
+			this.cnvsMain.Name = "cnvsMain";
+			this.cnvsMain.OffsetX = 0F;
+			this.cnvsMain.OffsetY = 0F;
+			this.cnvsMain.Size = new System.Drawing.Size(1200, 428);
+			this.cnvsMain.TabIndex = 8;
+			this.cnvsMain.Paint += new System.Windows.Forms.PaintEventHandler(this.CnvsMain_Paint);
+			this.cnvsMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseClick);
+			this.cnvsMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseDown);
+			this.cnvsMain.MouseLeave += new System.EventHandler(this.CnvsMain_MouseLeave);
+			this.cnvsMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseMove);
+			this.cnvsMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CnvsMain_MouseUp);
 			// 
 			// MainForm
 			// 
