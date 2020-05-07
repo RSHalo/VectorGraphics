@@ -28,9 +28,6 @@ namespace DrawingProject.Resizing
 		/// <summary>The Y coordinate of the required resize control, in world space.</summary>
 		public float WorldY { get; protected set; }
 
-		/// <summary>The drawable shape that the resizer belongs to.</summary>
-		public IDrawable ParentShape { get; protected set; }
-
 		/// <summary>
 		/// The position of the cursor when a user first holds the mouse down on the resize control. This is in screen space becuase we get this value
 		/// from MouseEventArgs e.X. This is used for dragging the control around

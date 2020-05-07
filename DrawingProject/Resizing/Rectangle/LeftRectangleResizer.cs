@@ -1,4 +1,5 @@
 ﻿using DrawingProject.Drawables;
+using DrawingProject.Drawables.Resizable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace DrawingProject.Resizing.Rectangle
 {
 	class LeftRectangleResizer : RectangleResizer
 	{
-		public LeftRectangleResizer(DrawableRectangle drawableRectangle) : base(drawableRectangle)
+		public LeftRectangleResizer(IResizableRectangle shape) : base(shape)
 		{
 			// Set the control to be displayed in the middle of the left side of the rectangle.
-			WorldX = drawableRectangle.X - (DefaultSideLength / 2f);
-			WorldY = drawableRectangle.Y + (drawableRectangle.Height / 2) - (DefaultSideLength / 2f);
+			WorldX = shape.ResizableRectangle.X - (DefaultSideLength / 2f);
+			WorldY = shape.ResizableRectangle.Y + (shape.ResizableRectangle.Height / 2) - (DefaultSideLength / 2f);
 		}
 
 		protected override void ResizeShape()
@@ -22,7 +23,7 @@ namespace DrawingProject.Resizing.Rectangle
 			int newX = RectangleX + DxWorld;
 			int newWidth = RectangleWidth - DxWorld;
 
-			_drawnRectangle.Rectangle = new System.Drawing.Rectangle(newX, RectangleY, newWidth, RectangleHeight);
+			_shape.ResizableRectangle = new System.Drawing.Rectangle(newX, RectangleY, newWidth, RectangleHeight);
 		}
 
 		protected override void MoveControl(MouseEventArgs e)

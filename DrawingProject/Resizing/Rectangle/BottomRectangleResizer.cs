@@ -1,4 +1,5 @@
 ﻿using DrawingProject.Drawables;
+using DrawingProject.Drawables.Resizable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +11,18 @@ namespace DrawingProject.Resizing.Rectangle
 {
 	class BottomRectangleResizer : RectangleResizer
 	{
-		public BottomRectangleResizer(DrawableRectangle drawableRectangle) : base(drawableRectangle)
+		public BottomRectangleResizer(IResizableRectangle shape) : base(shape)
 		{
 			// Set the control to be displayed in the middle of the bottom line of the rectangle.
-			WorldX = drawableRectangle.X + (drawableRectangle.Width / 2f) - (DefaultSideLength / 2f);
-			WorldY = drawableRectangle.Y + drawableRectangle.Height - (DefaultSideLength / 2f);
+			WorldX = shape.ResizableRectangle.X + (shape.ResizableRectangle.Width / 2f) - (DefaultSideLength / 2f);
+			WorldY = shape.ResizableRectangle.Y + shape.ResizableRectangle.Height - (DefaultSideLength / 2f);
 		}
 
 		protected override void ResizeShape()
 		{
 			int newHeight = RectangleHeight + DyWorld;
 
-			_drawnRectangle.Rectangle = new System.Drawing.Rectangle(RectangleX, RectangleY, RectangleWidth, newHeight);
+			_shape.ResizableRectangle = new System.Drawing.Rectangle(RectangleX, RectangleY, RectangleWidth, newHeight);
 		}
 
 		protected override void MoveControl(MouseEventArgs e)

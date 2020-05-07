@@ -52,6 +52,7 @@
     <Compile Include="Canvas\DrawableCollection.cs" />
     <Compile Include="Drawables\DrawableEllipse.cs" />
     <Compile Include="Drawables\DrawableRectangle.cs" />
+    <Compile Include="Drawables\Resizable\IResizableRectangle.cs" />
     <Compile Include="Resizing\Line\LineResizer.cs">
       <SubType>UserControl</SubType>
     </Compile>
