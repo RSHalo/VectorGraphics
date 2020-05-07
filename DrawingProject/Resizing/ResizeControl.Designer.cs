@@ -38,6 +38,8 @@
 			this.Name = "ResizeControl";
 			this.Size = new System.Drawing.Size(5, 5);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResizeControl_MouseDown);
+			this.MouseEnter += new System.EventHandler(this.ResizeControl_MouseEnter);
+			this.MouseLeave += new System.EventHandler(this.ResizeControl_MouseLeave);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResizeControl_MouseMove);
 			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResizeControl_MouseUp);
 			this.ResumeLayout(false);

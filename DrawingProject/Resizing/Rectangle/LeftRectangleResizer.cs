@@ -16,6 +16,8 @@ namespace DrawingProject.Resizing.Rectangle
 			// Set the control to be displayed in the middle of the left side of the rectangle.
 			WorldX = shape.ResizableRectangle.X - (DefaultSideLength / 2f);
 			WorldY = shape.ResizableRectangle.Y + (shape.ResizableRectangle.Height / 2) - (DefaultSideLength / 2f);
+
+			_cursor = Cursors.SizeWE;
 		}
 
 		protected override void ResizeShape()

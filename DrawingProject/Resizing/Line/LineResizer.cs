@@ -23,6 +23,8 @@ namespace DrawingProject.Resizing.Line
 			// Set the control to be displayed at one end of the line. Either the start or end.
 			WorldX = IsStartPoint ? _drawnLine.StartPoint.X : _drawnLine.EndPoint.X;
 			WorldY = IsStartPoint ? _drawnLine.StartPoint.Y : _drawnLine.EndPoint.Y;
+
+			_cursor = Cursors.SizeNESW;
 		}
 
 		protected override void ResizeShape()

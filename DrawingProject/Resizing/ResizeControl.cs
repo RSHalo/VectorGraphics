@@ -49,6 +49,8 @@ namespace DrawingProject.Resizing
 		/// <summary>The world space y-direction change of the cursor after a mouse drag.</summary>
 		protected int DyWorld => (int)(dy / Canvas.ZoomScale);
 
+		private Cursor _cursorBeforeEnter;
+		protected Cursor _cursor;
 
 		public ResizeControl()
 		{
@@ -117,5 +119,18 @@ namespace DrawingProject.Resizing
 			Location = screenLocation;
 		}
 
+		private void ResizeControl_MouseEnter(object sender, EventArgs e)
+		{
+			// Store the cursor icon before the mouse entered the control, so that it can be restored when the mouse leaves.
+			_cursorBeforeEnter = Canvas.Cursor;
+
+			// Change the cursor icon. This is for visual effect.
+			Canvas.Cursor = _cursor;
+		}
+
+		private void ResizeControl_MouseLeave(object sender, EventArgs e)
+		{
+			Canvas.Cursor = _cursorBeforeEnter;
+		}
 	}
 }
