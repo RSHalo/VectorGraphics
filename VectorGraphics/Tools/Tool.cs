@@ -26,7 +26,7 @@ namespace VectorGraphics.Tools
         // E.g. The rectangle that moves along with the mouse when you are drawing a rectangle.
         public IDrawable CreationDrawable { get; protected set; }
 
-        public Cursor Cursor { get; protected set; } = Cursors.Default;
+        public Cursor Cursor { get; protected set; } = Cursors.Cross;
 
         /// <summary>Transforms screen coordinates to world co-ordinates and assigns them to the tool.</summary>
         public void UpdateWorldCoords(MouseEventArgs e)
