@@ -110,6 +110,7 @@ public class CanvasControl : Panel
 	public void Reset()
     {
         Drawables.Clear();
+		Drawables.SelectedShape = null;
 
         OffsetX = 0f;
         OffsetY = 0f;
