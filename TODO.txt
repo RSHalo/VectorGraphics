@@ -1,0 +1,6 @@
+Saving (as XML)
+Moving selected shapes (like resizing)
+Layers
+Undo (CTRL+Z)
+
+After that, I think I will consider this project completed. Perhaps refactor the code to use some design patterns that I have learned from HFDP?
