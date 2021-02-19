@@ -1,16 +1,17 @@
-﻿using VectorGraphics.Resizing;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VectorGraphics.Resizing;
+using VectorGraphics.Saving;
 
 namespace VectorGraphics.Drawables
 {
     public interface IDrawable
     {
+        /// <summary>The shapes unique Id.</summary>
 		string Id { get; set; }
+
+        /// <summary>Defines how the drawable must be saved to disk.</summary>
+        IShapeSaver SaveBehaviour { get; }
 
 		Pen Pen { get; set; }
 

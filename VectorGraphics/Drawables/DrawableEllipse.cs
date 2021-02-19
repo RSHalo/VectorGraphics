@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using VectorGraphics.Drawables.Resizable;
 using VectorGraphics.Resizing;
 using VectorGraphics.Resizing.Rectangle;
+using VectorGraphics.Saving;
 
 namespace VectorGraphics.Drawables
 {
@@ -28,7 +29,9 @@ namespace VectorGraphics.Drawables
 			set { boundingRectangle = value; }
 		}
 
-		public DrawableEllipse(Pen pen, Rectangle rectangle)
+        public IShapeSaver SaveBehaviour => throw new NotImplementedException();
+
+        public DrawableEllipse(Pen pen, Rectangle rectangle)
         {
             Pen = pen;
             boundingRectangle = rectangle;

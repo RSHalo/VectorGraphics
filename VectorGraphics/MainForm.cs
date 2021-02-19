@@ -65,6 +65,17 @@ namespace VectorGraphics
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
+			if (ModifierKeys.HasFlag(Keys.Control))
+            {
+                switch (e.KeyCode)
+                {
+					case Keys.S:
+						// Save the drawing on the canvas.
+						MainCanvas.Save();
+						break;
+				}
+            }
+
 			if (e.KeyCode == Keys.ControlKey)
 			{
 				Tool.IsControlHeld = false;

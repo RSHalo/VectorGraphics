@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using VectorGraphics.Drawables.Resizable;
 using VectorGraphics.Resizing;
 using VectorGraphics.Resizing.Rectangle;
+using VectorGraphics.Saving;
 
 namespace VectorGraphics.Drawables
 {
@@ -15,11 +16,13 @@ namespace VectorGraphics.Drawables
 		// Visual Studio recommends that we turn ResizableRectangle into an auto property. However, I choose to keep the private backing field _rectangle.
 		// This is because if we ever wanted to remove the resizing functionality from the DrawableRectangle, then we can remove the ResizableRectangle property, leaving all methods
 		// still working in terms of _rectangle.
+
 		Rectangle _rectangle;
 
 		public string Id { get; set; }
-		public Pen Pen { get; set; }
+		public IShapeSaver SaveBehaviour { get; }
 
+		public Pen Pen { get; set; }
 		public int X => _rectangle.X;
 		public int Y => _rectangle.Y;
 		public int Width => _rectangle.Width;
@@ -32,16 +35,17 @@ namespace VectorGraphics.Drawables
 			set { _rectangle = value; }
 		}
 
-		public DrawableRectangle(Pen pen, int x, int y, int width, int height)
+
+        public DrawableRectangle(Pen pen, int x, int y, int width, int height) : this(pen, new Rectangle(x, y, width, height))
 		{
-			Pen = pen;
-			_rectangle = new Rectangle(x, y, width, height);
+
 		}
 
 		public DrawableRectangle(Pen pen, Rectangle rectangle)
 		{
 			Pen = pen;
 			_rectangle = rectangle;
+			SaveBehaviour = new RectangleSaver(this);
 		}
 
 		public void Draw(Graphics graphics)

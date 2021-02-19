@@ -5,10 +5,14 @@ using System.Windows.Forms;
 using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
 using VectorGraphics.Resizing;
+using VectorGraphics.Saving;
 
 public class CanvasControl : Panel
 {
-	/// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
+    /// <summary>The saver to use when saving the canvas drawings.</summary>
+    private CanvasSaver _saver = new CanvasSaver();
+    
+    /// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
 	public DrawableCollection Drawables = new DrawableCollection();
 
 	/// <summary>Current ResizeControls on the canvas.</summary>
@@ -121,6 +125,12 @@ public class CanvasControl : Panel
 
 		return new PointF(screenX, screenY);
 	}
+
+    /// <summary>Saves the canvas information to disk.</summary>
+    public void Save()
+    {
+        _saver.Save(Drawables);
+    }
 
 	/// <summary>Resets to a blank canvas.</summary>
 	public void Reset()

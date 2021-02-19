@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VectorGraphics.Resizing;
 using VectorGraphics.Resizing.Line;
+using VectorGraphics.Saving;
 
 namespace VectorGraphics.Drawables
 {
@@ -17,6 +18,8 @@ namespace VectorGraphics.Drawables
 
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
+
+        public IShapeSaver SaveBehaviour => throw new NotImplementedException();
 
         public DrawableLine(Pen pen, Point startPoint, Point endPoint)
         {

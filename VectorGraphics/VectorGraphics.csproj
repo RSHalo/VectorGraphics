@@ -77,6 +77,10 @@
     <Compile Include="Resizing\Rectangle\TopRectangleResizer.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Saving\IShapeSaver.cs" />
+    <Compile Include="Saving\RectangleSaver.cs" />
+    <Compile Include="Saving\CanvasSaver.cs" />
+    <Compile Include="Saving\ShapeSaverResult.cs" />
     <Compile Include="Tools\EllipseTool.cs" />
     <Compile Include="Tools\LineTool.cs" />
     <Compile Include="Tools\Panner.cs" />
