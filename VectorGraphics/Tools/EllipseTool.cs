@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VectorGraphics.Drawables;
 
@@ -24,29 +20,28 @@ namespace VectorGraphics.Tools
         {
             currentPoint = WorldPoint;
 
-            if (!IsDrawing)
-                return;
-
-            CreationDrawable = GetEllipse();
-            Canvas.Invalidate();
+            if (IsDrawing)
+            {
+                CreationDrawable = GetEllipse();
+                Canvas.Invalidate();
+            }
         }
 
         public override void MouseUp(MouseEventArgs e)
         {
-            if (!IsDrawing)
-                return;
-
-            IsDrawing = false;
-
-            CreationDrawable = null;
-
-            if (startPoint != currentPoint)
+            if (IsDrawing)
             {
-                var ellipse = GetEllipse(true);
-                Canvas.AddEllipse(ellipse);
-            }
+                IsDrawing = false;
+                CreationDrawable = null;
 
-            Canvas.Invalidate();
+                if (startPoint != currentPoint)
+                {
+                    var ellipse = GetEllipse(true);
+                    Canvas.AddEllipse(ellipse);
+                }
+
+                Canvas.Invalidate();
+            }
         }
 
         private DrawableEllipse GetEllipse(bool finalResult = false)
@@ -73,7 +68,9 @@ namespace VectorGraphics.Tools
 
             // Draw a circle if Control key is held. Therefore, width and length of bounding rectangle are equal, to make a square.
             if (IsControlHeld)
+            {
                 width = height = Math.Max(width, height);
+            }
 
             return new Rectangle(
                 Math.Min(startPoint.X, currentPoint.X),

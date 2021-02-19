@@ -1,17 +1,8 @@
-﻿using VectorGraphics.Drawables;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using VectorGraphics.Tools;
+﻿using System;
 using System.Drawing.Drawing2D;
-using System.Diagnostics;
-using VectorGraphics.Resizing;
+using System.Windows.Forms;
+using VectorGraphics.Drawables;
+using VectorGraphics.Tools;
 
 namespace VectorGraphics
 {
@@ -70,7 +61,9 @@ namespace VectorGraphics
 		private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ControlKey)
+            {
                 Tool.IsControlHeld = true;
+            }
         }
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
@@ -146,7 +139,6 @@ namespace VectorGraphics
 
             Tool = tool;
             MainCanvas.Cursor = tool.Cursor;
-
             return tool;
         }
 
@@ -158,7 +150,6 @@ namespace VectorGraphics
 
 			// Apply scaling defined by Canvas.ZoomScale
 			graphics.ScaleTransform(MainCanvas.ZoomScale, MainCanvas.ZoomScale, MatrixOrder.Append);
-
 
 			// Apply the translation defined by the offset values.
 			graphics.TranslateTransform(MainCanvas.OffsetX, MainCanvas.OffsetY, MatrixOrder.Append);
@@ -175,7 +166,9 @@ namespace VectorGraphics
 			// When you draw a shape, you may drag your mouse to construct the shape. While this happens, IsDrawing will be set to true.
 			// We want to show the shape being created by the mouse moving, so we draw the Tool's "CreationDrawable" shape.
 			if (Tool.IsDrawing)
+            {
 				Tool.CreationDrawable?.Draw(graphics);
+            }
 
 			MainCanvas.RefreshResizers();
 
@@ -185,15 +178,16 @@ namespace VectorGraphics
 		/// <summary>Updates labels and other controls around the main canvas.</summary>
 		public void UpdatePeripherals()
 		{
-			lblScale.Text = $"Zoom Scale: { MainCanvas.ZoomScale.ToString() }";
+			lblScale.Text = $"Zoom Scale: {MainCanvas.ZoomScale}";
 
-			if (MainCanvas.Drawables.SelectedShape == null)
+			IDrawable selectedShape = MainCanvas.Drawables.SelectedShape;
+			if (selectedShape == null)
 			{
 				lblSelectedShapeId.Text = string.Empty;
 			}
 			else
 			{
-				lblSelectedShapeId.Text = MainCanvas.Drawables.SelectedShape.Id;
+				lblSelectedShapeId.Text = selectedShape.Id;
 			}
 		}
 	}

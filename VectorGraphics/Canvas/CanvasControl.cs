@@ -1,25 +1,17 @@
-﻿using VectorGraphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using VectorGraphics.Drawables;
-using System.Diagnostics;
 using System.Drawing;
+using System.Windows.Forms;
 using VectorGraphics.Canvas;
+using VectorGraphics.Drawables;
 using VectorGraphics.Resizing;
-using System.Linq;
 
 public class CanvasControl : Panel
 {
 	/// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
 	public DrawableCollection Drawables = new DrawableCollection();
 
-	// Add IDrawables to the Drawables collection
-	public void AddLine(DrawableLine line) => Drawables.AddLine(line);
-	public void AddRectangle(DrawableRectangle rectangle) => Drawables.AddRectangle(rectangle);
-	public void AddEllipse(DrawableEllipse ellipse) => Drawables.AddEllipse(ellipse);
-
-	/// <summary>current ResizeControls on the canvas.</summary>
+	/// <summary>Current ResizeControls on the canvas.</summary>
 	public List<ResizeControl> Resizers = new List<ResizeControl>();
 
 	/// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
@@ -43,6 +35,23 @@ public class CanvasControl : Panel
         mouseWheelIndent = 0;
         ZoomScale = 1;
     }
+
+    #region Add IDrawables to the Drawables collection
+    public void AddLine(DrawableLine line)
+    {
+        Drawables.AddLine(line);
+    }
+
+    public void AddRectangle(DrawableRectangle rectangle)
+    {
+        Drawables.AddRectangle(rectangle);
+    }
+
+    public void AddEllipse(DrawableEllipse ellipse)
+    {
+        Drawables.AddEllipse(ellipse);
+    }
+    #endregion Add IDrawables to the Drawables collection
 
     // May not work on non Windows 10. Haven't tested.
     // When we scale, the world coordinates under the mouse change (they move to a different part of the screen).
@@ -81,9 +90,13 @@ public class CanvasControl : Panel
     private void UpdateZoomScale(MouseEventArgs e)
     {
         if (e.Delta > 0)
+        {
             mouseWheelIndent++;
+        }
         else
+        {
             mouseWheelIndent--;
+        }
 
         ZoomScale = mouseWheelIndent >= 0 ? mouseWheelIndent + 1 : (1 / (-mouseWheelIndent + 1f));
     }
@@ -123,12 +136,11 @@ public class CanvasControl : Panel
 	public void OnSelectedShapeChanged(object source, EventArgs e)
 	{
 		RemoveResizeControls();
-
-		if (Drawables.SelectedShape == null)
-			return;
-
-		AddResizeControls();
-	}
+		if (Drawables.SelectedShape != null)
+        {
+            AddResizeControls();
+        }
+    }
 
 	public void AddResizeControls()
 	{
@@ -139,9 +151,7 @@ public class CanvasControl : Panel
 		foreach (var resizer in Resizers)
 		{
 			resizer.Canvas = this;
-
 			resizer.UpdateWorldState();
-
 			Controls.Add(resizer);
 		}
 	}

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace VectorGraphics.Tools
@@ -28,23 +23,23 @@ namespace VectorGraphics.Tools
 
         public override void MouseMoved(MouseEventArgs e)
         {
-            if (!isPanning)
-                return;
+            if (isPanning)
+            {
+                // Get the current position of the mouse and calculate how far the mouse has moved.
+                // We can work in screen coords here. This is because we want to move the world by the number of pixels the mouse moves. World coords are irrelevant.
+                currentPoint = new Point(e.X, e.Y);
+                float distancePannedX = currentPoint.X - lastPoint.X;
+                float distancePannedY = currentPoint.Y - lastPoint.Y;
 
-            // Get the current position of the mouse and calculate how far the mouse has moved.
-            // We can work in screen coords here. This is because we want to move the world by the number of pixels the mouse moves. World coords are irrelevant.
-            currentPoint = new Point(e.X, e.Y);
-            float distancePannedX = currentPoint.X - lastPoint.X;
-            float distancePannedY = currentPoint.Y - lastPoint.Y;
+                // Update the Canvas' offset so that the world appears to move according to the mouse movement.
+                Canvas.OffsetX += distancePannedX;
+                Canvas.OffsetY += distancePannedY;
 
-            // Update the Canvas' offset so that the world appears to move according to the mouse movement.
-            Canvas.OffsetX += distancePannedX;
-            Canvas.OffsetY += distancePannedY;
+                // Update for next time this Event Handler is called.
+                lastPoint = currentPoint;
 
-            // Update for next time this Event Handler is called.
-            lastPoint = currentPoint;
-
-            Canvas.Invalidate();
+                Canvas.Invalidate();
+            }
         }
 
         public override void MouseUp(MouseEventArgs e)

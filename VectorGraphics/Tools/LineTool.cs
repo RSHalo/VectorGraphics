@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using VectorGraphics.Drawables;
 
@@ -24,31 +19,33 @@ namespace VectorGraphics.Tools
         {
             currentPoint = WorldPoint;
 
-            if (!IsDrawing)
-                return;
-
-            CreationDrawable = GetDrawableLine();
-            Canvas.Invalidate();
+            if (IsDrawing)
+            {
+                CreationDrawable = GetDrawableLine();
+                Canvas.Invalidate();
+            }
         }
 
         public override void MouseUp(MouseEventArgs e)
         {
-            if (!IsDrawing)
-                return;
+            if (IsDrawing)
+            {
+                IsDrawing = false;
 
-            IsDrawing = false;
+                // Mouse up means that we want to draw our final result, so we longer need creation shapes.
+                CreationDrawable = null;
 
-            // Mouse up means that we want to draw our final result, so we longer need creation shapes.
-            CreationDrawable = null;
+                // The final drawn result.
+                var line = GetDrawableLine(true);
 
-            // The final drawn result.
-            var line = GetDrawableLine(true);
+                // Add final result to the Canvas.
+                if (line.StartPoint != line.EndPoint)
+                {
+                    Canvas.AddLine(line);
+                }
 
-            // Add final result to the Canvas.
-            if (line.StartPoint != line.EndPoint)
-                Canvas.AddLine(line);
-
-            Canvas.Invalidate();
+                Canvas.Invalidate();
+            }
         }
 
         // Gets the DrawableRLine that is defined by the start position and the current position of the mouse.

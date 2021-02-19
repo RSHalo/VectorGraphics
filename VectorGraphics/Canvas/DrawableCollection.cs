@@ -28,7 +28,6 @@ namespace VectorGraphics.Canvas
 			set
 			{
 				_selectedShape = value;
-
 				SelectedShapeChanged?.Invoke(this, EventArgs.Empty);
 			}
 		}
@@ -40,7 +39,6 @@ namespace VectorGraphics.Canvas
 		public void Clear()
 		{
 			_drawables.Clear();
-
 			_lineCount = _rectangleCount = _ellipseCount = 0;
 		}
 

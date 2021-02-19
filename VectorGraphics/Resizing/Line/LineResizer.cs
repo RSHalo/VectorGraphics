@@ -13,23 +13,23 @@ namespace VectorGraphics.Resizing.Line
 	{
 		private readonly DrawableLine _drawnLine;
 
-		private bool IsStartPoint = false;
+		private readonly bool _isStartPoint = false;
 
 		public LineResizer(DrawableLine drawableLine, bool isStartPoint) : base()
 		{
 			_drawnLine = drawableLine;
-			IsStartPoint = isStartPoint;
+			_isStartPoint = isStartPoint;
 
 			// Set the control to be displayed at one end of the line. Either the start or end.
-			WorldX = IsStartPoint ? _drawnLine.StartPoint.X : _drawnLine.EndPoint.X;
-			WorldY = IsStartPoint ? _drawnLine.StartPoint.Y : _drawnLine.EndPoint.Y;
+			WorldX = _isStartPoint ? _drawnLine.StartPoint.X : _drawnLine.EndPoint.X;
+			WorldY = _isStartPoint ? _drawnLine.StartPoint.Y : _drawnLine.EndPoint.Y;
 
 			_cursor = Cursors.SizeNESW;
 		}
 
 		protected override void ResizeShape()
 		{
-			if (IsStartPoint)
+			if (_isStartPoint)
 			{
 				_drawnLine.StartPoint = new Point(_drawnLine.StartPoint.X + DxWorld, _drawnLine.StartPoint.Y + DyWorld);
 			}
@@ -50,8 +50,8 @@ namespace VectorGraphics.Resizing.Line
 
 		protected override void UpdateWorldCoords()
 		{
-			WorldX = IsStartPoint ? _drawnLine.StartPoint.X : _drawnLine.EndPoint.X;
-			WorldY = IsStartPoint ? _drawnLine.StartPoint.Y : _drawnLine.EndPoint.Y;
+			WorldX = _isStartPoint ? _drawnLine.StartPoint.X : _drawnLine.EndPoint.X;
+			WorldY = _isStartPoint ? _drawnLine.StartPoint.Y : _drawnLine.EndPoint.Y;
 		}
 	}
 }
