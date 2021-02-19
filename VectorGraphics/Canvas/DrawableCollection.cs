@@ -11,7 +11,7 @@ namespace VectorGraphics.Canvas
 	/// <summary>Holds the collection of shapes that are to be drawn to a canvas.</summary>
 	public class DrawableCollection : IEnumerable<IDrawable>
 	{
-		private List<IDrawable> _drawables = new List<IDrawable>();
+		private readonly List<IDrawable> _drawables = new List<IDrawable>();
 
 		private int _lineCount = 0;
 		private int _rectangleCount = 0;

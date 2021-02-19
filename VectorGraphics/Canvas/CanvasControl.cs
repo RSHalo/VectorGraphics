@@ -34,6 +34,9 @@ public class CanvasControl : Panel
         SetStyle(ControlStyles.ResizeRedraw, true);
         mouseWheelIndent = 0;
         ZoomScale = 1;
+
+        // An event is published when the selected shape is changed. The canvas is subscribed to this event so that it can react accordingly.
+        Drawables.SelectedShapeChanged += OnSelectedShapeChanged;
     }
 
     #region Add IDrawables to the Drawables collection

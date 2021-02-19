@@ -25,9 +25,6 @@ namespace VectorGraphics
         public MainForm()
         {
             InitializeComponent();
-
-			// An event is published when the selected shape is changed. The canvas is subscribed to this event so that it can react accordingly.
-			MainCanvas.Drawables.SelectedShapeChanged += MainCanvas.OnSelectedShapeChanged;
 		}
 
         #region Event handlers for radio buttons that change the tool.
