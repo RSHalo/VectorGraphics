@@ -1,5 +1,7 @@
 Saving (as XML)
+Loading the XML
 Moving selected shapes (like resizing)
 Undo (CTRL+Z)
+Find a tidy/centralised way to manage all the Canvas.Invalidate() calls.
 
 After that, I think I will consider this project completed. Perhaps refactor the code to use some design patterns that I have learned from HFDP?
