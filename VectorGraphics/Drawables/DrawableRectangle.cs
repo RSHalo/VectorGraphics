@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VectorGraphics.Drawables.Resizable;
 using VectorGraphics.Resizing;
 using VectorGraphics.Resizing.Rectangle;
@@ -11,7 +7,7 @@ using VectorGraphics.Saving;
 
 namespace VectorGraphics.Drawables
 {
-	public class DrawableRectangle : IDrawable, IResizableRectangle
+    public class DrawableRectangle : IDrawable, IResizableRectangle
 	{
 		// Visual Studio recommends that we turn ResizableRectangle into an auto property. However, I choose to keep the private backing field _rectangle.
 		// This is because if we ever wanted to remove the resizing functionality from the DrawableRectangle, then we can remove the ResizableRectangle property, leaving all methods

@@ -17,29 +17,31 @@ namespace VectorGraphics.Drawables
 		// Visual Studio recommends that we turn ResizableRectangle into an auto property. However, I choose to keep the private backing field boundingRectangle.
 		// This is because if we ever wanted to remove the resizing functionality from the DrawableEllipse, then we can remove the ResizableRectangle property, leaving all methods
 		// still working in terms of boundingRectangle.
-        private Rectangle boundingRectangle;
+        private Rectangle _boundingRectangle;
 
 		public string Id { get; set; }
 		public Pen Pen { get; set; }
+        public Rectangle BoundingRectangle => _boundingRectangle;
 
-		// The rectangle that ResizerControls can modify.
-		public Rectangle ResizableRectangle
+        // The rectangle that ResizerControls can modify.
+        public Rectangle ResizableRectangle
 		{
-			get { return boundingRectangle; }
-			set { boundingRectangle = value; }
+			get { return _boundingRectangle; }
+			set { _boundingRectangle = value; }
 		}
 
-        public IShapeSaver SaveBehaviour => throw new NotImplementedException();
+        public IShapeSaver SaveBehaviour { get; }
 
         public DrawableEllipse(Pen pen, Rectangle rectangle)
         {
             Pen = pen;
-            boundingRectangle = rectangle;
+            _boundingRectangle = rectangle;
+            SaveBehaviour = new EllipseSaver(this);
         }
 
 		public void Draw(Graphics graphics)
         {
-            graphics.DrawEllipse(Pen, boundingRectangle);
+            graphics.DrawEllipse(Pen, _boundingRectangle);
         }
 
         public bool HitTest(int worldX, int worldY)
@@ -47,7 +49,7 @@ namespace VectorGraphics.Drawables
             // A way to detect hits is to define a GraphicsPath that is the same path as the IDrawable and then call IsOutlineVisible with the mouse coordinates
             // as parameters. This is asking "Does the mouse position touch the outline of the GraphicsPath?". In this case, the GraphicsPath is an ellipse.
             var path = new GraphicsPath();
-            path.AddEllipse(boundingRectangle);
+            path.AddEllipse(_boundingRectangle);
 
             // Give the mouse point a pen width of 10 to make it easier to select lines. A bigger point means we don't have to be as close to the line to select it.
             return path.IsOutlineVisible(worldX, worldY, new Pen(Color.Black, 10));
