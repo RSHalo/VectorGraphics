@@ -10,7 +10,7 @@ using VectorGraphics.Saving;
 public class CanvasControl : Panel
 {
     /// <summary>The saver to use when saving the canvas drawings.</summary>
-    private CanvasSaver _saver = new CanvasSaver();
+    private readonly CanvasSaver _saver = new CanvasSaver();
     
     /// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
 	public DrawableCollection Drawables = new DrawableCollection();

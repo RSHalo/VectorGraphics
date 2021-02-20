@@ -9,7 +9,7 @@ using VectorGraphics.Drawables;
 
 namespace VectorGraphics.Tools
 {
-    class Tool
+    public class Tool
     {
         public CanvasControl Canvas { get; set; }
         public bool IsDrawing { get; protected set; }

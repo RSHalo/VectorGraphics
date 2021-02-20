@@ -53,6 +53,8 @@
     <Compile Include="Drawables\DrawableEllipse.cs" />
     <Compile Include="Drawables\DrawableRectangle.cs" />
     <Compile Include="Drawables\Resizable\IResizableRectangle.cs" />
+    <Compile Include="KeyHanding\IKeyHandler.cs" />
+    <Compile Include="KeyHanding\KeyHandler.cs" />
     <Compile Include="Resizing\Line\LineResizer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -99,6 +101,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\RectangleTool.cs" />
+    <Compile Include="View\IProgramView.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

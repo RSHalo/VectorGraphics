@@ -2,18 +2,22 @@
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using VectorGraphics.Drawables;
+using VectorGraphics.KeyHanding;
 using VectorGraphics.Tools;
+using VectorGraphics.View;
 
 namespace VectorGraphics
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IProgramView
     {
-        // TODO: Research 2d scene graph.
+		// TODO: Research 2d scene graph.
 
-        // The tool selected by the user.
-        Tool Tool = new Tool();
+		private readonly IKeyHandler _keyHandler;
 
-        // The SmoothingMode selected by the user.
+        /// <summary>The tool selected by the user.</summary>
+        public Tool Tool { get; private set; } = new Tool();
+
+        /// <summary>The SmoothingMode selected by the user.</summary>
         public SmoothingMode SmoothingMode
         {
             get
@@ -25,7 +29,19 @@ namespace VectorGraphics
         public MainForm()
         {
             InitializeComponent();
+			_keyHandler = new KeyHandler(this);
 		}
+
+		public void Save()
+        {
+            MainCanvas.Save();
+        }
+
+        public void DeleteSelectedShape()
+        {
+            MainCanvas.Drawables.DeleteSelectedShape();
+            MainCanvas.Invalidate();
+        }
 
         #region Event handlers for radio buttons that change the tool.
         private void RbLine_CheckedChanged(object sender, EventArgs e)
@@ -57,35 +73,12 @@ namespace VectorGraphics
 		#region Event handlers for key presses
 		private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.ControlKey)
-            {
-                Tool.IsControlHeld = true;
-            }
+			_keyHandler.HandleKeyDown(e, ModifierKeys);
         }
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
-			if (ModifierKeys.HasFlag(Keys.Control))
-            {
-                switch (e.KeyCode)
-                {
-					case Keys.S:
-						// Save the drawing on the canvas.
-						MainCanvas.Save();
-						break;
-				}
-            }
-
-			if (e.KeyCode == Keys.ControlKey)
-			{
-				Tool.IsControlHeld = false;
-			}
-			else if (e.KeyCode == Keys.Delete && !Tool.IsDrawing)
-			{
-				// Delete the selected shape if the current tool is not drawing.
-				MainCanvas.Drawables.DeleteSelectedShape();
-				MainCanvas.Invalidate();
-			}
+			_keyHandler.HandleKeyUp(e, ModifierKeys);
         }
         #endregion
 
@@ -184,7 +177,7 @@ namespace VectorGraphics
 		}
 
 		/// <summary>Updates labels and other controls around the main canvas.</summary>
-		public void UpdatePeripherals()
+		private void UpdatePeripherals()
 		{
 			lblScale.Text = $"Zoom Scale: {MainCanvas.ZoomScale}";
 
@@ -198,5 +191,5 @@ namespace VectorGraphics
 				lblSelectedShapeId.Text = selectedShape.Id;
 			}
 		}
-	}
+    }
 }
