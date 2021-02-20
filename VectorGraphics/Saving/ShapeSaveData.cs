@@ -7,7 +7,7 @@ using VectorGraphics.Drawables;
 
 namespace VectorGraphics.Saving
 {
-    public class ShapeSaverResult
+    public class ShapeSaveData
     {
         /// <summary>The Id of the shape to save.</summary>
         public string ShapeId { get; }
@@ -20,10 +20,10 @@ namespace VectorGraphics.Saving
         /// <summary>Attributes to save.</summary>
         public Dictionary<string, string> ShapeData { get; } = new Dictionary<string, string>();
 
-        public ShapeSaverResult(IDrawable shape)
+        public ShapeSaveData(IDrawable shape)
         {
             ShapeId = shape.Id;
-            Colour = shape.Pen.Color.ToString();
+            Colour = shape.Pen.Color.Name;
         }
     }
 }

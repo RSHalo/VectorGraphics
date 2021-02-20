@@ -19,13 +19,14 @@ namespace VectorGraphics.Drawables
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
 
-        public IShapeSaver SaveBehaviour => throw new NotImplementedException();
+        public IShapeSaver SaveBehaviour { get; }
 
         public DrawableLine(Pen pen, Point startPoint, Point endPoint)
         {
             Pen = pen;
             StartPoint = startPoint;
             EndPoint = endPoint;
+            SaveBehaviour = new LineSaver(this);
         }
 
         public void Draw(Graphics graphics)

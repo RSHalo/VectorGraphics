@@ -17,9 +17,9 @@ namespace VectorGraphics.Saving
             _rectangle = rectangle;
         }
 
-        public ShapeSaverResult Save()
+        public ShapeSaveData GetSaveData()
         {
-            ShapeSaverResult result = new ShapeSaverResult(_rectangle)
+            ShapeSaveData result = new ShapeSaveData(_rectangle)
             {
                 ShapeType = "Rectangle"
             };

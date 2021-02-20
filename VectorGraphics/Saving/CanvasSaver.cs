@@ -19,19 +19,19 @@ namespace VectorGraphics.Saving
                 writer.WriteStartElement("Shapes");
                 foreach (IDrawable drawable in drawables)
                 {
-                    ShapeSaverResult saverResult = drawable.SaveBehaviour.Save();
-                    SaveShape(saverResult, writer);
+                    ShapeSaveData shapeSaveData = drawable.SaveBehaviour.GetSaveData();
+                    SaveShape(shapeSaveData, writer);
                 }
                 writer.WriteEndElement();
             }
         }
 
-        private void SaveShape(ShapeSaverResult result, XmlWriter writer)
+        private void SaveShape(ShapeSaveData saveData, XmlWriter writer)
         {
-            writer.WriteStartElement(result.ShapeType);
-            writer.WriteAttributeString("Id", result.ShapeId);
-            writer.WriteAttributeString("Colour", result.Colour);
-            foreach (var attribute in result.ShapeData)
+            writer.WriteStartElement(saveData.ShapeType);
+            writer.WriteAttributeString("Id", saveData.ShapeId);
+            writer.WriteAttributeString("Colour", saveData.Colour);
+            foreach (var attribute in saveData.ShapeData)
             {
                 writer.WriteAttributeString(attribute.Key, attribute.Value);
             }

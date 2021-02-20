@@ -2,6 +2,6 @@
 {
     public interface IShapeSaver
     {
-        ShapeSaverResult Save();
+        ShapeSaveData GetSaveData();
     }
 }
