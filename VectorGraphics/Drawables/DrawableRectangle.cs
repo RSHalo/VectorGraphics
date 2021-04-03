@@ -9,10 +9,6 @@ namespace VectorGraphics.Drawables
 {
     public class DrawableRectangle : IDrawable, IResizableRectangle
 	{
-		// Visual Studio recommends that we turn ResizableRectangle into an auto property. However, I choose to keep the private backing field _rectangle.
-		// This is because if we ever wanted to remove the resizing functionality from the DrawableRectangle, then we can remove the ResizableRectangle property, leaving all methods
-		// still working in terms of _rectangle.
-
 		Rectangle _rectangle;
 
 		public string Id { get; set; }
@@ -30,7 +26,6 @@ namespace VectorGraphics.Drawables
 			get { return _rectangle; }
 			set { _rectangle = value; }
 		}
-
 
         public DrawableRectangle(Pen pen, int x, int y, int width, int height) : this(pen, new Rectangle(x, y, width, height))
 		{

@@ -136,14 +136,14 @@ public class CanvasControl : Panel
 	public void Clear()
     {
         Drawables.Clear();
-        MakeReady();
+        ResetView();
     }
 
     /// <summary>
-    /// Makes the canvas ready for user drawing, by defaulting things like zoom and offset.
+    /// Resets the canvas view, ready for user drawing, by defaulting things like zoom and offset.
     /// This does not clear the canvas' drawings, use <see cref="Clear"/> for that.
     /// </summary>
-    public void MakeReady()
+    public void ResetView()
     {
         Drawables.SelectedShape = null;
 

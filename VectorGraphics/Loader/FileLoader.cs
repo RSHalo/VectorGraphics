@@ -79,10 +79,15 @@ namespace VectorGraphics.Loader
                         DrawableLine line = CreateDrawableLine(shape, pen);
                         canvas.AddLine(line);
                         break;
+
+                    case "RECTANGLE":
+                        DrawableRectangle rectangle = CreateDrawableRectangle(shape, pen);
+                        canvas.AddRectangle(rectangle);
+                        break;
                 }
             }
 
-            canvas.MakeReady();
+            canvas.ResetView();
         }
 
         private Pen CreatePen(LoadedShape shape)
@@ -106,6 +111,16 @@ namespace VectorGraphics.Loader
             Point endPoint = new Point(endX, endY);
             
             return new DrawableLine(pen, startPoint, endPoint);
+        }
+
+        private DrawableRectangle CreateDrawableRectangle(LoadedShape loadedRectangle, Pen pen)
+        {
+            int x = Convert.ToInt32(loadedRectangle.Attributes["X"]);
+            int y = Convert.ToInt32(loadedRectangle.Attributes["Y"]);
+            int width = Convert.ToInt32(loadedRectangle.Attributes["W"]);
+            int height = Convert.ToInt32(loadedRectangle.Attributes["H"]);
+
+            return new DrawableRectangle(pen, x, y, width, height);
         }
     }
 }
