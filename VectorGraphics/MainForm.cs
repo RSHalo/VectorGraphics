@@ -3,6 +3,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using VectorGraphics.Drawables;
 using VectorGraphics.KeyHanding;
+using VectorGraphics.Loader;
 using VectorGraphics.Tools;
 using VectorGraphics.View;
 
@@ -13,7 +14,7 @@ namespace VectorGraphics
 		// TODO: Research 2d scene graph.
 
 		private readonly IKeyHandler _keyHandler;
-
+        private readonly IFileLoader _fileLoader;
         /// <summary>The tool selected by the user.</summary>
         public Tool Tool { get; private set; } = new Tool();
 
@@ -30,6 +31,7 @@ namespace VectorGraphics
         {
             InitializeComponent();
 			_keyHandler = new KeyHandler(this);
+            _fileLoader = new FileLoader();
 		}
 
 		public void Save()
@@ -37,6 +39,10 @@ namespace VectorGraphics
             MainCanvas.Save();
         }
 
+        public void Open()
+        {
+            _fileLoader.Load(MainCanvas);
+        }
         public void DeleteSelectedShape()
         {
             MainCanvas.Drawables.DeleteSelectedShape();
@@ -90,8 +96,7 @@ namespace VectorGraphics
 
         private void BtnClear_Click(object sender, EventArgs e)
         {
-            MainCanvas.Reset();
-            MainCanvas.Invalidate();
+            MainCanvas.Clear();
         }
         #endregion
 

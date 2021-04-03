@@ -29,6 +29,10 @@ namespace VectorGraphics.KeyHanding
                     case Keys.S:
                         _view.Save();
                         break;
+
+                    case Keys.O:
+                        _view.Open();
+                        break;
                 }
             }
 

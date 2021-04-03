@@ -132,17 +132,28 @@ public class CanvasControl : Panel
         _saver.Save(Drawables);
     }
 
-	/// <summary>Resets to a blank canvas.</summary>
-	public void Reset()
+	/// <summary>Clears to a blank canvas.</summary>
+	public void Clear()
     {
         Drawables.Clear();
-		Drawables.SelectedShape = null;
+        MakeReady();
+    }
+
+    /// <summary>
+    /// Makes the canvas ready for user drawing, by defaulting things like zoom and offset.
+    /// This does not clear the canvas' drawings, use <see cref="Clear"/> for that.
+    /// </summary>
+    public void MakeReady()
+    {
+        Drawables.SelectedShape = null;
 
         OffsetX = 0f;
         OffsetY = 0f;
 
         mouseWheelIndent = 0;
         ZoomScale = 1;
+
+        Invalidate();
     }
 
 	/// <summary>Gets the appropriate resize controls for the newly selected shape.</summary>
