@@ -31,5 +31,5 @@ Use the Pointer tool to select and resize shapes that you have already drawn to 
 Use the DELETE key to delete the currently selected shape.
 
 ### Saving and Opening
-Use Ctrl+S to save a drawing to a file. Files are saved as XML.  
-Use Ctrl+O to open a drawing file.
+Use CTRL+S to save a drawing to a file. Files are saved as XML.  
+Use CTRL+O to open a drawing file.
