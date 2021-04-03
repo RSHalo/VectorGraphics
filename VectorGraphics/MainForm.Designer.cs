@@ -96,7 +96,7 @@
             this.rbPointer.Location = new System.Drawing.Point(284, 11);
             this.rbPointer.Name = "rbPointer";
             this.rbPointer.Size = new System.Drawing.Size(58, 17);
-            this.rbPointer.TabIndex = 18;
+            this.rbPointer.TabIndex = 16;
             this.rbPointer.TabStop = true;
             this.rbPointer.Text = "Pointer";
             this.rbPointer.UseVisualStyleBackColor = true;
@@ -108,7 +108,7 @@
             this.rbEllipse.Location = new System.Drawing.Point(132, 11);
             this.rbEllipse.Name = "rbEllipse";
             this.rbEllipse.Size = new System.Drawing.Size(55, 17);
-            this.rbEllipse.TabIndex = 17;
+            this.rbEllipse.TabIndex = 14;
             this.rbEllipse.TabStop = true;
             this.rbEllipse.Text = "Ellipse";
             this.rbEllipse.UseVisualStyleBackColor = true;
@@ -120,7 +120,7 @@
             this.rbLine.Location = new System.Drawing.Point(81, 11);
             this.rbLine.Name = "rbLine";
             this.rbLine.Size = new System.Drawing.Size(45, 17);
-            this.rbLine.TabIndex = 16;
+            this.rbLine.TabIndex = 13;
             this.rbLine.TabStop = true;
             this.rbLine.Text = "Line";
             this.rbLine.UseVisualStyleBackColor = true;
@@ -173,7 +173,7 @@
             this.chkAntiAlias.Location = new System.Drawing.Point(4, 11);
             this.chkAntiAlias.Name = "chkAntiAlias";
             this.chkAntiAlias.Size = new System.Drawing.Size(69, 17);
-            this.chkAntiAlias.TabIndex = 0;
+            this.chkAntiAlias.TabIndex = 20;
             this.chkAntiAlias.Text = "Anti Alias";
             this.chkAntiAlias.UseVisualStyleBackColor = true;
             this.chkAntiAlias.CheckedChanged += new System.EventHandler(this.ChkAntiAlias_CheckedChanged);
@@ -184,7 +184,7 @@
             this.btnClear.Location = new System.Drawing.Point(1140, 54);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 15;
+            this.btnClear.TabIndex = 26;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
@@ -280,7 +280,7 @@
             this.MainCanvas.OffsetX = 0F;
             this.MainCanvas.OffsetY = 0F;
             this.MainCanvas.Size = new System.Drawing.Size(1200, 428);
-            this.MainCanvas.TabIndex = 8;
+            this.MainCanvas.TabIndex = 1;
             this.MainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.MainCanvas_Paint);
             this.MainCanvas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseClick);
             this.MainCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseDown);
@@ -294,7 +294,7 @@
             this.btnResetView.Location = new System.Drawing.Point(1059, 54);
             this.btnResetView.Name = "btnResetView";
             this.btnResetView.Size = new System.Drawing.Size(75, 23);
-            this.btnResetView.TabIndex = 24;
+            this.btnResetView.TabIndex = 25;
             this.btnResetView.Text = "Reset View";
             this.btnResetView.UseVisualStyleBackColor = true;
             this.btnResetView.Click += new System.EventHandler(this.BtnResetView_Click);
