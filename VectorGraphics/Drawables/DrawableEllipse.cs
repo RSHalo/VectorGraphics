@@ -10,9 +10,6 @@ namespace VectorGraphics.Drawables
 {
     public class DrawableEllipse : IDrawable, IResizableRectangle
     {
-		// Visual Studio recommends that we turn ResizableRectangle into an auto property. However, I choose to keep the private backing field boundingRectangle.
-		// This is because if we ever wanted to remove the resizing functionality from the DrawableEllipse, then we can remove the ResizableRectangle property, leaving all methods
-		// still working in terms of boundingRectangle.
         private Rectangle _boundingRectangle;
 
 		public string Id { get; set; }

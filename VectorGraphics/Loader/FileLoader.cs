@@ -84,6 +84,11 @@ namespace VectorGraphics.Loader
                         DrawableRectangle rectangle = CreateDrawableRectangle(shape, pen);
                         canvas.AddRectangle(rectangle);
                         break;
+
+                    case "ELLIPSE":
+                        DrawableEllipse ellipse = CreateDrawableEllipse(shape, pen);
+                        canvas.AddEllipse(ellipse);
+                        break;
                 }
             }
 
@@ -115,12 +120,24 @@ namespace VectorGraphics.Loader
 
         private DrawableRectangle CreateDrawableRectangle(LoadedShape loadedRectangle, Pen pen)
         {
-            int x = Convert.ToInt32(loadedRectangle.Attributes["X"]);
-            int y = Convert.ToInt32(loadedRectangle.Attributes["Y"]);
-            int width = Convert.ToInt32(loadedRectangle.Attributes["W"]);
-            int height = Convert.ToInt32(loadedRectangle.Attributes["H"]);
+            Rectangle rectangle = ExtractRectangleDataFromLoadedShape(loadedRectangle);
+            return new DrawableRectangle(pen, rectangle);
+        }
 
-            return new DrawableRectangle(pen, x, y, width, height);
+        private DrawableEllipse CreateDrawableEllipse(LoadedShape loadedEllipse, Pen pen)
+        {
+            Rectangle boundingRectangle = ExtractRectangleDataFromLoadedShape(loadedEllipse);
+            return new DrawableEllipse(pen, boundingRectangle); ;
+        }
+
+        private Rectangle ExtractRectangleDataFromLoadedShape(LoadedShape shape)
+        {
+            int x = Convert.ToInt32(shape.Attributes["X"]);
+            int y = Convert.ToInt32(shape.Attributes["Y"]);
+            int width = Convert.ToInt32(shape.Attributes["W"]);
+            int height = Convert.ToInt32(shape.Attributes["H"]);
+
+            return new Rectangle(x, y, width, height);
         }
     }
 }
