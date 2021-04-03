@@ -17,8 +17,12 @@ namespace VectorGraphics.View
 
         /// <summary>Opens a shape file.</summary>
         void Open();
+        
+        /// <summary>Cancels the current shape selection.</summary>
+        void CancelShapeSelection();
 
         /// <summary>Deletes the selected shape.</summary>
         void DeleteSelectedShape();
+
     }
 }

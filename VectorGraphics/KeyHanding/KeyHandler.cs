@@ -22,9 +22,10 @@ namespace VectorGraphics.KeyHanding
 
         public void HandleKeyUp(KeyEventArgs e, Keys modifierKeys)
         {
+            Keys keyCode = e.KeyCode;
             if (modifierKeys.HasFlag(Keys.Control))
             {
-                switch (e.KeyCode)
+                switch (keyCode)
                 {
                     case Keys.S:
                         _view.Save();
@@ -36,13 +37,17 @@ namespace VectorGraphics.KeyHanding
                 }
             }
 
-            if (e.KeyCode == Keys.ControlKey)
+            if (keyCode == Keys.ControlKey)
             {
                 _view.Tool.IsControlHeld = false;
             }
-            else if (e.KeyCode == Keys.Delete && _view.Tool.IsDrawing == false)
+            else if (keyCode == Keys.Delete && _view.Tool.IsDrawing == false)
             {
                 _view.DeleteSelectedShape();
+            }
+            else if (keyCode == Keys.Escape)
+            {
+                _view.CancelShapeSelection();
             }
         }
     }

@@ -43,6 +43,12 @@ namespace VectorGraphics
         {
             _fileManager.Load(MainCanvas);
         }
+
+        public void CancelShapeSelection()
+        {
+            MainCanvas.Drawables.SelectedShape = null;
+        }
+
         public void DeleteSelectedShape()
         {
             MainCanvas.Drawables.DeleteSelectedShape();
