@@ -1,5 +1,4 @@
-Saving (as XML)
-Loading the XML
+Aligning shapes left, right, top, bottom.
 Moving selected shapes (like resizing)
 Undo (CTRL+Z)
 Find a tidy/centralised way to manage all the Canvas.Invalidate() calls.
