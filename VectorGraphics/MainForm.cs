@@ -104,10 +104,15 @@ namespace VectorGraphics
         {
             MainCanvas.Clear();
         }
+
+        private void BtnResetView_Click(object sender, EventArgs e)
+        {
+            MainCanvas.ResetView();
+        }
         #endregion
 
         #region Event handlers for mouse events
-		private void MainCanvas_MouseDown(object sender, MouseEventArgs e)
+        private void MainCanvas_MouseDown(object sender, MouseEventArgs e)
 		{
             Tool.MouseDown(e);
 		}
