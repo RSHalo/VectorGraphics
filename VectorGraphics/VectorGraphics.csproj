@@ -53,6 +53,7 @@
     <Compile Include="Drawables\DrawableEllipse.cs" />
     <Compile Include="Drawables\DrawableRectangle.cs" />
     <Compile Include="Drawables\Resizable\IResizableRectangle.cs" />
+    <Compile Include="FileManagement\FileManager.cs" />
     <Compile Include="KeyHanding\IKeyHandler.cs" />
     <Compile Include="KeyHanding\KeyHandler.cs" />
     <Compile Include="Loader\FileLoader.cs" />
@@ -83,10 +84,11 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Saving\EllipseSaver.cs" />
+    <Compile Include="Saving\IFileSaver.cs" />
     <Compile Include="Saving\IShapeSaver.cs" />
     <Compile Include="Saving\LineSaver.cs" />
     <Compile Include="Saving\RectangleSaver.cs" />
-    <Compile Include="Saving\CanvasSaver.cs" />
+    <Compile Include="Saving\FileSaver.cs" />
     <Compile Include="Saving\ShapeSaveData.cs" />
     <Compile Include="Tools\EllipseTool.cs" />
     <Compile Include="Tools\LineTool.cs" />

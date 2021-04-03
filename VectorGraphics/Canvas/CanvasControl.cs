@@ -8,10 +8,7 @@ using VectorGraphics.Resizing;
 using VectorGraphics.Saving;
 
 public class CanvasControl : Panel
-{
-    /// <summary>The saver to use when saving the canvas drawings.</summary>
-    private readonly CanvasSaver _saver = new CanvasSaver();
-    
+{    
     /// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
 	public DrawableCollection Drawables = new DrawableCollection();
 
@@ -126,12 +123,6 @@ public class CanvasControl : Panel
 		return new PointF(screenX, screenY);
 	}
 
-    /// <summary>Saves the canvas information to disk.</summary>
-    public void Save()
-    {
-        _saver.Save(Drawables);
-    }
-
 	/// <summary>Clears to a blank canvas.</summary>
 	public void Clear()
     {
@@ -156,8 +147,14 @@ public class CanvasControl : Panel
         Invalidate();
     }
 
-	/// <summary>Gets the appropriate resize controls for the newly selected shape.</summary>
-	public void OnSelectedShapeChanged(object source, EventArgs e)
+    /// <summary>Performs any required action before loading shapes from a file.</summary>
+    public void PreLoad()
+    {
+        Clear();
+    }
+
+    /// <summary>Gets the appropriate resize controls for the newly selected shape.</summary>
+    public void OnSelectedShapeChanged(object source, EventArgs e)
 	{
 		RemoveResizeControls();
 		if (Drawables.SelectedShape != null)

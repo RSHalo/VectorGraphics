@@ -9,20 +9,39 @@ namespace VectorGraphics.Loader
 {
     class FileLoader : IFileLoader
     {
-        private const string fileFilter = "Shape Files(*.xml)|*.xml";
+        private readonly string _fileFilter = string.Empty;
+
+        public string LoadedFilePath { get; private set; }
+        public bool Loaded { get; private set; }
+
+        public FileLoader(string fileFilter)
+        {
+            _fileFilter = fileFilter;
+        }
 
         public void Load(CanvasControl canvas)
         {
+            StartLoad();
+
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = fileFilter
+                Filter = _fileFilter
             };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 IEnumerable<LoadedShape> loadedShapes = ReadShapes(openFileDialog.FileName);
                 LoadShapesToCanvas(canvas, loadedShapes);
+                
+                Loaded = true;
+                LoadedFilePath = openFileDialog.FileName;
             }
+        }
+
+        private void StartLoad()
+        {
+            Loaded = false;
+            LoadedFilePath = null;
         }
 
         private IEnumerable<LoadedShape> ReadShapes(string filePath)
@@ -68,6 +87,8 @@ namespace VectorGraphics.Loader
 
         private void LoadShapesToCanvas(CanvasControl canvas, IEnumerable<LoadedShape> shapes)
         {
+            canvas.PreLoad();
+
             foreach (LoadedShape shape in shapes)
             {
                 Pen pen = CreatePen(shape);
