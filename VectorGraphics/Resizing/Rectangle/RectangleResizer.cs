@@ -1,15 +1,9 @@
 ﻿using VectorGraphics.Drawables;
-using VectorGraphics.Drawables.Resizable;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VectorGraphics.Resizing.Rectangle
 {
-	/// <summary>Base class for rectangle resizers. Responsible for setting the underlying IResizableRectangle that the resizers belong to. This class is abstract.</summary>
-	abstract class RectangleResizer : ResizeControl
+    /// <summary>Base class for rectangle resizers. Responsible for setting the underlying IResizableRectangle that the resizers belong to. This class is abstract.</summary>
+    abstract class RectangleResizer : ResizeControl
 	{
 		/// <summary>The underlying IResizableRectangle that the resize control belongs to.</summary>
 		protected readonly IDrawableRectangle _shape;

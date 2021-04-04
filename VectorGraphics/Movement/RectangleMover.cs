@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using VectorGraphics.Drawables.Resizable;
+using VectorGraphics.Drawables;
 
 namespace VectorGraphics.Movement
 {

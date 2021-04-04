@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using VectorGraphics.Drawables.Resizable;
 using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
 using VectorGraphics.Resizing.Rectangle;

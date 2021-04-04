@@ -1,26 +1,30 @@
-﻿using VectorGraphics.Drawables;
+﻿using System.Drawing;
+using VectorGraphics.Drawables;
 
 namespace VectorGraphics.Saving
 {
     class RectangleSaver : IShapeSaver
     {
-        private readonly DrawableRectangle _rectangle;
+        private readonly IDrawableRectangle _drawableRectangle;
+        protected virtual string ShapeType => "Rectangle";
 
-        public RectangleSaver(DrawableRectangle rectangle)
+        public RectangleSaver(IDrawableRectangle drawableRectangle)
         {
-            _rectangle = rectangle;
+            _drawableRectangle = drawableRectangle;
         }
 
         public ShapeSaveData GetSaveData()
         {
-            ShapeSaveData result = new ShapeSaveData(_rectangle)
+            ShapeSaveData result = new ShapeSaveData(_drawableRectangle)
             {
-                ShapeType = "Rectangle"
+                ShapeType = ShapeType
             };
-            result.ShapeData["X"] = _rectangle.X.ToString();
-            result.ShapeData["Y"] = _rectangle.Y.ToString();
-            result.ShapeData["H"] = _rectangle.Height.ToString();
-            result.ShapeData["W"] = _rectangle.Width.ToString();
+
+            Rectangle rectangle = _drawableRectangle.Rectangle;
+            result.ShapeData["X"] = rectangle.X.ToString();
+            result.ShapeData["Y"] = rectangle.Y.ToString();
+            result.ShapeData["H"] = rectangle.Height.ToString();
+            result.ShapeData["W"] = rectangle.Width.ToString();
             return result;
         }
     }

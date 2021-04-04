@@ -5,6 +5,7 @@ namespace VectorGraphics.Saving
     class LineSaver : IShapeSaver
     {
         private readonly DrawableLine _line;
+        private const string ShapeType = "Line";
 
         public LineSaver(DrawableLine line)
         {
@@ -15,7 +16,7 @@ namespace VectorGraphics.Saving
         {
             ShapeSaveData result = new ShapeSaveData(_line)
             {
-                ShapeType = "Line"
+                ShapeType = ShapeType
             };
             result.ShapeData["StartX"] = _line.StartPoint.X.ToString();
             result.ShapeData["StartY"] = _line.StartPoint.Y.ToString();

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace VectorGraphics.Drawables.Resizable
+namespace VectorGraphics.Drawables
 {
     interface IDrawableRectangle : IDrawable
 	{

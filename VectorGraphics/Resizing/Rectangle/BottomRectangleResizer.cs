@@ -1,15 +1,9 @@
-﻿using VectorGraphics.Drawables;
-using VectorGraphics.Drawables.Resizable;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using VectorGraphics.Drawables;
 
 namespace VectorGraphics.Resizing.Rectangle
 {
-	class BottomRectangleResizer : RectangleResizer
+    class BottomRectangleResizer : RectangleResizer
 	{
 		public BottomRectangleResizer(IDrawableRectangle shape) : base(shape)
 		{
