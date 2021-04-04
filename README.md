@@ -27,6 +27,9 @@ When a shape is drawn, it will have resizing controls attached to it. Use these 
 ### Selecting
 Use the Pointer tool to select and resize shapes that you have already drawn to the canvas.
 
+### Moving
+Use the arrow keys to move the currently selected shape around the canvas. Use the CTRL key in combination with the arrow keys to move shapes more precisely.
+
 ### Deleting
 Use the DELETE key to delete the currently selected shape.
 
