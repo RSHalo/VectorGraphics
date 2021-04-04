@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using VectorGraphics.KeyHanding.Extensions;
 
 namespace VectorGraphics.Resizing
 {
@@ -71,6 +72,16 @@ namespace VectorGraphics.Resizing
             }
 		}
 
+		private void ResizeControl_MouseUp(object sender, MouseEventArgs e)
+		{
+			IsResizing = false;
+			
+			// Focusing the canvas on MouseUp means that key presses (for things like moving shapes) go directly to the canvas.
+			// Another solution would be to remove this Canvas.Focus() call and instead attach handlers (defined in canvas) to the resizers key events.
+			// This would also require the resizer control to configure arrow keys as input keys.
+			Canvas.Focus();
+		}
+
 		/// <summary>Moves the resize control to give the appearance of dragging.</summary>
 		protected virtual void MoveControl(MouseEventArgs e)
 		{
@@ -82,11 +93,6 @@ namespace VectorGraphics.Resizing
 
 		/// <summary>Resizes the underlying IDrawable shape that this control belongs to.</summary>
 		protected abstract void ResizeShape();
-
-		private void ResizeControl_MouseUp(object sender, MouseEventArgs e)
-		{
-			IsResizing = false;
-		}
 
 		/// <summary>Updates the world space sizing and locations of the control, to correctly align with the ParentShape.</summary>
 		public virtual void UpdateWorldState()

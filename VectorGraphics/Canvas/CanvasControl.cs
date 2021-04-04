@@ -178,8 +178,8 @@ public class CanvasControl : SelectablePanel
         shape.MoveBehaviour.Move(movementType);
         Invalidate();
     }
-
-	public void AddResizeControls()
+    
+    public void AddResizeControls()
 	{
 		// When the selected shape changes, new resize controls are needed.
 		Resizers = Drawables.SelectedShape.GetResizers();
@@ -193,7 +193,7 @@ public class CanvasControl : SelectablePanel
 		}
 	}
 
-	public void RemoveResizeControls()
+    public void RemoveResizeControls()
 	{
 		foreach (var control in Resizers)
 		{

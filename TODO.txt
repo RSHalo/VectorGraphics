@@ -1,4 +1,7 @@
 Moving selected shapes with arrow keys(like resizing)
+Cut duplicate save code for ellipse/rectangle now that they both implement IDrawableRectangle
+Double check that my use of OnEventHandler is correct. It might make more sense to just bind to the event as a handler.
+
 Undo (CTRL+Z)
 Move some canvas specific key handling from global to canvas. Also, check how much of the SelectablePanel class is even required.
 Find a tidy/centralised way to manage all the Canvas.Invalidate() calls.
