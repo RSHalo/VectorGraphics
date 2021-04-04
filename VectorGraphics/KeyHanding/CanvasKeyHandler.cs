@@ -25,7 +25,11 @@ namespace VectorGraphics.KeyHanding
 
         public void HandleKeyUp(KeyEventArgs e, Keys modifierKeys)
         {
-
+            Keys keyCode = e.KeyCode;
+            if (keyCode == Keys.Escape)
+            {
+                _canvas.Drawables.SelectedShape = null;
+            }
         }
 
         private void HandleArrowKey(KeyEventArgs e, Keys modifierKeys)

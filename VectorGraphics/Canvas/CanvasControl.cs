@@ -100,6 +100,11 @@ public class CanvasControl : SelectablePanel
         _keyHandler.HandleKeyDown(e, e.Modifiers);
     }
 
+    protected override void OnKeyUp(KeyEventArgs e)
+    {
+        _keyHandler.HandleKeyUp(e, e.Modifiers);
+    }
+
     /// <summary>Updates ZoomScale</summary>
     private void UpdateZoomScale(MouseEventArgs e)
     {

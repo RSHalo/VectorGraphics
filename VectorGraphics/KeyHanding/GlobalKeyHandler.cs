@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using VectorGraphics.View;
 
 namespace VectorGraphics.KeyHanding
@@ -45,10 +44,6 @@ namespace VectorGraphics.KeyHanding
             else if (keyCode == Keys.Delete && _view.Tool.IsDrawing == false)
             {
                 _view.DeleteSelectedShape();
-            }
-            else if (keyCode == Keys.Escape)
-            {
-                _view.CancelShapeSelection();
             }
         }
     }
