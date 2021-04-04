@@ -5,6 +5,6 @@
     {
         /// <summary>Moves a shape.</summary>
         /// <param name="movementType">The type of movement to perform.</param>
-        void MoveShape(MovementType movementType);
+        void Move(MovementType movementType);
     }
 }

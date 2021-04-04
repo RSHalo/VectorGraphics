@@ -8,7 +8,7 @@ using VectorGraphics.Saving;
 
 namespace VectorGraphics.Drawables
 {
-    public class DrawableRectangle : IDrawable, IResizableRectangle
+    public class DrawableRectangle : IDrawableRectangle
 	{
 		Rectangle _rectangle;
 
@@ -17,13 +17,12 @@ namespace VectorGraphics.Drawables
 		public IShapeMover MoveBehaviour { get; }
 
 		public Pen Pen { get; set; }
-		public int X => _rectangle.X;
+        public int X => _rectangle.X;
 		public int Y => _rectangle.Y;
 		public int Width => _rectangle.Width;
 		public int Height => _rectangle.Height;
 
-		// The rectangle that ResizerControls can modify.
-		public Rectangle ResizableRectangle
+		public Rectangle Rectangle
 		{
 			get { return _rectangle; }
 			set { _rectangle = value; }
@@ -39,6 +38,7 @@ namespace VectorGraphics.Drawables
 			Pen = pen;
 			_rectangle = rectangle;
 			SaveBehaviour = new RectangleSaver(this);
+			MoveBehaviour = new RectangleMover(this);
 		}
 
 		public void Draw(Graphics graphics)

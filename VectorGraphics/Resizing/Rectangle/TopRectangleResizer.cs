@@ -11,11 +11,11 @@ namespace VectorGraphics.Resizing.Rectangle
 {
 	class TopRectangleResizer : RectangleResizer
 	{
-		public TopRectangleResizer(IResizableRectangle shape) : base(shape)
+		public TopRectangleResizer(IDrawableRectangle shape) : base(shape)
 		{
 			// Set the control to be displayed in the middle of the top line of the rectangle.
-			WorldX = shape.ResizableRectangle.X + (shape.ResizableRectangle.Width / 2f) - (DefaultSideLength / 2f);
-			WorldY = shape.ResizableRectangle.Y - (DefaultSideLength / 2f);
+			WorldX = shape.Rectangle.X + (shape.Rectangle.Width / 2f) - (DefaultSideLength / 2f);
+			WorldY = shape.Rectangle.Y - (DefaultSideLength / 2f);
 
 			_cursor = Cursors.SizeNS;
 		}
@@ -25,7 +25,7 @@ namespace VectorGraphics.Resizing.Rectangle
 			int newY = RectangleY + DyWorld;
 			int newHeight = RectangleHeight - DyWorld;
 
-			_shape.ResizableRectangle = new System.Drawing.Rectangle(RectangleX, newY, RectangleWidth, newHeight);
+			_shape.Rectangle = new System.Drawing.Rectangle(RectangleX, newY, RectangleWidth, newHeight);
 		}
 
 		protected override void MoveControl(MouseEventArgs e)

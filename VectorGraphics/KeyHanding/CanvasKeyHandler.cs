@@ -33,8 +33,6 @@ namespace VectorGraphics.KeyHanding
             IDrawable selectedShape = _canvas.Drawables.SelectedShape;
             if (selectedShape != null)
             {
-                bool controlPressed = modifierKeys.HasFlag(Keys.Control);
-
                 MovementType movementType;
                 switch (e.KeyCode)
                 {
@@ -56,6 +54,12 @@ namespace VectorGraphics.KeyHanding
 
                     default:
                         throw new Exception("Unexpected movement type.");
+                }
+
+                // If the Control key was held, then we make the unit of movement smaller, for more precise movement.
+                if (modifierKeys.HasFlag(Keys.Control))
+                {
+                    movementType |= MovementType.SingleUnit;
                 }
 
                 _canvas.MoveShape(selectedShape, movementType);

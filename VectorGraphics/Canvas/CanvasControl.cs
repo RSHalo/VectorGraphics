@@ -175,7 +175,7 @@ public class CanvasControl : SelectablePanel
 
     public void MoveShape(IDrawable shape, MovementType movementType)
     {
-        shape.MoveBehaviour.MoveShape(movementType);
+        shape.MoveBehaviour.Move(movementType);
         Invalidate();
     }
 

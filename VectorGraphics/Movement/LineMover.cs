@@ -15,29 +15,28 @@ namespace VectorGraphics.Movement
 
         protected override void MoveDown()
         {
-            throw new NotImplementedException();
+            Move(AbsoluteMoveUnit, MovePointY);
         }
 
         protected override void MoveLeft()
         {
-            throw new NotImplementedException();
+            Move(-AbsoluteMoveUnit, MovePointX);
         }
 
         protected override void MoveRight()
         {
-            throw new NotImplementedException();
+            Move(AbsoluteMoveUnit, MovePointX);
         }
 
         protected override void MoveUp()
         {
-            _line.StartPoint = MoveY(_line.StartPoint, -10);
-            _line.EndPoint = MoveY(_line.EndPoint, -10);
+            Move(-AbsoluteMoveUnit, MovePointY);
         }
 
-        private Point MoveY(Point sourcePoint, int moveBy)
+        private void Move(int moveBy, Func<Point, int, Point> pointTransformation)
         {
-            sourcePoint.Y += moveBy;
-            return sourcePoint;
+            _line.StartPoint = pointTransformation(_line.StartPoint, moveBy);
+            _line.EndPoint = pointTransformation(_line.EndPoint, moveBy);
         }
     }
 }

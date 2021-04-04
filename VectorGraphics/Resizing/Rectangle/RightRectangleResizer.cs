@@ -11,11 +11,11 @@ namespace VectorGraphics.Resizing.Rectangle
 {
 	class RightRectangleResizer : RectangleResizer
 	{
-		public RightRectangleResizer(IResizableRectangle shape) : base(shape)
+		public RightRectangleResizer(IDrawableRectangle shape) : base(shape)
 		{
 			// Set the control to be displayed in the middle of the right side of the rectangle.
-			WorldX = shape.ResizableRectangle.X + shape.ResizableRectangle.Width - (DefaultSideLength / 2f);
-			WorldY = shape.ResizableRectangle.Y + (shape.ResizableRectangle.Height / 2) - (DefaultSideLength / 2f);
+			WorldX = shape.Rectangle.X + shape.Rectangle.Width - (DefaultSideLength / 2f);
+			WorldY = shape.Rectangle.Y + (shape.Rectangle.Height / 2) - (DefaultSideLength / 2f);
 
 			_cursor = Cursors.SizeWE;
 		}
@@ -24,7 +24,7 @@ namespace VectorGraphics.Resizing.Rectangle
 		{
 			int newWidth = RectangleWidth + DxWorld;
 
-			_shape.ResizableRectangle = new System.Drawing.Rectangle(RectangleX, RectangleY, newWidth, RectangleHeight);
+			_shape.Rectangle = new System.Drawing.Rectangle(RectangleX, RectangleY, newWidth, RectangleHeight);
 		}
 
 		protected override void MoveControl(MouseEventArgs e)

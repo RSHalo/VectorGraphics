@@ -9,7 +9,7 @@ using VectorGraphics.Saving;
 
 namespace VectorGraphics.Drawables
 {
-    public class DrawableEllipse : IDrawable, IResizableRectangle
+    public class DrawableEllipse : IDrawableRectangle
     {
         private Rectangle _boundingRectangle;
 
@@ -17,8 +17,7 @@ namespace VectorGraphics.Drawables
 		public Pen Pen { get; set; }
         public Rectangle BoundingRectangle => _boundingRectangle;
 
-        // The rectangle that ResizerControls can modify.
-        public Rectangle ResizableRectangle
+        public Rectangle Rectangle
 		{
 			get { return _boundingRectangle; }
 			set { _boundingRectangle = value; }

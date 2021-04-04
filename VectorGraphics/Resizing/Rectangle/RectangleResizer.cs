@@ -12,21 +12,21 @@ namespace VectorGraphics.Resizing.Rectangle
 	abstract class RectangleResizer : ResizeControl
 	{
 		/// <summary>The underlying IResizableRectangle that the resize control belongs to.</summary>
-		protected readonly IResizableRectangle _shape;
+		protected readonly IDrawableRectangle _shape;
 
 		/// <summary>The x coordinate of the upper left corner of the underlying IResizableRectangle.</summary>
-		protected int RectangleX => _shape.ResizableRectangle.X;
+		protected int RectangleX => _shape.Rectangle.X;
 
 		/// <summary>The y coordinate of the upper left corner of the underlying IResizableRectangle.</summary>
-		protected int RectangleY => _shape.ResizableRectangle.Y;
+		protected int RectangleY => _shape.Rectangle.Y;
 
 		/// <summary>The height of the underlying IResizableRectangle.</summary>
-		protected int RectangleHeight => _shape.ResizableRectangle.Height;
+		protected int RectangleHeight => _shape.Rectangle.Height;
 
 		/// <summary>The width of the underlying IResizableRectangle.</summary>
-		protected int RectangleWidth => _shape.ResizableRectangle.Width;
+		protected int RectangleWidth => _shape.Rectangle.Width;
 
-		public RectangleResizer(IResizableRectangle shape) : base()
+		public RectangleResizer(IDrawableRectangle shape) : base()
 		{
 			_shape = shape;
 		}
