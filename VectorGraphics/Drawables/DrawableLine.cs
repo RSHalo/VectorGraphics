@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
 using VectorGraphics.Resizing.Line;
 using VectorGraphics.Saving;
@@ -20,6 +21,7 @@ namespace VectorGraphics.Drawables
         public Point EndPoint { get; set; }
 
         public IShapeSaver SaveBehaviour { get; }
+        public IShapeMover MoveBehaviour { get; }
 
         public DrawableLine(Pen pen, Point startPoint, Point endPoint)
         {
@@ -27,6 +29,7 @@ namespace VectorGraphics.Drawables
             StartPoint = startPoint;
             EndPoint = endPoint;
             SaveBehaviour = new LineSaver(this);
+            MoveBehaviour = new LineMover(this);
         }
 
         public void Draw(Graphics graphics)

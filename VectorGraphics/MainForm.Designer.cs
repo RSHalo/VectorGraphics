@@ -50,6 +50,7 @@
             this.lblSelectedShapeId = new System.Windows.Forms.Label();
             this.MainCanvas = new CanvasControl();
             this.btnResetView = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.pnlToolsContainer.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -89,6 +90,7 @@
             this.pnlToolsContainer.Name = "pnlToolsContainer";
             this.pnlToolsContainer.Size = new System.Drawing.Size(412, 40);
             this.pnlToolsContainer.TabIndex = 13;
+            this.pnlToolsContainer.TabStop = true;
             // 
             // rbPointer
             // 
@@ -174,6 +176,7 @@
             this.chkAntiAlias.Name = "chkAntiAlias";
             this.chkAntiAlias.Size = new System.Drawing.Size(69, 17);
             this.chkAntiAlias.TabIndex = 20;
+            this.chkAntiAlias.TabStop = false;
             this.chkAntiAlias.Text = "Anti Alias";
             this.chkAntiAlias.UseVisualStyleBackColor = true;
             this.chkAntiAlias.CheckedChanged += new System.EventHandler(this.ChkAntiAlias_CheckedChanged);
@@ -185,6 +188,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 26;
+            this.btnClear.TabStop = false;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
@@ -280,7 +284,8 @@
             this.MainCanvas.OffsetX = 0F;
             this.MainCanvas.OffsetY = 0F;
             this.MainCanvas.Size = new System.Drawing.Size(1200, 428);
-            this.MainCanvas.TabIndex = 1;
+            this.MainCanvas.TabIndex = 30;
+            this.MainCanvas.TabStop = true;
             this.MainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.MainCanvas_Paint);
             this.MainCanvas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseClick);
             this.MainCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseDown);
@@ -295,15 +300,29 @@
             this.btnResetView.Name = "btnResetView";
             this.btnResetView.Size = new System.Drawing.Size(75, 23);
             this.btnResetView.TabIndex = 25;
+            this.btnResetView.TabStop = false;
             this.btnResetView.Text = "Reset View";
             this.btnResetView.UseVisualStyleBackColor = true;
             this.btnResetView.Click += new System.EventHandler(this.BtnResetView_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(978, 54);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 31;
+            this.btnSave.TabStop = false;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1227, 672);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnResetView);
             this.Controls.Add(this.lblSelectedShapeId);
             this.Controls.Add(this.lblSelectedShapeTitle);
@@ -356,6 +375,7 @@
 		private System.Windows.Forms.Label lblSelectedShapeTitle;
 		private System.Windows.Forms.Label lblSelectedShapeId;
         private System.Windows.Forms.Button btnResetView;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 

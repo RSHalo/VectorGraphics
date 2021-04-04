@@ -30,7 +30,7 @@ namespace VectorGraphics
         public MainForm()
         {
             InitializeComponent();
-			_keyHandler = new KeyHandler(this);
+			_keyHandler = new GlobalKeyHandler(this);
             _fileManager = new FileManager();
 		}
 
@@ -108,6 +108,11 @@ namespace VectorGraphics
         private void BtnResetView_Click(object sender, EventArgs e)
         {
             MainCanvas.ResetView();
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            _fileManager.Save(MainCanvas.Drawables);
         }
         #endregion
 

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using VectorGraphics.Drawables.Resizable;
+using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
 using VectorGraphics.Resizing.Rectangle;
 using VectorGraphics.Saving;
@@ -24,6 +25,7 @@ namespace VectorGraphics.Drawables
 		}
 
         public IShapeSaver SaveBehaviour { get; }
+        public IShapeMover MoveBehaviour { get; }
 
         public DrawableEllipse(Pen pen, Rectangle rectangle)
         {

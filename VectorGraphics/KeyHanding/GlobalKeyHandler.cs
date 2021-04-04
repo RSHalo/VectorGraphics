@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using VectorGraphics.View;
 
 namespace VectorGraphics.KeyHanding
 {
-    class KeyHandler : IKeyHandler
+    class GlobalKeyHandler : IKeyHandler
     {
         private readonly IProgramView _view;
 
-        public KeyHandler(IProgramView view)
+        public GlobalKeyHandler(IProgramView view)
         {
             _view = view;
         }

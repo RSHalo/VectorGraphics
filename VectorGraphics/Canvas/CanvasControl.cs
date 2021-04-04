@@ -4,11 +4,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
+using VectorGraphics.KeyHanding;
+using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
-using VectorGraphics.Saving;
 
-public class CanvasControl : Panel
-{    
+public class CanvasControl : SelectablePanel
+{
+    private readonly IKeyHandler _keyHandler;
+
     /// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
 	public DrawableCollection Drawables = new DrawableCollection();
 
@@ -35,6 +38,8 @@ public class CanvasControl : Panel
         SetStyle(ControlStyles.ResizeRedraw, true);
         mouseWheelIndent = 0;
         ZoomScale = 1;
+
+        _keyHandler = new CanvasKeyHandler(this);
 
         // An event is published when the selected shape is changed. The canvas is subscribed to this event so that it can react accordingly.
         Drawables.SelectedShapeChanged += OnSelectedShapeChanged;
@@ -88,6 +93,11 @@ public class CanvasControl : Panel
 
         // Refresh instead of Invalidate to get synchronous updating. Prevents errors with very fast mouse wheel scrolling.
         Refresh();
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        _keyHandler.HandleKeyDown(e, e.Modifiers);
     }
 
     /// <summary>Updates ZoomScale</summary>
@@ -161,6 +171,12 @@ public class CanvasControl : Panel
         {
             AddResizeControls();
         }
+    }
+
+    public void MoveShape(IDrawable shape, MovementType movementType)
+    {
+        shape.MoveBehaviour.MoveShape(movementType);
+        Invalidate();
     }
 
 	public void AddResizeControls()

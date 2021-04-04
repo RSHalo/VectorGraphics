@@ -1,6 +1,6 @@
-Aligning shapes left, right, top, bottom.
-Moving selected shapes (like resizing)
+Moving selected shapes with arrow keys(like resizing)
 Undo (CTRL+Z)
+Move some canvas specific key handling from global to canvas. Also, check how much of the SelectablePanel class is even required.
 Find a tidy/centralised way to manage all the Canvas.Invalidate() calls.
 
 After that, I think I will consider this project completed. Perhaps refactor the code to use some design patterns that I have learned from HFDP?

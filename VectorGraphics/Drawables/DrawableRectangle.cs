@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using VectorGraphics.Drawables.Resizable;
+using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
 using VectorGraphics.Resizing.Rectangle;
 using VectorGraphics.Saving;
@@ -13,6 +14,7 @@ namespace VectorGraphics.Drawables
 
 		public string Id { get; set; }
 		public IShapeSaver SaveBehaviour { get; }
+		public IShapeMover MoveBehaviour { get; }
 
 		public Pen Pen { get; set; }
 		public int X => _rectangle.X;

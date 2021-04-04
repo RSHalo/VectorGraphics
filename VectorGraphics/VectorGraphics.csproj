@@ -50,15 +50,24 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Canvas\DrawableCollection.cs" />
+    <Compile Include="Canvas\SelectablePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Drawables\DrawableEllipse.cs" />
     <Compile Include="Drawables\DrawableRectangle.cs" />
     <Compile Include="Drawables\Resizable\IResizableRectangle.cs" />
     <Compile Include="FileManagement\FileManager.cs" />
+    <Compile Include="KeyHanding\CanvasKeyHandler.cs" />
+    <Compile Include="KeyHanding\Extensions\KeyDataExtensions.cs" />
     <Compile Include="KeyHanding\IKeyHandler.cs" />
-    <Compile Include="KeyHanding\KeyHandler.cs" />
+    <Compile Include="KeyHanding\GlobalKeyHandler.cs" />
     <Compile Include="Loader\FileLoader.cs" />
     <Compile Include="Loader\IFileLoader.cs" />
     <Compile Include="Loader\LoadedShape.cs" />
+    <Compile Include="Movement\IShapeMover.cs" />
+    <Compile Include="Movement\LineMover.cs" />
+    <Compile Include="Movement\MovementType.cs" />
+    <Compile Include="Movement\ShapeMover.cs" />
     <Compile Include="Resizing\Line\LineResizer.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
 using VectorGraphics.Saving;
 
@@ -13,6 +14,10 @@ namespace VectorGraphics.Drawables
         /// <summary>Defines how the drawable must be saved to disk.</summary>
         IShapeSaver SaveBehaviour { get; }
 
+        /// <summary>Defines how the drawable can be moved.</summary>
+        IShapeMover MoveBehaviour { get; }
+
+        /// <summary>The Pen to use to draw the drawable.</summary>
 		Pen Pen { get; set; }
 
 		void Draw(Graphics graphics);

@@ -48,6 +48,7 @@ namespace VectorGraphics.Resizing
 		public ResizeControl()
 		{
 			InitializeComponent();
+			TabStop = false;
 		}
 
 		protected void ResizeControl_MouseDown(object sender, MouseEventArgs e)
