@@ -31,6 +31,7 @@ namespace VectorGraphics.Drawables
             Pen = pen;
             _boundingRectangle = rectangle;
             SaveBehaviour = new EllipseSaver(this);
+            MoveBehaviour = new RectangleMover(this);
         }
 
 		public void Draw(Graphics graphics)
