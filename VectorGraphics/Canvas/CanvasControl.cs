@@ -46,17 +46,17 @@ public class CanvasControl : SelectablePanel
     }
 
     #region Add IDrawables to the Drawables collection
-    public void AddLine(DrawableLine line)
+    public void AddLine(IDrawable line)
     {
         Drawables.AddLine(line);
     }
 
-    public void AddRectangle(DrawableRectangle rectangle)
+    public void AddRectangle(IDrawable rectangle)
     {
         Drawables.AddRectangle(rectangle);
     }
 
-    public void AddEllipse(DrawableEllipse ellipse)
+    public void AddEllipse(IDrawable ellipse)
     {
         Drawables.AddEllipse(ellipse);
     }
@@ -105,7 +105,7 @@ public class CanvasControl : SelectablePanel
         _keyHandler.HandleKeyUp(e, e.Modifiers);
     }
 
-    /// <summary>Updates ZoomScale</summary>
+    /// <summary>Updates ZoomScale.</summary>
     private void UpdateZoomScale(MouseEventArgs e)
     {
         if (e.Delta > 0)

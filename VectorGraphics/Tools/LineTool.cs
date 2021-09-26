@@ -36,7 +36,7 @@ namespace VectorGraphics.Tools
                 CreationDrawable = null;
 
                 // The final drawn result.
-                var line = GetDrawableLine(true);
+                DrawableLine line = GetDrawableLine(true);
 
                 // Add final result to the Canvas.
                 if (line.StartPoint != line.EndPoint)
@@ -48,7 +48,7 @@ namespace VectorGraphics.Tools
             }
         }
 
-        // Gets the DrawableRLine that is defined by the start position and the current position of the mouse.
+        // Gets the DrawableLine that is defined by the start position and the current position of the mouse.
         private DrawableLine GetDrawableLine(bool finalResult = false)
         {
             // Make the creation line and the final line different colors. Make creation line dashed.

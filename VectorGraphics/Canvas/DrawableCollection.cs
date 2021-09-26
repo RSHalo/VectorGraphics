@@ -42,19 +42,19 @@ namespace VectorGraphics.Canvas
 			_lineCount = _rectangleCount = _ellipseCount = 0;
 		}
 
-		public void AddLine(DrawableLine line)
+		public void AddLine(IDrawable line)
 		{
 			line.Id = $"Line{ ++_lineCount }";
 			AddShape(line);
 		}
 
-		public void AddRectangle(DrawableRectangle rectangle)
+		public void AddRectangle(IDrawable rectangle)
 		{
 			rectangle.Id = $"Rectangle{ ++_rectangleCount }";
 			AddShape(rectangle);
 		}
 
-		public void AddEllipse(DrawableEllipse ellipse)
+		public void AddEllipse(IDrawable ellipse)
 		{
 			ellipse.Id = $"Ellipse{ ++_ellipseCount }";
 			AddShape(ellipse);

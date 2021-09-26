@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
 using VectorGraphics.Resizing.Line;
@@ -12,7 +8,7 @@ using VectorGraphics.Saving;
 
 namespace VectorGraphics.Drawables
 {
-    public class DrawableLine : IDrawable
+    public class DrawableLine : IDrawableLine
     {
 		public string Id { get; set; }
 		public Pen Pen { get; set; }

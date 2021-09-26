@@ -11,10 +11,9 @@ namespace VectorGraphics
 {
     public partial class MainForm : Form, IProgramView
     {
-		// TODO: Research 2d scene graph.
-
 		private readonly IKeyHandler _keyHandler;
         private readonly FileManager _fileManager;
+        
         /// <summary>The tool selected by the user.</summary>
         public Tool Tool { get; private set; } = new Tool();
 

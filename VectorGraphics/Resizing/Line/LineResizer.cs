@@ -1,28 +1,21 @@
-﻿using VectorGraphics.Drawables;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
+using VectorGraphics.Drawables;
 
 namespace VectorGraphics.Resizing.Line
 {
-	class LineResizer : ResizeControl
+    class LineResizer : ResizeControl
 	{
-		private readonly DrawableLine _drawnLine;
+		private readonly IDrawableLine _drawnLine;
 
 		private readonly bool _isStartPoint = false;
 
-		public LineResizer(DrawableLine drawableLine, bool isStartPoint) : base()
+		public LineResizer(IDrawableLine drawableLine, bool isStartPoint) : base()
 		{
 			_drawnLine = drawableLine;
 			_isStartPoint = isStartPoint;
 
-			// Set the control to be displayed at one end of the line. Either the start or end.
-			WorldX = _isStartPoint ? _drawnLine.StartPoint.X : _drawnLine.EndPoint.X;
-			WorldY = _isStartPoint ? _drawnLine.StartPoint.Y : _drawnLine.EndPoint.Y;
+			UpdateWorldCoords();
 
 			_cursor = Cursors.SizeNESW;
 		}
@@ -50,8 +43,10 @@ namespace VectorGraphics.Resizing.Line
 
 		protected override void UpdateWorldCoords()
 		{
-			WorldX = _isStartPoint ? _drawnLine.StartPoint.X : _drawnLine.EndPoint.X;
-			WorldY = _isStartPoint ? _drawnLine.StartPoint.Y : _drawnLine.EndPoint.Y;
+			// Set the control to be displayed at one end of the line. Either the start or end, depending on _isStartPoint.
+			Point pointOnDrawnLine = _isStartPoint ? _drawnLine.StartPoint : _drawnLine.EndPoint;
+			WorldX = pointOnDrawnLine.X;
+			WorldY = pointOnDrawnLine.Y;
 		}
 	}
 }

@@ -4,10 +4,10 @@ namespace VectorGraphics.Saving
 {
     class LineSaver : IShapeSaver
     {
-        private readonly DrawableLine _line;
+        private readonly IDrawableLine _line;
         private const string ShapeType = "Line";
 
-        public LineSaver(DrawableLine line)
+        public LineSaver(IDrawableLine line)
         {
             _line = line;
         }

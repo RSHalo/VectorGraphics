@@ -6,9 +6,9 @@ namespace VectorGraphics.Movement
 {
     class LineMover : ShapeMover
     {
-        private readonly DrawableLine _line;
+        private readonly IDrawableLine _line;
 
-        public LineMover(DrawableLine line)
+        public LineMover(IDrawableLine line)
         {
             _line = line;
         }

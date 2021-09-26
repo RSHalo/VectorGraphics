@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Drawables\DrawableEllipse.cs" />
     <Compile Include="Drawables\DrawableRectangle.cs" />
+    <Compile Include="Drawables\IDrawableLine.cs" />
     <Compile Include="Drawables\IDrawableRectangle.cs" />
     <Compile Include="FileManagement\FileManager.cs" />
     <Compile Include="KeyHanding\CanvasKeyHandler.cs" />
