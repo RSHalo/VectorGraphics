@@ -173,6 +173,12 @@ public class CanvasControl : SelectablePanel
         Clear();
     }
 
+    public void DeleteSelectedShape()
+    {
+        Drawables.DeleteSelectedShape();
+        Repaint();
+    }
+
     /// <summary>Gets the appropriate resize controls for the newly selected shape.</summary>
     public void OnSelectedShapeChanged(object source, EventArgs e)
 	{

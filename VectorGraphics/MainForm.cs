@@ -45,8 +45,7 @@ namespace VectorGraphics
 
         public void DeleteSelectedShape()
         {
-            MainCanvas.Drawables.DeleteSelectedShape();
-            MainCanvas.Invalidate();
+            MainCanvas.DeleteSelectedShape();
         }
 
         #region Event handlers for radio buttons that change the tool.
