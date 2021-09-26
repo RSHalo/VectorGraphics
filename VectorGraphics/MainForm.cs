@@ -91,7 +91,7 @@ namespace VectorGraphics
         #region Event handlers for other controls on the form
         private void ChkAntiAlias_CheckedChanged(object sender, EventArgs e)
         {
-            MainCanvas.Invalidate();
+            MainCanvas.Repaint();
         }
 
         private void BtnClear_Click(object sender, EventArgs e)

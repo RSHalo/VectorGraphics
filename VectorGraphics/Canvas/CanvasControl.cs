@@ -45,6 +45,11 @@ public class CanvasControl : SelectablePanel
         Drawables.SelectedShapeChanged += OnSelectedShapeChanged;
     }
 
+    public void Repaint()
+    {
+        Invalidate();
+    }
+
     #region Add IDrawables to the Drawables collection
     public void AddLine(IDrawable line)
     {
@@ -159,7 +164,7 @@ public class CanvasControl : SelectablePanel
         mouseWheelIndent = 0;
         ZoomScale = 1;
 
-        Invalidate();
+        Repaint();
     }
 
     /// <summary>Performs any required action before loading shapes from a file.</summary>
@@ -181,7 +186,7 @@ public class CanvasControl : SelectablePanel
     public void MoveShape(IDrawable shape, MovementType movementType)
     {
         shape.MoveBehaviour.Move(movementType);
-        Invalidate();
+        Repaint();
     }
     
     public void AddResizeControls()
@@ -190,7 +195,7 @@ public class CanvasControl : SelectablePanel
 		Resizers = Drawables.SelectedShape.GetResizers();
 
 		// Add ResizeControls to the canvas.
-		foreach (var resizer in Resizers)
+		foreach (ResizeControl resizer in Resizers)
 		{
 			resizer.Canvas = this;
 			resizer.UpdateWorldState();
@@ -200,7 +205,7 @@ public class CanvasControl : SelectablePanel
 
     public void RemoveResizeControls()
 	{
-		foreach (var control in Resizers)
+		foreach (ResizeControl control in Resizers)
 		{
 			Controls.Remove(control);
 		}
@@ -213,7 +218,7 @@ public class CanvasControl : SelectablePanel
 	/// </summary>
 	public void RefreshResizers()
 	{
-		foreach (var resizer in Resizers)
+		foreach (ResizeControl resizer in Resizers)
 		{
 			resizer.UpdateWorldState();
 		}

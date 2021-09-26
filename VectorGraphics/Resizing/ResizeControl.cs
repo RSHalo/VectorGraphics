@@ -67,8 +67,8 @@ namespace VectorGraphics.Resizing
 
                 // Redraw the canvas after resizing the underlying IDrawable. This will show the IDrawable changes, but will also trigger the positions of the other
                 // resize controls to update. Other resize controls will need their positions updated when one control is moved. E.g. Consider how a left rectangle resizer will need to
-                // moved when the rectangle is moved due to a top rectangle resizer.
-                Canvas.Invalidate();
+                // moves when the rectangle is moved due to a top rectangle resizer.
+                Canvas.Repaint();
             }
 		}
 

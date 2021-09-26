@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
+using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
 
 namespace VectorGraphics.Tools
 {
-    public class Tool
+    public class Tool : ICanvasRepainter
     {
         public CanvasControl Canvas { get; set; }
         public bool IsDrawing { get; protected set; }
@@ -55,6 +51,11 @@ namespace VectorGraphics.Tools
         public virtual void Clicked(MouseEventArgs e)
         {
 
+        }
+
+        public void RepaintCanvas()
+        {
+            Canvas.Repaint();
         }
     }
 }

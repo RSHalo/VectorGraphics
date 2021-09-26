@@ -23,7 +23,7 @@ namespace VectorGraphics.Tools
             if (IsDrawing)
             {
                 CreationDrawable = GetEllipse();
-                Canvas.Invalidate();
+                RepaintCanvas();
             }
         }
 
@@ -40,7 +40,7 @@ namespace VectorGraphics.Tools
                     Canvas.AddEllipse(ellipse);
                 }
 
-                Canvas.Invalidate();
+                RepaintCanvas();
             }
         }
 

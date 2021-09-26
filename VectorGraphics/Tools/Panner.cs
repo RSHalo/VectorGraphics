@@ -38,7 +38,7 @@ namespace VectorGraphics.Tools
                 // Update for next time this Event Handler is called.
                 lastPoint = currentPoint;
 
-                Canvas.Invalidate();
+                RepaintCanvas();
             }
         }
 

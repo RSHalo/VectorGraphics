@@ -23,7 +23,7 @@ namespace VectorGraphics.Tools
             if (IsDrawing)
             {
                 CreationDrawable = GetRectangle();
-                Canvas.Invalidate();
+                RepaintCanvas();
             }
         }
 
@@ -43,7 +43,7 @@ namespace VectorGraphics.Tools
                 if (rectangle.Width > 0 && rectangle.Height > 0)
                     Canvas.AddRectangle(rectangle);
 
-                Canvas.Invalidate();
+                RepaintCanvas();
             }
         }
 

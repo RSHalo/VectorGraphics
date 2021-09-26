@@ -50,6 +50,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Canvas\DrawableCollection.cs" />
+    <Compile Include="Canvas\ICanvasRepainter.cs" />
     <Compile Include="Canvas\SelectablePanel.cs">
       <SubType>Component</SubType>
     </Compile>

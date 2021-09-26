@@ -22,7 +22,7 @@ namespace VectorGraphics.Tools
             if (IsDrawing)
             {
                 CreationDrawable = GetDrawableLine();
-                Canvas.Invalidate();
+                RepaintCanvas();
             }
         }
 
@@ -44,7 +44,7 @@ namespace VectorGraphics.Tools
                     Canvas.AddLine(line);
                 }
 
-                Canvas.Invalidate();
+                RepaintCanvas();
             }
         }
 
