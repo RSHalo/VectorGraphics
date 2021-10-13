@@ -41,7 +41,9 @@ namespace VectorGraphics.Tools
 
                 // Add final result to the Canvas.
                 if (rectangle.Width > 0 && rectangle.Height > 0)
+                {
                     Canvas.AddRectangle(rectangle);
+                }
 
                 RepaintCanvas();
             }
