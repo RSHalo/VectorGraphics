@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
@@ -15,11 +16,11 @@ public class CanvasControl : SelectablePanel
     /// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
 	public DrawableCollection Drawables = new DrawableCollection();
 
-	/// <summary>Current ResizeControls on the canvas.</summary>
-	public List<ResizeControl> Resizers = new List<ResizeControl>();
+    /// <summary>Current ResizeControls on the canvas.</summary>
+    public Dictionary<string, List<ResizeControl>> Resizers = new Dictionary<string, List<ResizeControl>>();
 
-	/// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
-	public float OffsetX { get; set; }
+    /// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
+    public float OffsetX { get; set; }
     /// <summary>The Y offset from the page co-ordinates to the world co-ordinates.</summary>
     public float OffsetY { get; set; }
 
@@ -134,17 +135,17 @@ public class CanvasControl : SelectablePanel
         return new PointF(worldX, worldY);
     }
 
-	/// <summary>Gets corresponding screen coordinates, given world coordinates.</summary>
-	public PointF WorldToScreen(float worldX, float worldY)
-	{
-		float screenX = OffsetX + (worldX * ZoomScale);
-		float screenY = OffsetY + (worldY * ZoomScale);
+    /// <summary>Gets corresponding screen coordinates, given world coordinates.</summary>
+    public PointF WorldToScreen(float worldX, float worldY)
+    {
+        float screenX = OffsetX + (worldX * ZoomScale);
+        float screenY = OffsetY + (worldY * ZoomScale);
 
-		return new PointF(screenX, screenY);
-	}
+        return new PointF(screenX, screenY);
+    }
 
-	/// <summary>Clears to a blank canvas.</summary>
-	public void Clear()
+    /// <summary>Clears to a blank canvas.</summary>
+    public void Clear()
     {
         Drawables.Clear();
         ResetView();
@@ -156,7 +157,7 @@ public class CanvasControl : SelectablePanel
     /// </summary>
     public void ResetView()
     {
-        Drawables.SelectedShape = null;
+        Drawables.DeleteSelectedShapes();
 
         OffsetX = 0f;
         OffsetY = 0f;
@@ -173,20 +174,17 @@ public class CanvasControl : SelectablePanel
         Clear();
     }
 
-    public void DeleteSelectedShape()
+    public void DeleteSelectedShapes()
     {
-        Drawables.DeleteSelectedShape();
+        Drawables.DeleteSelectedShapes();
         Repaint();
     }
 
     /// <summary>Gets the appropriate resize controls for the newly selected shape.</summary>
     public void OnSelectedShapeChanged(object source, EventArgs e)
-	{
-		RemoveResizeControls();
-		if (Drawables.SelectedShape != null)
-        {
-            AddResizeControls();
-        }
+    {
+        RemoveResizeControls();
+        AddResizeControls();
     }
 
     public void MoveShape(IDrawable shape, MovementType movementType)
@@ -194,39 +192,50 @@ public class CanvasControl : SelectablePanel
         shape.MoveBehaviour.Move(movementType);
         Repaint();
     }
-    
-    public void AddResizeControls()
-	{
-		// When the selected shape changes, new resize controls are needed.
-		Resizers = Drawables.SelectedShape.GetResizers();
 
-		// Add ResizeControls to the canvas.
-		foreach (ResizeControl resizer in Resizers)
-		{
-			resizer.Canvas = this;
-			resizer.UpdateWorldState();
-			Controls.Add(resizer);
-		}
-	}
+    public void AddResizeControls()
+    {
+        // When the selected shapes change, new resize controls are needed.
+        foreach (IDrawable selectedShape in Drawables.SelectedShapes)
+        {
+            List<ResizeControl> resizers = selectedShape.GetResizers();
+
+            // Add ResizeControls to the canvas.
+            foreach (ResizeControl resizer in resizers)
+            {
+                resizer.Canvas = this;
+                resizer.UpdateWorldState();
+                Controls.Add(resizer);
+            }
+
+            Resizers[selectedShape.Id] = resizers;
+        }
+    }
 
     public void RemoveResizeControls()
-	{
-		foreach (ResizeControl control in Resizers)
-		{
-			Controls.Remove(control);
-		}
+    {
+        foreach (List<ResizeControl> resizers in Resizers.Values)
+        {
+            foreach (ResizeControl resizer in resizers)
+            {
+                Controls.Remove(resizer);
+            }
+        }
 
-		Resizers.Clear();
-	}
+        Resizers.Clear();
+    }
 
-	/// <summary>
-	/// Updates the locations and sizes of the current resizer controls appropriately, based on the underlying IDrawable, as well as canvas offset/zoom scale.
-	/// </summary>
-	public void RefreshResizers()
-	{
-		foreach (ResizeControl resizer in Resizers)
-		{
-			resizer.UpdateWorldState();
-		}
-	}
+    /// <summary>
+    /// Updates the locations and sizes of the current resizer controls appropriately, based on the underlying IDrawable, as well as canvas offset/zoom scale.
+    /// </summary>
+    public void RefreshResizers()
+    {
+        foreach (List<ResizeControl> resizers in Resizers.Values)
+        {
+            foreach (ResizeControl resizer in resizers)
+            {
+                resizer.UpdateWorldState();
+            }
+        }
+    }
 }

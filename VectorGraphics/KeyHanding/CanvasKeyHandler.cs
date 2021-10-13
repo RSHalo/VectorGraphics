@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using VectorGraphics.Drawables;
 using VectorGraphics.KeyHanding.Extensions;
@@ -28,14 +30,14 @@ namespace VectorGraphics.KeyHanding
             Keys keyCode = e.KeyCode;
             if (keyCode == Keys.Escape)
             {
-                _canvas.Drawables.SelectedShape = null;
+                _canvas.Drawables.UnselectAll();
             }
         }
 
         private void HandleArrowKey(KeyEventArgs e, Keys modifierKeys)
         {
-            IDrawable selectedShape = _canvas.Drawables.SelectedShape;
-            if (selectedShape != null)
+            IEnumerable<IDrawable> selectedShapes = _canvas.Drawables.SelectedShapes;
+            if (selectedShapes.Any())
             {
                 MovementType movementType;
                 switch (e.KeyCode)
@@ -66,7 +68,10 @@ namespace VectorGraphics.KeyHanding
                     movementType |= MovementType.SingleUnit;
                 }
 
-                _canvas.MoveShape(selectedShape, movementType);
+                foreach (IDrawable selectedShape in selectedShapes)
+                {
+                    _canvas.MoveShape(selectedShape, movementType);
+                }
             }
         }
     }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
 using VectorGraphics.Drawables;
 using VectorGraphics.FileManagement;
@@ -43,9 +45,9 @@ namespace VectorGraphics
             _fileManager.Load(MainCanvas);
         }
 
-        public void DeleteSelectedShape()
+        public void DeleteSelectedShapes()
         {
-            MainCanvas.DeleteSelectedShape();
+            MainCanvas.DeleteSelectedShapes();
         }
 
         #region Event handlers for radio buttons that change the tool.
@@ -195,14 +197,14 @@ namespace VectorGraphics
 		{
 			lblScale.Text = $"Zoom Scale: {MainCanvas.ZoomScale}";
 
-			IDrawable selectedShape = MainCanvas.Drawables.SelectedShape;
-			if (selectedShape == null)
+			IEnumerable<IDrawable> selectedShapes = MainCanvas.Drawables.SelectedShapes;
+			if (selectedShapes.Any())
 			{
-				lblSelectedShapeId.Text = string.Empty;
+				lblSelectedShapeId.Text = string.Join(",", selectedShapes.Select(shape => shape.Id));
 			}
 			else
 			{
-				lblSelectedShapeId.Text = selectedShape.Id;
+				lblSelectedShapeId.Text = string.Empty;
 			}
 		}
     }

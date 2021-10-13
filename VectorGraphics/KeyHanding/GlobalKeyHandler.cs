@@ -43,7 +43,7 @@ namespace VectorGraphics.KeyHanding
             }
             else if (keyCode == Keys.Delete && _view.Tool.IsDrawing == false)
             {
-                _view.DeleteSelectedShape();
+                _view.DeleteSelectedShapes();
             }
         }
     }
