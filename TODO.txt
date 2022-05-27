@@ -1,3 +1,5 @@
-Undo (CTRL+Z)
+Fix saving. It seems that the last drawn shape does not get saved. This might related to the bug which caused the last drawn shape to disappear when resetting the view.
+Allow rectangles to go into negative widths/heights. That is, redraw the rectangle when going into negative widths and heights, rather than making the rectangle invisible..
+Undo (CTRL+Z). Might be able to use command pattern from HFDP.
 
 After that, I think I will consider this project completed.
