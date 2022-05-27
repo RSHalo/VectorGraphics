@@ -239,9 +239,6 @@ public class CanvasControl : SelectablePanel, ICanvas
 
     protected override void OnMouseMove(MouseEventArgs e)
     {
-        // TODO:
-        // Refactor note: Does MainForm.MainCanvas_MouseMove still get called?
-        // If it does, then does this or MainForm.MainCanvas_MouseMove get called first?
         Tool.UpdateWorldCoords(e);
         Tool.MouseMoved(e);
 
