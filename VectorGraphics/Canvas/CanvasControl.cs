@@ -233,8 +233,8 @@ public class CanvasControl : SelectablePanel, ICanvas
     #region Event handlers for mouse events
     protected override void OnMouseDown(MouseEventArgs e)
     {
-        base.OnMouseDown(e);
         Tool.MouseDown(e);
+        base.OnMouseDown(e);
     }
 
     protected override void OnMouseMove(MouseEventArgs e)
@@ -244,6 +244,8 @@ public class CanvasControl : SelectablePanel, ICanvas
         // If it does, then does this or MainForm.MainCanvas_MouseMove get called first?
         Tool.UpdateWorldCoords(e);
         Tool.MouseMoved(e);
+
+        base.OnMouseMove(e);
     }
 
     protected override void OnMouseClick(MouseEventArgs e)
@@ -262,7 +264,7 @@ public class CanvasControl : SelectablePanel, ICanvas
         // Some of this may not belong in the canvas code, like updating peripherals. They will need to move.
         // Also, do I need to call base.OnPaint() here?
 
-        var graphics = e.Graphics;
+        Graphics graphics = e.Graphics;
 
         graphics.SmoothingMode = SmoothingMode;
 
@@ -289,6 +291,8 @@ public class CanvasControl : SelectablePanel, ICanvas
         }
 
         RefreshResizers();
+
+        base.OnPaint(e);
     }
 
     public T SetupTool<T>() where T : Tool, new()
