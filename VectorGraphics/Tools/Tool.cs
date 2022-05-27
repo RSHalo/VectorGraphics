@@ -7,7 +7,8 @@ namespace VectorGraphics.Tools
 {
     public class Tool : ICanvasRepainter
     {
-        public CanvasControl Canvas { get; set; }
+        public ICanvas Canvas { get; set; }
+
         public bool IsDrawing { get; protected set; }
         public bool IsControlHeld { get; set; }
 
@@ -18,8 +19,10 @@ namespace VectorGraphics.Tools
 
         public Point WorldPoint => new Point(WorldX, WorldY);
 
-        /// <summary>The shape to be drawn while the tool is creating a final result.</summary>
-        // E.g. The rectangle that moves along with the mouse when you are drawing a rectangle.
+        /// <summary>
+        /// The shape to be drawn while the tool is creating a final result.
+        /// E.g. The rectangle that moves along with the mouse when you are drawing a rectangle.
+        ///</summary>
         public IDrawable CreationDrawable { get; protected set; }
 
         public Cursor Cursor { get; protected set; } = Cursors.Cross;

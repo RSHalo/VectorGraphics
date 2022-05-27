@@ -37,7 +37,7 @@ namespace VectorGraphics.Tools
                 if (startPoint != currentPoint)
                 {
                     var ellipse = GetEllipse(true);
-                    Canvas.AddEllipse(ellipse);
+                    Canvas.AddShape(ellipse);
                 }
 
                 RepaintCanvas();

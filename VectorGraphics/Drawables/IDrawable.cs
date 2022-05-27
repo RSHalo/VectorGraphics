@@ -8,8 +8,11 @@ namespace VectorGraphics.Drawables
 {
     public interface IDrawable
     {
-        /// <summary>The shapes unique Id.</summary>
+        /// <summary>The shapes unique id.</summary>
 		string Id { get; set; }
+
+        /// <summary>The prefix to use for the shape's id.</summary>
+        string IdPrefix { get; }
 
         /// <summary>Defines how the drawable must be saved to disk.</summary>
         IShapeSaver SaveBehaviour { get; }

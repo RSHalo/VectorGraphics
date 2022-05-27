@@ -12,6 +12,7 @@ namespace VectorGraphics.Drawables
 		Rectangle _rectangle;
 
 		public string Id { get; set; }
+		public string IdPrefix => "Rectangle";
 		public IShapeSaver SaveBehaviour { get; }
 		public IShapeMover MoveBehaviour { get; }
 
