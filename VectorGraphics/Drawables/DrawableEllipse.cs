@@ -13,7 +13,8 @@ namespace VectorGraphics.Drawables
         private Rectangle _boundingRectangle;
 
 		public string Id { get; set; }
-		public Pen Pen { get; set; }
+        public string IdPrefix => "Ellipse";
+        public Pen Pen { get; set; }
         public Rectangle BoundingRectangle => _boundingRectangle;
 
         public Rectangle Rectangle

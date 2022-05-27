@@ -14,10 +14,7 @@ namespace VectorGraphics.KeyHanding
 
         public void HandleKeyDown(KeyEventArgs e, Keys modifierKeys)
         {
-            if (e.KeyCode == Keys.ControlKey)
-            {
-                _view.Tool.IsControlHeld = true;
-            }
+
         }
 
         public void HandleKeyUp(KeyEventArgs e, Keys modifierKeys)
@@ -35,15 +32,6 @@ namespace VectorGraphics.KeyHanding
                         _view.Open();
                         break;
                 }
-            }
-
-            if (keyCode == Keys.ControlKey)
-            {
-                _view.Tool.IsControlHeld = false;
-            }
-            else if (keyCode == Keys.Delete && _view.Tool.IsDrawing == false)
-            {
-                _view.DeleteSelectedShapes();
             }
         }
     }

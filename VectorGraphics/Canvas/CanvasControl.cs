@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
 using VectorGraphics.KeyHanding;
 using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
+using VectorGraphics.Tools;
 
-public class CanvasControl : SelectablePanel
+public class CanvasControl : SelectablePanel, ICanvas
 {
     private readonly IKeyHandler _keyHandler;
 
-    /// <summary>The drawable shapes that need to be drawn when the Canvas is painted.</summary>
-	public DrawableCollection Drawables = new DrawableCollection();
+	public DrawableCollection Drawables { get; } = new DrawableCollection();
 
     /// <summary>Current ResizeControls on the canvas.</summary>
     public Dictionary<string, List<ResizeControl>> Resizers = new Dictionary<string, List<ResizeControl>>();
 
-    /// <summary>The X offset from the page co-ordinates to the world co-ordinates.</summary>
+    public Tool Tool { get; private set; } = new Tool();
+
     public float OffsetX { get; set; }
-    /// <summary>The Y offset from the page co-ordinates to the world co-ordinates.</summary>
     public float OffsetY { get; set; }
 
     /// <summary>The scale factor which determines how zoomed in/out the view is.</summary>
@@ -32,6 +32,9 @@ public class CanvasControl : SelectablePanel
     public PointF BeforeZoomWorld { get; private set; }
     /// <summary>World coordinates of the mouse position after zooming.</summary>
     public PointF AfterZoomWorld { get; private set; }
+
+    /// <summary>The SmoothingMode selected by the user.</summary>
+    public SmoothingMode SmoothingMode { get; set; }
 
     public CanvasControl()
     {
@@ -50,23 +53,6 @@ public class CanvasControl : SelectablePanel
     {
         Invalidate();
     }
-
-    #region Add IDrawables to the Drawables collection
-    public void AddLine(IDrawable line)
-    {
-        Drawables.AddLine(line);
-    }
-
-    public void AddRectangle(IDrawable rectangle)
-    {
-        Drawables.AddRectangle(rectangle);
-    }
-
-    public void AddEllipse(IDrawable ellipse)
-    {
-        Drawables.AddEllipse(ellipse);
-    }
-    #endregion Add IDrawables to the Drawables collection
 
     // May not work on non Windows 10. Haven't tested.
     // When we scale, the world coordinates under the mouse change (they move to a different part of the screen).
@@ -168,6 +154,17 @@ public class CanvasControl : SelectablePanel
         Repaint();
     }
 
+    public void AddShape(IDrawable shape)
+    {
+        Drawables.AddShape(shape);
+    }
+
+    public void MoveShape(IDrawable shape, MovementType movementType)
+    {
+        shape.MoveBehaviour.Move(movementType);
+        Repaint();
+    }
+
     /// <summary>Performs any required action before loading shapes from a file.</summary>
     public void PreLoad()
     {
@@ -185,12 +182,6 @@ public class CanvasControl : SelectablePanel
     {
         RemoveResizeControls();
         AddResizeControls();
-    }
-
-    public void MoveShape(IDrawable shape, MovementType movementType)
-    {
-        shape.MoveBehaviour.Move(movementType);
-        Repaint();
     }
 
     public void AddResizeControls()
@@ -237,5 +228,78 @@ public class CanvasControl : SelectablePanel
                 resizer.UpdateWorldState();
             }
         }
+    }
+
+    #region Event handlers for mouse events
+    protected override void OnMouseDown(MouseEventArgs e)
+    {
+        Tool.MouseDown(e);
+    }
+
+    protected override void OnMouseMove(MouseEventArgs e)
+    {
+        // TODO:
+        // Refactor note: Does MainForm.MainCanvas_MouseMove still get called?
+        // If it does, then does this or MainForm.MainCanvas_MouseMove get called first?
+        Tool.UpdateWorldCoords(e);
+        Tool.MouseMoved(e);
+    }
+
+    protected override void OnMouseClick(MouseEventArgs e)
+    {
+        Tool.Clicked(e);
+    }
+
+    protected override void OnMouseUp(MouseEventArgs e)
+    {
+        Tool.MouseUp(e);
+    }
+    #endregion
+
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        // Some of this may not belong in the canvas code, like updating peripherals. They will need to move.
+        // Also, do I need to call base.OnPaint() here?
+
+        var graphics = e.Graphics;
+
+        graphics.SmoothingMode = SmoothingMode;
+
+        // Apply scaling defined by Canvas.ZoomScale
+        graphics.ScaleTransform(ZoomScale, ZoomScale, MatrixOrder.Append);
+
+        // Apply the translation defined by the offset values.
+        graphics.TranslateTransform(OffsetX, OffsetY, MatrixOrder.Append);
+
+        // All drawing happens when this Canvas is painted on the screen.
+        // You don't just draw a line and expect it to persist. The drawing will disappear when you minimise then maximise the form.
+        // So, if we do all drawing when the containing Panel is drawn, then any time we can see our Panel, all our lines/rectangles will have been drawn too.
+        // This is a very important concept. When you want to research, do a Google search like: "Drawing Paint event", "Drawing OnPaint override".
+        foreach (IDrawable drawable in Drawables)
+        {
+            drawable.Draw(graphics);
+        }
+
+        // When you draw a shape, you may drag your mouse to construct the shape. While this happens, IsDrawing will be set to true.
+        // We want to show the shape being created by the mouse moving, so we draw the Tool's "CreationDrawable" shape.
+        if (Tool.IsDrawing)
+        {
+            Tool.CreationDrawable?.Draw(graphics);
+        }
+
+        RefreshResizers();
+    }
+
+    public T SetupTool<T>() where T : Tool, new()
+    {
+        // Create new instance of the specified tool and assign it's canvas.
+        T tool = new T
+        {
+            Canvas = this
+        };
+
+        Tool = tool;
+        Cursor = tool.Cursor;
+        return tool;
     }
 }

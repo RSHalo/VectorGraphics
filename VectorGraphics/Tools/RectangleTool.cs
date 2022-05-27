@@ -42,7 +42,7 @@ namespace VectorGraphics.Tools
                 // Add final result to the Canvas.
                 if (rectangle.Width > 0 && rectangle.Height > 0)
                 {
-                    Canvas.AddRectangle(rectangle);
+                    Canvas.AddShape(rectangle);
                 }
 
                 RepaintCanvas();
@@ -59,12 +59,18 @@ namespace VectorGraphics.Tools
                 Math.Abs(startPoint.Y - currentPoint.Y));
 
             // Make the creation shapes and the final shape different colors. Give creation shape a dashed line.
-            Pen pen = finalResult ?
-                                   Pens.Red :
-                                   new Pen(Color.DarkCyan)
-                                   {
-                                       DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
-                                   };
+            Pen pen;
+            if (finalResult)
+            {
+                pen = Pens.Red;
+            }
+            else
+            {
+                pen = new Pen(Color.DarkCyan)
+                {
+                    DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
+                };
+            }                 
 
             return new DrawableRectangle(pen, rectangle);
         }

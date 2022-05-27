@@ -11,10 +11,7 @@ namespace VectorGraphics.Canvas
     {
         private List<IDrawable> _drawables = new List<IDrawable>();
         private readonly List<IDrawable> _selectedShapes = new List<IDrawable>();
-
-        private int _lineCount = 0;
-        private int _rectangleCount = 0;
-        private int _ellipseCount = 0;
+        private readonly Dictionary<string, int> _countsByShapeType = new Dictionary<string, int>();
 
         public event EventHandler SelectedShapeChanged;
         public IEnumerable<IDrawable> SelectedShapes => _selectedShapes;
@@ -26,29 +23,13 @@ namespace VectorGraphics.Canvas
         public void Clear()
         {
             _drawables.Clear();
-            _lineCount = _rectangleCount = _ellipseCount = 0;
+            _countsByShapeType.Clear();
         }
 
-        public void AddLine(IDrawable line)
+        public void AddShape(IDrawable shape)
         {
-            line.Id = $"Line{ ++_lineCount }";
-            AddShape(line);
-        }
-
-        public void AddRectangle(IDrawable rectangle)
-        {
-            rectangle.Id = $"Rectangle{ ++_rectangleCount }";
-            AddShape(rectangle);
-        }
-
-        public void AddEllipse(IDrawable ellipse)
-        {
-            ellipse.Id = $"Ellipse{ ++_ellipseCount }";
-            AddShape(ellipse);
-        }
-
-        private void AddShape(IDrawable shape)
-        {
+            int count = IncrementShapeCount(shape);
+            shape.Id = shape.IdPrefix + count;
             _drawables.Add(shape);
             SelectSingleShape(shape);
         }
@@ -94,6 +75,21 @@ namespace VectorGraphics.Canvas
         protected virtual void OnSelectedShapeChanged()
         {
             SelectedShapeChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private int IncrementShapeCount(IDrawable shape)
+        {
+            string key = shape.IdPrefix;
+            if (_countsByShapeType.ContainsKey(key))
+            {
+                _countsByShapeType[key]++;
+            }
+            else
+            {
+                _countsByShapeType[key] = 1;
+            }
+
+            return _countsByShapeType[key];
         }
     }
 }

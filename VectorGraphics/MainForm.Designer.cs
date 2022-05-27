@@ -286,12 +286,9 @@
             this.MainCanvas.Size = new System.Drawing.Size(1200, 428);
             this.MainCanvas.TabIndex = 30;
             this.MainCanvas.TabStop = true;
-            this.MainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.MainCanvas_Paint);
-            this.MainCanvas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseClick);
-            this.MainCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseDown);
-            this.MainCanvas.MouseLeave += new System.EventHandler(this.MainCanvas_MouseLeave);
             this.MainCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseMove);
-            this.MainCanvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseUp);
+            this.MainCanvas.MouseLeave += new System.EventHandler(this.MainCanvas_MouseLeave);
+            this.MainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.MainCanvas_Paint);
             // 
             // btnResetView
             // 

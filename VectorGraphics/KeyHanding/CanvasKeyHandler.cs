@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
 using VectorGraphics.KeyHanding.Extensions;
 using VectorGraphics.Movement;
@@ -10,9 +11,9 @@ namespace VectorGraphics.KeyHanding
 {
     class CanvasKeyHandler : IKeyHandler
     {
-        private readonly CanvasControl _canvas;
+        private readonly ICanvas _canvas;
 
-        public CanvasKeyHandler(CanvasControl canvas)
+        public CanvasKeyHandler(ICanvas canvas)
         {
             _canvas = canvas;
         }
@@ -23,6 +24,11 @@ namespace VectorGraphics.KeyHanding
             {
                 HandleArrowKey(e, modifierKeys);
             }
+
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                _canvas.Tool.IsControlHeld = true;
+            }
         }
 
         public void HandleKeyUp(KeyEventArgs e, Keys modifierKeys)
@@ -31,6 +37,15 @@ namespace VectorGraphics.KeyHanding
             if (keyCode == Keys.Escape)
             {
                 _canvas.Drawables.UnselectAll();
+            }
+
+            if (keyCode == Keys.ControlKey)
+            {
+                _canvas.Tool.IsControlHeld = false;
+            }
+            else if (keyCode == Keys.Delete && _canvas.Tool.IsDrawing == false)
+            {
+                _canvas.DeleteSelectedShapes();
             }
         }
 

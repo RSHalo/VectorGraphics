@@ -89,27 +89,30 @@ namespace VectorGraphics.Loader
         {
             canvas.PreLoad();
 
-            foreach (LoadedShape shape in shapes)
+            foreach (LoadedShape loadedShape in shapes)
             {
-                Pen pen = CreatePen(shape);
+                Pen pen = CreatePen(loadedShape);
 
-                string shapeTypeUpper = shape.ShapeType.ToUpperInvariant();
+                IDrawable shape = null;
+                string shapeTypeUpper = loadedShape.ShapeType.ToUpperInvariant();
                 switch (shapeTypeUpper)
                 {
                     case "LINE":
-                        DrawableLine line = CreateDrawableLine(shape, pen);
-                        canvas.AddLine(line);
+                        shape = CreateDrawableLine(loadedShape, pen);
                         break;
 
                     case "RECTANGLE":
-                        DrawableRectangle rectangle = CreateDrawableRectangle(shape, pen);
-                        canvas.AddRectangle(rectangle);
+                        shape = CreateDrawableRectangle(loadedShape, pen);
                         break;
 
                     case "ELLIPSE":
-                        DrawableEllipse ellipse = CreateDrawableEllipse(shape, pen);
-                        canvas.AddEllipse(ellipse);
+                        shape = CreateDrawableEllipse(loadedShape, pen);
                         break;
+                }
+
+                if (shape != null)
+                {
+                    canvas.AddShape(shape);
                 }
             }
 

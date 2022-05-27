@@ -11,7 +11,8 @@ namespace VectorGraphics.Drawables
     public class DrawableLine : IDrawableLine
     {
 		public string Id { get; set; }
-		public Pen Pen { get; set; }
+        public string IdPrefix => "Line";
+        public Pen Pen { get; set; }
 
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
