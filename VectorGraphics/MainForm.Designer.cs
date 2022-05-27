@@ -289,6 +289,7 @@
             this.MainCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainCanvas_MouseMove);
             this.MainCanvas.MouseLeave += new System.EventHandler(this.MainCanvas_MouseLeave);
             this.MainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.MainCanvas_Paint);
+            this.MainCanvas.Drawables.SelectedShapeChanged += (object o, System.EventArgs e) => this.UpdatePeripherals();
             // 
             // btnResetView
             // 
