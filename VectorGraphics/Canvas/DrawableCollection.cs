@@ -31,7 +31,6 @@ namespace VectorGraphics.Canvas
             int count = IncrementShapeCount(shape);
             shape.Id = shape.IdPrefix + count;
             _drawables.Add(shape);
-            SelectSingleShape(shape);
         }
 
         /// <summary>Adds the shape to the currently selected shapes.</summary>

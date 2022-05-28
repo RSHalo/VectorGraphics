@@ -157,6 +157,12 @@ public class CanvasControl : SelectablePanel, ICanvas
     public void AddShape(IDrawable shape)
     {
         Drawables.AddShape(shape);
+        Drawables.SelectSingleShape(shape);
+    }
+
+    public void AddLoadedShape(IDrawable shape)
+    {
+        Drawables.AddShape(shape);
     }
 
     public void MoveShape(IDrawable shape, MovementType movementType)

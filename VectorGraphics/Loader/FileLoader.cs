@@ -112,7 +112,7 @@ namespace VectorGraphics.Loader
 
                 if (shape != null)
                 {
-                    canvas.AddShape(shape);
+                    canvas.AddLoadedShape(shape);
                 }
             }
 
