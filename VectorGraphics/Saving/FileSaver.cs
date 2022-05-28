@@ -31,14 +31,16 @@ namespace VectorGraphics.Saving
             Save(drawables, _activeFilePath);
         }
 
-        public void SaveAsNewFile(IEnumerable<IDrawable> drawables)
+        public bool SaveAsNewFile(IEnumerable<IDrawable> drawables)
         {
             string newFilePath = GetFilePath();
             if (newFilePath != null)
             {
                 Save(drawables, newFilePath);
                 SetActiveFilePath(newFilePath);
+                return true;
             }
+            return false;
         }
 
         private void Save(IEnumerable<IDrawable> drawables, string filePath)

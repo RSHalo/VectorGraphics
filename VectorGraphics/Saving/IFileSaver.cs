@@ -11,7 +11,8 @@ namespace VectorGraphics.Saving
 
         /// <summary>Saves drawables to a new file, selected by the user.</summary>
         /// <param name="drawables">The drawables to save.</param>
-        void SaveAsNewFile(IEnumerable<IDrawable> drawables);
+        /// <returns>Whether the new file was saved.</returns>
+        bool SaveAsNewFile(IEnumerable<IDrawable> drawables);
 
         /// <summary>Sets the active file path that shapes will be saved to.</summary>
         void SetActiveFilePath(string newActiveFilePath);

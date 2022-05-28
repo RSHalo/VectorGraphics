@@ -14,11 +14,6 @@ namespace VectorGraphics.KeyHanding
 
         public void HandleKeyDown(KeyEventArgs e, Keys modifierKeys)
         {
-
-        }
-
-        public void HandleKeyUp(KeyEventArgs e, Keys modifierKeys)
-        {
             Keys keyCode = e.KeyCode;
             if (modifierKeys.HasFlag(Keys.Control))
             {
@@ -33,6 +28,11 @@ namespace VectorGraphics.KeyHanding
                         break;
                 }
             }
+        }
+
+        public void HandleKeyUp(KeyEventArgs e, Keys modifierKeys)
+        {
+            
         }
     }
 }

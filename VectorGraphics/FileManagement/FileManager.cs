@@ -32,8 +32,8 @@ namespace VectorGraphics.FileManagement
             }
             else
             {
-                _saver.SaveAsNewFile(drawables);
-                _currentDrawingHasFile = true;
+                bool saveSuccess = _saver.SaveAsNewFile(drawables);
+                _currentDrawingHasFile = saveSuccess;
             }
         }
 
