@@ -134,6 +134,7 @@ public class CanvasControl : SelectablePanel, ICanvas
     public void Clear()
     {
         Drawables.Clear();
+        Drawables.DeleteSelectedShapes();
         ResetView();
     }
 
@@ -143,8 +144,6 @@ public class CanvasControl : SelectablePanel, ICanvas
     /// </summary>
     public void ResetView()
     {
-        Drawables.DeleteSelectedShapes();
-
         OffsetX = 0f;
         OffsetY = 0f;
 

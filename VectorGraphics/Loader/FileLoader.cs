@@ -116,7 +116,7 @@ namespace VectorGraphics.Loader
                 }
             }
 
-            canvas.ResetView();
+            canvas.Repaint();
         }
 
         private Pen CreatePen(LoadedShape shape)
