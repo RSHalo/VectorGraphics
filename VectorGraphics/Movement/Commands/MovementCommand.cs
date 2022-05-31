@@ -2,6 +2,9 @@
 
 namespace VectorGraphics.Movement.Commands
 {
+    /// <summary>
+    /// A command to move a shape across the canvas.
+    /// </summary>
     public class MoveCommand : ICanvasCommand
     {
         private readonly IShapeMover _shapeMover;
