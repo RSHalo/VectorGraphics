@@ -37,3 +37,6 @@ Use the DELETE key to delete the currently selected shape.
 ### Saving and Opening
 Use CTRL+S to save a drawing to a file. Files are saved as XML.  
 Use CTRL+O to open a drawing file.
+
+### Other
+Use CTRL+Z to undo shape movement.

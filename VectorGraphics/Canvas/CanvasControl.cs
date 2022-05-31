@@ -6,13 +6,14 @@ using System.Windows.Forms;
 using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
 using VectorGraphics.KeyHanding;
-using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
 using VectorGraphics.Tools;
 
 public class CanvasControl : SelectablePanel, ICanvas
 {
     private readonly IKeyHandler _keyHandler;
+
+    private Stack<ICanvasCommand> _undoCommands = new Stack<ICanvasCommand>();
 
 	public DrawableCollection Drawables { get; } = new DrawableCollection();
 
@@ -164,10 +165,21 @@ public class CanvasControl : SelectablePanel, ICanvas
         Drawables.AddShape(shape);
     }
 
-    public void MoveShape(IDrawable shape, MovementType movementType)
+    public void ExecuteCommand(ICanvasCommand command)
     {
-        shape.MoveBehaviour.Move(movementType);
+        _undoCommands.Push(command);
+        command.Execute();
         Repaint();
+    }
+
+    public void UndoCommand()
+    {
+        if (_undoCommands.Count > 0)
+        {
+            ICanvasCommand command = _undoCommands.Pop();
+            command.Undo();
+            Repaint();
+        }
     }
 
     /// <summary>Performs any required action before loading shapes from a file.</summary>

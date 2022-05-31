@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace VectorGraphics.Movement
 {
-    abstract class ShapeMover : IShapeMover
+    public abstract class ShapeMover : IShapeMover
     {
         protected int AbsoluteMoveUnit { get; private set; } = 10;
 
