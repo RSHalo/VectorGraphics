@@ -6,6 +6,7 @@ using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
 using VectorGraphics.KeyHanding.Extensions;
 using VectorGraphics.Movement;
+using VectorGraphics.Movement.Commands;
 
 namespace VectorGraphics.KeyHanding
 {
@@ -28,6 +29,17 @@ namespace VectorGraphics.KeyHanding
             if (e.KeyCode == Keys.ControlKey)
             {
                 _canvas.Tool.IsControlHeld = true;
+            }
+
+            if (modifierKeys.HasFlag(Keys.Control))
+            {
+                switch (e.KeyCode)
+                {
+                    // Undo the last operation.
+                    case Keys.Z:
+                        _canvas.Undo();
+                        break;
+                }
             }
         }
 
@@ -85,7 +97,9 @@ namespace VectorGraphics.KeyHanding
 
                 foreach (IDrawable selectedShape in selectedShapes)
                 {
-                    _canvas.MoveShape(selectedShape, movementType);
+                    IShapeMover mover = selectedShape.MoveBehaviour;
+                    MoveCommand command = new MoveCommand(mover, movementType);
+                    _canvas.MoveShape(command);
                 }
             }
         }

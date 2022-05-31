@@ -26,9 +26,11 @@ namespace VectorGraphics.Canvas
         void DeleteSelectedShapes();
 
         /// <summary>Moves a shape.</summary>
-        /// <param name="shape">The shape to move.</param>
-        /// <param name="movementType">The <see cref="MovementType"/>.</param>
-        void MoveShape(IDrawable shape, MovementType movementType);
+        /// <param name="command">The command that represents the movement.</param>
+        void MoveShape(ICanvasCommand command);
+
+        /// <summary>Undo the last operation.</summary>
+        void Undo();
 
         /// <summary>Repaints the canvas.</summary>
         void Repaint();

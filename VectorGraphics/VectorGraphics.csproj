@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="Canvas\DrawableCollection.cs" />
     <Compile Include="Canvas\ICanvas.cs" />
+    <Compile Include="Canvas\ICanvasCommand.cs" />
     <Compile Include="Canvas\ICanvasRepainter.cs" />
     <Compile Include="Canvas\SelectablePanel.cs">
       <SubType>Component</SubType>
@@ -67,6 +68,7 @@
     <Compile Include="Loader\FileLoader.cs" />
     <Compile Include="Loader\IFileLoader.cs" />
     <Compile Include="Loader\LoadedShape.cs" />
+    <Compile Include="Movement\Commands\MovementCommand.cs" />
     <Compile Include="Movement\IShapeMover.cs" />
     <Compile Include="Movement\LineMover.cs" />
     <Compile Include="Movement\MovementType.cs" />

@@ -14,6 +14,8 @@ public class CanvasControl : SelectablePanel, ICanvas
 {
     private readonly IKeyHandler _keyHandler;
 
+    private Stack<ICanvasCommand> _undoCommands = new Stack<ICanvasCommand>();
+
 	public DrawableCollection Drawables { get; } = new DrawableCollection();
 
     /// <summary>Current ResizeControls on the canvas.</summary>
@@ -164,10 +166,20 @@ public class CanvasControl : SelectablePanel, ICanvas
         Drawables.AddShape(shape);
     }
 
-    public void MoveShape(IDrawable shape, MovementType movementType)
+    public void MoveShape(ICanvasCommand command)
     {
-        shape.MoveBehaviour.Move(movementType);
+        ExecuteCommand(command);
         Repaint();
+    }
+
+    public void Undo()
+    {
+        if (_undoCommands.Count > 0)
+        {
+            ICanvasCommand command = _undoCommands.Pop();
+            command.Undo();
+            Repaint();
+        }
     }
 
     /// <summary>Performs any required action before loading shapes from a file.</summary>
@@ -308,5 +320,11 @@ public class CanvasControl : SelectablePanel, ICanvas
         Tool = tool;
         Cursor = tool.Cursor;
         return tool;
+    }
+
+    private void ExecuteCommand(ICanvasCommand command)
+    {
+        _undoCommands.Push(command);
+        command.Execute();
     }
 }
