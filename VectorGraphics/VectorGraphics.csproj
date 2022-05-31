@@ -106,6 +106,7 @@
     <Compile Include="Saving\RectangleSaver.cs" />
     <Compile Include="Saving\FileSaver.cs" />
     <Compile Include="Saving\ShapeSaveData.cs" />
+    <Compile Include="Tools\Commands\AddShapeCommand.cs" />
     <Compile Include="Tools\EllipseTool.cs" />
     <Compile Include="Tools\LineTool.cs" />
     <Compile Include="Tools\Panner.cs" />

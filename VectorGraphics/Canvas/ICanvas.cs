@@ -22,6 +22,10 @@ namespace VectorGraphics.Canvas
         /// <param name="shape">The shape to add.</param>
         void AddShape(IDrawable shape);
 
+        /// <summary>Removes a shape from the canvas.</summary>
+        /// <param name="shape">The shape to remove.</param>
+        void DeleteShape(IDrawable shape);
+
         /// <summary>Delete the shapes that are currently selected.</summary>
         void DeleteSelectedShapes();
 

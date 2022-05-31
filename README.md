@@ -39,4 +39,4 @@ Use CTRL+S to save a drawing to a file. Files are saved as XML.
 Use CTRL+O to open a drawing file.
 
 ### Other
-Use CTRL+Z to undo shape movement.
+Use CTRL+Z to undo shape drawing and movement. There is not currently support for undoing shape resizing.

@@ -41,7 +41,7 @@ namespace VectorGraphics.Tools
                 // Add final result to the Canvas.
                 if (line.StartPoint != line.EndPoint)
                 {
-                    Canvas.AddShape(line);
+                    AddShape(line);
                 }
 
                 RepaintCanvas();

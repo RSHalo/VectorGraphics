@@ -9,14 +9,14 @@ namespace VectorGraphics.Canvas
     /// <summary>Holds the collection of shapes that are to be drawn to a canvas.</summary>
     public class DrawableCollection : IEnumerable<IDrawable>
     {
-        private List<IDrawable> _drawables = new List<IDrawable>();
+        private Dictionary<string, IDrawable> _drawables = new Dictionary<string, IDrawable>();
         private readonly List<IDrawable> _selectedShapes = new List<IDrawable>();
         private readonly Dictionary<string, int> _countsByShapeType = new Dictionary<string, int>();
 
         public event EventHandler SelectedShapeChanged;
         public IEnumerable<IDrawable> SelectedShapes => _selectedShapes;
 
-        public IEnumerator<IDrawable> GetEnumerator() => _drawables.GetEnumerator();
+        public IEnumerator<IDrawable> GetEnumerator() => _drawables.Values.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -30,7 +30,13 @@ namespace VectorGraphics.Canvas
         {
             int count = IncrementShapeCount(shape);
             shape.Id = shape.IdPrefix + count;
-            _drawables.Add(shape);
+            _drawables[shape.Id] = shape;
+        }
+
+        public void DeleteShape(IDrawable shape)
+        {
+            _drawables.Remove(shape.Id);
+            UnselectShape(shape);
         }
 
         /// <summary>Adds the shape to the currently selected shapes.</summary>
@@ -67,7 +73,11 @@ namespace VectorGraphics.Canvas
         /// <summary>Delete the selected shapes.</summary>
         public void DeleteSelectedShapes()
         {
-            _drawables = _drawables.Except(_selectedShapes).ToList();
+            foreach (IDrawable shape in _selectedShapes)
+            {
+                _drawables.Remove(shape.Id);
+            }
+
             UnselectAll();
         }
 

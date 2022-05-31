@@ -160,6 +160,11 @@ public class CanvasControl : SelectablePanel, ICanvas
         Drawables.SelectSingleShape(shape);
     }
 
+    public void DeleteShape(IDrawable shape)
+    {
+        Drawables.DeleteShape(shape);
+    }
+
     public void AddLoadedShape(IDrawable shape)
     {
         Drawables.AddShape(shape);

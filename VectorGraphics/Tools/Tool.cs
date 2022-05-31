@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
+using VectorGraphics.Tools.Commands;
 
 namespace VectorGraphics.Tools
 {
@@ -59,6 +60,12 @@ namespace VectorGraphics.Tools
         public void RepaintCanvas()
         {
             Canvas.Repaint();
+        }
+
+        protected void AddShape(IDrawable shape)
+        {
+            AddShapeCommand command = new AddShapeCommand(Canvas, shape);
+            Canvas.ExecuteCommand(command);
         }
     }
 }
