@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Canvas\AggregateCommand.cs" />
     <Compile Include="Canvas\CanvasControl.cs">
       <SubType>Component</SubType>
     </Compile>

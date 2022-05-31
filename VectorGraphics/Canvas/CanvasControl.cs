@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using VectorGraphics.Canvas;
 using VectorGraphics.Drawables;
 using VectorGraphics.KeyHanding;
-using VectorGraphics.Movement;
 using VectorGraphics.Resizing;
 using VectorGraphics.Tools;
 
@@ -166,13 +165,14 @@ public class CanvasControl : SelectablePanel, ICanvas
         Drawables.AddShape(shape);
     }
 
-    public void MoveShape(ICanvasCommand command)
+    public void ExecuteCommand(ICanvasCommand command)
     {
-        ExecuteCommand(command);
+        _undoCommands.Push(command);
+        command.Execute();
         Repaint();
     }
 
-    public void Undo()
+    public void UndoCommand()
     {
         if (_undoCommands.Count > 0)
         {
@@ -320,11 +320,5 @@ public class CanvasControl : SelectablePanel, ICanvas
         Tool = tool;
         Cursor = tool.Cursor;
         return tool;
-    }
-
-    private void ExecuteCommand(ICanvasCommand command)
-    {
-        _undoCommands.Push(command);
-        command.Execute();
     }
 }

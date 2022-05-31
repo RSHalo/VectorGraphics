@@ -25,12 +25,12 @@ namespace VectorGraphics.Canvas
         /// <summary>Delete the shapes that are currently selected.</summary>
         void DeleteSelectedShapes();
 
-        /// <summary>Moves a shape.</summary>
-        /// <param name="command">The command that represents the movement.</param>
-        void MoveShape(ICanvasCommand command);
+        /// <summary>Executes a command.</summary>
+        /// <param name="command">The command to execute.</param>
+        void ExecuteCommand(ICanvasCommand command);
 
-        /// <summary>Undo the last operation.</summary>
-        void Undo();
+        /// <summary>Undo the last command.</summary>
+        void UndoCommand();
 
         /// <summary>Repaints the canvas.</summary>
         void Repaint();

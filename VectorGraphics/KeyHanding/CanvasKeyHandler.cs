@@ -37,7 +37,7 @@ namespace VectorGraphics.KeyHanding
                 {
                     // Undo the last operation.
                     case Keys.Z:
-                        _canvas.Undo();
+                        _canvas.UndoCommand();
                         break;
                 }
             }
@@ -66,42 +66,61 @@ namespace VectorGraphics.KeyHanding
             IEnumerable<IDrawable> selectedShapes = _canvas.Drawables.SelectedShapes;
             if (selectedShapes.Any())
             {
-                MovementType movementType;
-                switch (e.KeyCode)
-                {
-                    case Keys.Up:
-                        movementType = MovementType.Up;
-                        break;
+                MovementType movementType = DetermineMovementType(e, modifierKeys);
 
-                    case Keys.Down:
-                        movementType = MovementType.Down;
-                        break;
-
-                    case Keys.Left:
-                        movementType = MovementType.Left;
-                        break;
-
-                    case Keys.Right:
-                        movementType = MovementType.Right;
-                        break;
-
-                    default:
-                        throw new Exception("Unexpected movement type.");
-                }
-
-                // If the Control key was held, then we make the unit of movement smaller, for more precise movement.
-                if (modifierKeys.HasFlag(Keys.Control))
-                {
-                    movementType |= MovementType.SingleUnit;
-                }
-
+                List<ICanvasCommand> commands = new List<ICanvasCommand>();
                 foreach (IDrawable selectedShape in selectedShapes)
                 {
                     IShapeMover mover = selectedShape.MoveBehaviour;
-                    MoveCommand command = new MoveCommand(mover, movementType);
-                    _canvas.MoveShape(command);
+                    MoveCommand moveCommand = new MoveCommand(mover, movementType);
+                    commands.Add(moveCommand);
                 }
+
+                ICanvasCommand command;
+                if (commands.Count == 1)
+                {
+                    command = commands.Single();
+                }
+                else
+                {
+                    command = new AggregateCommand(commands);
+                }
+                _canvas.ExecuteCommand(command);
             }
+        }
+
+        private MovementType DetermineMovementType(KeyEventArgs e, Keys modifierKeys)
+        {
+            MovementType movementType;
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    movementType = MovementType.Up;
+                    break;
+
+                case Keys.Down:
+                    movementType = MovementType.Down;
+                    break;
+
+                case Keys.Left:
+                    movementType = MovementType.Left;
+                    break;
+
+                case Keys.Right:
+                    movementType = MovementType.Right;
+                    break;
+
+                default:
+                    throw new Exception("Unexpected movement type.");
+            }
+
+            // If the Control key was held, then we make the unit of movement smaller, for more precise movement.
+            if (modifierKeys.HasFlag(Keys.Control))
+            {
+                movementType |= MovementType.SingleUnit;
+            }
+
+            return movementType;
         }
     }
 }
