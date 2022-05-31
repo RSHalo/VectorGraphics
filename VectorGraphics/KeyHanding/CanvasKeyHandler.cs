@@ -68,24 +68,15 @@ namespace VectorGraphics.KeyHanding
             {
                 MovementType movementType = DetermineMovementType(e, modifierKeys);
 
-                List<ICanvasCommand> commands = new List<ICanvasCommand>();
+                AggregateCommand aggregateCommand = new AggregateCommand();
                 foreach (IDrawable selectedShape in selectedShapes)
                 {
                     IShapeMover mover = selectedShape.MoveBehaviour;
                     MoveCommand moveCommand = new MoveCommand(mover, movementType);
-                    commands.Add(moveCommand);
+                    aggregateCommand.Add(moveCommand);
                 }
 
-                ICanvasCommand command;
-                if (commands.Count == 1)
-                {
-                    command = commands.Single();
-                }
-                else
-                {
-                    command = new AggregateCommand(commands);
-                }
-                _canvas.ExecuteCommand(command);
+                _canvas.ExecuteCommand(aggregateCommand);
             }
         }
 

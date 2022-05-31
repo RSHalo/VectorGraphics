@@ -7,11 +7,11 @@ namespace VectorGraphics.Canvas
     /// </summary>
     internal class AggregateCommand : ICanvasCommand
     {
-        private readonly IEnumerable<ICanvasCommand> _commands;
+        private readonly List<ICanvasCommand> _commands = new List<ICanvasCommand>();
 
-        public AggregateCommand(IEnumerable<ICanvasCommand> commands)
+        public AggregateCommand()
         {
-            _commands = commands;
+
         }
 
         public void Execute()
@@ -28,6 +28,11 @@ namespace VectorGraphics.Canvas
             {
                 command.Undo();
             }
+        }
+
+        public void Add(ICanvasCommand command)
+        {
+            _commands.Add(command);
         }
     }
 }
